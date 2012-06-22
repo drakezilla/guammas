@@ -1,0 +1,5 @@
+#login_form, #forgot_form{text-align: left;}
+#main-usuario-panel{height: 150px;position: relative;right: 150px; background-color: white; width: 260px;z-index: 99; border-color: #F7A66B; border-style: solid; border-width: 1px;  display: none}
+#main-usuario-panel #mup-header {text-align: center; background-color: #F7A66B; padding-left: 10px !important}
+#main-usuario-panel div p{ color: white; font-size: 13px}
+#main-usuario-panel div {padding-right: 10px}

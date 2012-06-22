@@ -1,0 +1,2 @@
+var ajaxError = '<p><span class="ui-icon ui-icon-cancel" style="float:left; margin:0 7px 50px 0;"></span>Doh! ha ocurrido algo que no deberia!</p><p>Estamos trabajando por arreglarlo, danos un momemnto y algunas cervezas</b>.</p>';
+var mapError = '<p><span class="ui-icon ui-icon-cancel" style="float:left; margin:0 7px 50px 0;"></span>eee... pasa algo raro con los mapas!</p><p>Gracias por darte cuenta, estamos trabajando en la solución</b>.</p>';

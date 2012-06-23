@@ -1,7 +1,31 @@
 var markersArray = [];
 var markersOverlayArray = [];
 var geocoder = new google.maps.Geocoder();
-function initialize(geocoder,sucursales) {
+function initializeNoInteraccion(elemento) {
+    var myStyles =[
+    {
+        featureType: "all",
+        elementType: "labels",
+        stylers: [
+        {
+            visibility: "off"
+        }
+        ]
+    }
+    ];
+    var myOptions = {
+        zoom: 12,
+        disableDefaultUI: true,
+        center: new google.maps.LatLng(10.24462, -67.59374199999999),
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        styles: myStyles
+    //mapTypeId: 'roadmap'
+    }
+    var map = new google.maps.Map(document.getElementById(elemento),
+        myOptions);
+}
+
+function initializeInteraccion(geocoder,elemento) {
     var myStyles =[
     {
         featureType: "all",
@@ -14,10 +38,10 @@ function initialize(geocoder,sucursales) {
     }
     ];
     
-    
     if(!geocoder){
         var myOptions = {
             zoom: 12,
+            
             center: new google.maps.LatLng(10.24462, -67.59374199999999),
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             styles: myStyles
@@ -32,13 +56,10 @@ function initialize(geocoder,sucursales) {
         //mapTypeId: 'roadmap'
         }
     }
-    var map = new google.maps.Map(document.getElementById("map_canvas"),
+    var map = new google.maps.Map(document.getElementById(elemento),
         myOptions);
-
-    if(geocoder){
-        llamarGeocoder(map);
-        agregarChinche(map);
-    }
+    llamarGeocoder(map);
+    agregarChinche(map);
     
         
 }

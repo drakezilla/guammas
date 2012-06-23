@@ -19,16 +19,16 @@ class bienvenidoActions extends sfActions {
         if (!$this->getUser()->isAuthenticated()) {
             $this->setLayout('layout-bienvenido');
             $this->setTemplate('main');
-        }else{
-            $this->setLayout('layout');
+        } else {
+            $this->setLayout('layout-main-mapa');
             $this->setTemplate('index');
         }
     }
 
     public function executeExito(sfWebRequest $request) {
         //$this->setLayout("lay_bienvenido");
-        if ($this->getUser()->hasAttribute("username",'user_vars')) {
-            $this->username = $this->getUser()->getAttribute("username",'',"user_vars");
+        if ($this->getUser()->hasAttribute("username", 'user_vars')) {
+            $this->username = $this->getUser()->getAttribute("username", '', "user_vars");
         } else {
             $this->redirect("bienvenido/index");
         }

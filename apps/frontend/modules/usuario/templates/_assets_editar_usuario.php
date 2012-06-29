@@ -1,12 +1,19 @@
-<?php use_stylesheet('custom/customJqueryTabs.css') ?>
 <script>
 
     var main_newuser_checked = true
     var main_mail_checked = true
     
     $(document).ready(function(){
-        $("#tabs").tabs().addClass('ui-tabs-vertical ui-helper-clearfix');
-        $("#tabs li").removeClass('ui-corner-top').addClass('ui-corner-left');
+        $("#pestanas ul li div a").click(function(){
+            var tabmostrar=$(this).attr('href');
+            $("#pestanas #contenido div").slideUp('fast');
+            $(tabmostrar).slideDown("fast");
+            $("#pestanas ul li div a").css("color","#0066CC")
+            $(this).css("color","#E8782E")
+            $("#pestanas ul li").removeClass('pestana_click');
+            $(this).parent().parent().addClass('pestana_click');
+        })
+        
         $("#usuario_nombre_usuario").blur(function(){
             if($(this).val()!='<?php echo $sf_user->getAttribute("usuario_username", '', "user_vars") ?>'){
                 main_newuser_checked = checkUsuario($("#usuario_nombre_usuario"),$("#look_spinner"),'editar')
@@ -32,33 +39,7 @@
                 return false;
             }
         })
-    })    
-    $(document).ready(function(){
-        $("#usuario_red_social_red_social_id").chosen();
-        $("#usuario_red_social_red_social_id_chzn").removeAttr("style");
-        $(".chzn-drop").css("width","215px");
-        $(".tooltip").qtip({
-            position: {
-                corner: {
-                    target: 'rightMiddle',
-                    tooltip: 'leftMiddle'
-                }
-            },
-            content: 'La direccion de tu perfil debe ser algo asi: <ul><li>http://twitter.com/minombre</li><li>http://facebook.com/minombre</li><li>http://youtube.com/minombre</li></ul>',
-            style: { 
-                width: 260,
-                background: '#FFF',
-                color: 'black',
-                textAlign: 'left',
-                border: {
-                    width: 7,
-                    radius: 5,
-                    color: '#F7A66B'
-                },
-                tip: 'leftMiddle',
-                name: 'dark' // Inherit the rest of the attributes from the preset dark style
-            }
-                
-        });
+        
+        
     })
 </script>

@@ -164,6 +164,11 @@ class usuarioActions extends sfActions {
         $request->setParameter("usuario", $form);
         return $request;
     }
+    
+    public function executeLogout(sfWebRequest $request){
+        Usuario::removeVariablesSesion($this->getUser());
+        $this->redirect("@homepage");
+    }
 
 }
 

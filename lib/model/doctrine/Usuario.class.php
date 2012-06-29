@@ -27,12 +27,12 @@ class Usuario extends BaseUsuario {
     }
 
     public static function setVariablesEmpresa($usuario_id, sfUser $sf_user) {
-        $empresas = Doctrine_Core::getTable('Empresa')->findByUsuarioId($usuario_id);
+        $empresas = Doctrine_Core::getTable('Organizacion')->findByUsuarioId($usuario_id);
         $i = 0;
         $arrayEmpresa = array();
         foreach ($empresas as $empresa) {
             $arrayEmpresa[$i]["empresa_id"] = $empresa->getId();
-            $arrayEmpresa[$i]["empresa_nombre"] = $empresa->getNombre();
+            $arrayEmpresa[$i]["empresa_nombre"] = $empresa->getNombreOrganizacion();
             $arrayEmpresa[$i]["empresa_token"] = $empresa->getToken();
             $i++;
         }
@@ -42,6 +42,8 @@ class Usuario extends BaseUsuario {
     public static function removeVariablesSesion(sfUser $sf_user) {
         $sf_user->clearCredentials();
         $sf_user->setAuthenticated(false);
+        $sf_user->getAttributeHolder()->removeNamespace('empr_vars');
+        $sf_user->getAttributeHolder()->removeNamespace('user_vars');
         return true;
     }
 

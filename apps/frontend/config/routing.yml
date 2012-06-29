@@ -2,6 +2,28 @@
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
 # default rules
+logout:
+  url: /logout
+  param: {module: usuario, action: logout }
+
+editarUsuario:
+  url: /perfil/:nombre_usuario
+  param: { module: usuario, action: edit }
+
+api:
+  url: /api
+  param: { module: bienvenido, action: api }
+  requirements:
+    sf_format: (?:xml|json|yaml)
+
+exito:
+  url:   /empresa/exito
+  param: { module: empresa, action: exito }
+
+comercio:
+  url:   /empresa
+  param: { module: empresa, action: new }
+  
 homepage:
   url:   /
   param: { module: bienvenido, action: index }

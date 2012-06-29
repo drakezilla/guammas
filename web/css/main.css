@@ -3,3 +3,12 @@
 #main-usuario-panel #mup-header {text-align: center; background-color: #F7A66B; padding-left: 10px !important}
 #main-usuario-panel div p{ color: white; font-size: 13px}
 #main-usuario-panel div {padding-right: 10px}
+.form-fila-standard th{width: 215px; vertical-align: top}
+#action_map{text-align: left; height: 550px}
+.popup-powered-by{float: left;padding-top: 18px;}
+#fila_empresa_id, #alerta_geocoder{display: none}
+.form_container_rounded{border-radius: 10px;border: #999 solid thin; box-shadow: 0px 0px 5px 2px #999;}
+.form_container_rounded #titulo{margin-top: 10px;}
+.form_container_rounded #titulo h3{margin-left: 10px}
+#form-footer{margin-left: 10px}
+#form-footer button{margin-left: 5px}

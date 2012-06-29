@@ -51,9 +51,9 @@
                 <?php echo $formUsuario['avatar']->renderError() ?>
                 <?php echo $formUsuario['avatar'] ?>
                 <?php if ($formUsuario->getObject()->getAvatar() != ""): ?><br /><br />
-                    <div class="parent_help">
-                        <span id="avatar_subido"><img style="width: 64px; height: 64px" src="/uploads/avatar/<?php echo $formUsuario->getObject()->getAvatar(); ?>" /></span>
-                    </div>
+                    <span id="avatar_subido">
+                        <?php echo image_tag("../uploads/avatar/" . $formUsuario->getObject()->getAvatar(), array("width" => "64", "height" => "64")) ?>
+                    </span>
                 <?php endif; ?>
             </td>
         </tr>

@@ -121,7 +121,7 @@ function agregarChinche(map){
             map: map
         });
         markersArray.push(marker);
-        asignarLatLng($("#sucursal_coordenada_x"),$("#sucursal_coordenada_y"),event)
+        asignarLatLng($("#ubicacion_coordenada_x"),$("#ubicacion_coordenada_y"),event)
     });
         
 }

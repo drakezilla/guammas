@@ -10,6 +10,9 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Estado extends BaseEstado
-{
+class Estado extends BaseEstado {
+    public function __toString() {
+        return $this->getNombreEstado();
+    }
+
 }

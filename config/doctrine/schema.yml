@@ -1346,7 +1346,7 @@ Usuario:
       notnull: false
       autoincrement: false
     pref_correo_electronico_publico:
-      type: integer(1)
+      type: boolean(1)
       fixed: false
       unsigned: false
       primary: false

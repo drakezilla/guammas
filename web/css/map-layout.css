@@ -1,0 +1,16 @@
+#main-container{min-height: 779px; border-left:  #3399cc solid 5px; border-right:  #3399cc solid 8px; box-shadow: 0px -5px 5px 2px #999;}
+#map-container{height: auto !important;min-height: 779px; box-shadow: 0px -5px 5px 2px #999}
+#lay-footer{z-index: 99; margin-left: auto; margin-right: auto;   width: 1000px !important;  height: 68px; background:#191007 url(../images/layout/lay-footer.png) no-repeat;box-shadow: 0px 0px 5px 2px #999}
+#lay-header-logo{height: 116px; background: url(../images/layout/lay-logo.png) no-repeat; z-index: 300; position: relative;}
+#dash{padding-top: 20px; position: relative; left: -160px; top: 67px; height: 220px; background: url(../images/main-layout/dash.png) repeat-y;}
+#dash div{ height: 28px; padding-left: 18px; padding-top: 12px }
+#dash #end-dash{background: url(../images/main-layout/end-dash.png) no-repeat; height: 6px;}
+#dash div img{ cursor: pointer }
+#dash div img:hover{ box-shadow: 0px 0px 5px 2px #FFF; border-radius: 20px}
+#reg-empresa{padding-left: 10px; padding-top: 4px; position: relative; left: 360px; top: 700px; background: #FFF; border-top-left-radius: 5px; border-bottom-left-radius: 5px; box-shadow: -2px 0px 5px 2px #999; height: 28px;}
+#reg-empresa #reg-empresa-text{position:  relative; bottom: 6px;}
+#reg-empresa #reg-empresa-image{cursor: pointer}
+#reg-empresa a{color: #F9862D; text-decoration: none;  }
+#gui{position: absolute; height: 0px;}
+#panel-empresa{width: 86px; height: 27px; position: relative; left: 600px; background: url(../images/main-layout/panel-empresa.png) no-repeat; text-align: center}
+#panel-empresa img{cursor: pointer}

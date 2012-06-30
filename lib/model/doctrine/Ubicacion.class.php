@@ -10,6 +10,20 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Ubicacion extends BaseUbicacion
-{
+class Ubicacion extends BaseUbicacion {
+
+    public function save(Doctrine_Connection $conn = null) {
+        $this->setUsuarioId(sfContext::getInstance()->getUser()->getAttribute("usuario_id", '', "user_vars"));
+        $this->setPrincipal(self::isPrincipal());
+        $this->setEmpresaId(sfContext::getInstance()->getUser()->getAttribute("empresa"));
+        parent::save($conn);
+    }
+
+    private static function isPrincipal() {
+        $principal = sfContext::getInstance()->getUser()->getAttribute("principal");
+        if (is_bool($principal)) {
+            return $principal;
+        }
+    }
+
 }

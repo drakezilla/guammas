@@ -19,7 +19,7 @@ Doctrine_Manager::getInstance()->bindComponent('Usuario', 'doctrine');
  * @property integer $activo
  * @property string $perfil_facebook
  * @property string $perfil_twitter
- * @property integer $pref_correo_electronico_publico
+ * @property boolean $pref_correo_electronico_publico
  * @property integer $rol_id
  * @property integer $ciudad_id
  * @property timestamp $created_at
@@ -43,7 +43,7 @@ Doctrine_Manager::getInstance()->bindComponent('Usuario', 'doctrine');
  * @method integer             getActivo()                          Returns the current record's "activo" value
  * @method string              getPerfilFacebook()                  Returns the current record's "perfil_facebook" value
  * @method string              getPerfilTwitter()                   Returns the current record's "perfil_twitter" value
- * @method integer             getPrefCorreoElectronicoPublico()    Returns the current record's "pref_correo_electronico_publico" value
+ * @method boolean             getPrefCorreoElectronicoPublico()    Returns the current record's "pref_correo_electronico_publico" value
  * @method integer             getRolId()                           Returns the current record's "rol_id" value
  * @method integer             getCiudadId()                        Returns the current record's "ciudad_id" value
  * @method timestamp           getCreatedAt()                       Returns the current record's "created_at" value
@@ -195,8 +195,8 @@ abstract class BaseUsuario extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 150,
              ));
-        $this->hasColumn('pref_correo_electronico_publico', 'integer', 1, array(
-             'type' => 'integer',
+        $this->hasColumn('pref_correo_electronico_publico', 'boolean', 1, array(
+             'type' => 'boolean',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,

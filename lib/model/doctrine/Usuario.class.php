@@ -12,6 +12,13 @@
  */
 class Usuario extends BaseUsuario {
 
+    public function save(Doctrine_Connection $conn = null) {
+        if ($this->isNew()) {
+            $this->setAvatar('default.png');
+        }
+        parent::save($conn);
+    }
+
     public static function setVariableSesion($datosUsusario, sfUser $sf_user) {
         self::removeVariablesSesion($sf_user);
         $sf_user->setAuthenticated(true);

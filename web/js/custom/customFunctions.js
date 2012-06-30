@@ -27,8 +27,12 @@ function checkUsuario(campo,spinner,accion){
                 spinner.html('<img src="/images/16x16/small_cross.png" />'+data.msg)
                 return false
             }
+            
         }
     })
+    setTimeout(function(){
+        $("#look_spinner").html("");
+    },5000)
 }
 
 function checkEmail(campo,spinner,accion){  
@@ -65,5 +69,9 @@ function checkEmail(campo,spinner,accion){
     }else{
         spinner.html('<img src="/images/16x16/small_cross.png" /> Este correo electronico no es valido');
         return false
-    }  
-}
+    }
+    setTimeout(function(){
+        $("#check_email").html("");
+    },5000)
+    
+}    

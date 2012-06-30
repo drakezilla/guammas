@@ -1,0 +1,8 @@
+#pestanas ul li{float: left;list-style: none;height: 48px;width: 166px;background: url(../../images/tabs/background.png) no-repeat;}
+#pestanas ul li div{padding-top: 30px; padding-left: 50px; width: 100px; }
+#pestanas #header{ width: 794px; height: 48px; background: url(../../images/tabs/background_footer.png) repeat-x; background-position: bottom}
+#pestanas ul li div a{text-decoration: none}
+#pestanas #contenido .tab-hide{display: none}
+.pestana_click{background: url(../../images/tabs/background_clicked.png) no-repeat !important; background-repeat: no-repeat;}
+#pestanas #titulo {margin-top: 10px;}
+#pestanas #titulo h3

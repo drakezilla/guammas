@@ -7,7 +7,31 @@
         <link rel="shortcut icon" href="/favicon.ico" />
         <?php include_stylesheets() ?>
         <?php include_javascripts() ?>
-        <link rel="stylesheet" href="../css/layout.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="../css/map-layout.css" type="text/css" media="all" />
+        <script type="text/javascript">
+            $(document).ready(function(){
+                var hide=false;
+                $('#reg-empresa-image').click(function(){
+                    if(!hide){
+                        var ancho = '32px';
+                        var margen= '318px';
+                        hide = true;
+                        $('#reg-empresa-image').html('<?php echo image_tag('stylistica-icons/24x24/left_arrow.png') ?>');
+                        $('#reg-empresa-text').fadeOut('fast');
+                    }else{
+                        var ancho = '350px';
+                        var margen= '0px';
+                        hide = false;
+                        $('#reg-empresa-image').html('<?php echo image_tag('stylistica-icons/24x24/right_arrow.png') ?>');
+                        $('#reg-empresa-text').fadeIn('fast');
+                    }
+                    $(this).parent().animate({
+                        width: ancho,
+                        marginLeft: margen
+                    })
+                });
+            })    
+        </script>
     </head>
     <body>        
         <div class="container" id="main-container">

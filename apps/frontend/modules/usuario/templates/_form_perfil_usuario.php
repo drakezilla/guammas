@@ -48,13 +48,13 @@
         <tr>
             <th style="vertical-align: top"><?php echo $formUsuario['avatar']->renderLabel() ?></th>
             <td>
-                <?php echo $formUsuario['avatar']->renderError() ?>
-                <?php echo $formUsuario['avatar'] ?>
-                <?php if ($formUsuario->getObject()->getAvatar() != ""): ?><br /><br />
+                <?php if ($formUsuario->getObject()->getAvatar() != ""): ?>
                     <span id="avatar_subido">
                         <?php echo image_tag("../uploads/avatar/" . $formUsuario->getObject()->getAvatar(), array("width" => "64", "height" => "64")) ?>
-                    </span>
+                    </span><br />
                 <?php endif; ?>
+                <?php echo $formUsuario['avatar']->renderError() ?>
+                <?php echo $formUsuario['avatar'] ?>
             </td>
         </tr>
     </tbody>

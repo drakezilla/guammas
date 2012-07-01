@@ -1,12 +1,6 @@
-<?php use_stylesheet("custom/customtabs.css") ?>
-<?php include_partial("assets_editar_usuario") ?>
-
-<form id="usuario_form" action="<?php echo url_for('usuario/' . ($formUsuario->getObject()->isNew() ? 'create' : 'update') . (!$formUsuario->getObject()->isNew() ? '?id=' . $formUsuario->getObject()->getId() : '')) ?>" method="post" <?php $formUsuario->isMultipart() and print 'enctype="multipart/form-data" ' ?> style="margin-top: 10px">
+<form id="usuario_form" action="<?php echo url_for('usuario/' . ($formUsuario->getObject()->isNew() ? 'create' : 'update') . (!$formUsuario->getObject()->isNew() ? '?id=' . $formUsuario->getObject()->getId() : '')) ?>" method="post" <?php $formUsuario->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
     <div class="span-21 last form_container_rounded">
-        <div id="titulo">
-            <h3>Configuración de usuario</h3>
-            <div><?php echo image_tag('tabs/linea.png') ?></div>
-        </div>
+        <?php include_partial('form_header') ?>
         <div id="pestanas">
             <div id="header">
                 <ul>
@@ -15,7 +9,7 @@
                     <li id="btn_priva"><div><a href="#tab-priva">Privacidad</a></div></li>
                 </ul>
             </div>
-            <div id="contenido">
+            <div id="contenido" style="padding-left: 40px; padding-top: 20px;">
                 <div id="tab-prefe">
                     <?php include_partial("form_perfil_usuario", array("formUsuario" => $formUsuario)) ?>
                 </div>

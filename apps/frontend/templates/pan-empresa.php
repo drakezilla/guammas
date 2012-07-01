@@ -6,7 +6,6 @@ if ($sf_user->hasCredential("Empresa")) {
 }
 ?>
 <div id="pan-empresa">
-    ahora si, vaya a dormir!!
     <p>Hola <strong><?php echo $sf_user->getAttribute("usuario_username", '', "user_vars") ?></strong>, ¿qué quieres hacer?</p>
     <?php if ($boolEmpresas): ?>
         <?php for ($i = 0; $i < count($empresas); $i++) : ?>

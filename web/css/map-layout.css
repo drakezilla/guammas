@@ -12,5 +12,21 @@
 #reg-empresa #reg-empresa-image{cursor: pointer}
 #reg-empresa a{color: #F9862D; text-decoration: none;  }
 #gui{position: absolute; height: 0px;}
-#panel-empresa{width: 86px; height: 27px; position: relative; left: 600px; background: url(../images/main-layout/panel-empresa.png) no-repeat; text-align: center}
+#panel-empresa{width: 86px; height: 27px; position: relative; left: 600px; background: #191007; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;  text-align: center}
 #panel-empresa img{cursor: pointer}
+#pan-empresa{
+    height: 140px; 
+    z-index: 99; 
+    width: 200px;
+    position: relative; 
+    background: #191007; 
+    right: 114px; 
+    bottom: 5px; 
+    border-bottom-left-radius: 5px; 
+    border-bottom-right-radius: 5px; 
+    border-top-left-radius: 5px; 
+    display: none; 
+    padding-top: 10px; 
+    color: white; 
+    text-align: right;
+}

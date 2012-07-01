@@ -72,6 +72,14 @@ function checkEmail(campo,spinner,accion){
     }
     setTimeout(function(){
         $("#check_email").html("");
-    },5000)
-    
+    },5000)  
 }    
+$(document).ready(function(){
+    $("#btn-pan-empresa").click(function(){
+        if($('#pan-empresa').is(':visible')){
+            $('#pan-empresa').slideUp('fast');
+        }else{
+            $('#pan-empresa').slideDown('fast');
+        }
+    })
+})

@@ -15,7 +15,8 @@
             <div class="span-20 last" id="lay-header-user-panel">
                 <div id="panel-empresa">
                     <?php echo image_tag('stylistica-icons/24x24/search.png') ?>
-                    <?php echo image_tag('stylistica-icons/24x24/id_card.png') ?>
+                    <?php echo image_tag('stylistica-icons/24x24/id_card.png',array('id'=>'btn-pan-empresa')) ?>
+                    <?php include 'pan-empresa.php'; ?>
                 </div>
             </div>
             <div class="span-2">

@@ -16,12 +16,12 @@ class UsuarioTable extends Doctrine_Table {
         return Doctrine_Core::getTable('Usuario');
     }
 
-    public function getDatosUsuario($form) {
+    public function getDatosUsuario($usuario,$clave) {
         $query = Doctrine_Query::create()
                 ->select("*")
                 ->from("Usuario usu")
-                ->where("(nombre_usuario='" . $form["username"] . "' or correo_electronico='" . $form["username"] . "')")
-                ->andWhere("contrasena=?", $form["password"])
+                ->where("(nombre_usuario='" . $usuario . "' or correo_electronico='" . $usuario . "')")
+                ->andWhere("contrasena=?", $clave)
                 ->andWhere("activo=?", true)
                 ->execute();
         return $query;

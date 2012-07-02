@@ -109,7 +109,9 @@ class usuarioActions extends sfActions {
     }
 
     protected function logingIn($form, sfWebRequest $request) {
-        $usuario = Doctrine_Core::getTable("Usuario")->getDatosUsuario($form);
+        $clave=$form['password'];
+        $usuario=$form['username'];
+        $usuario = Doctrine_Core::getTable("Usuario")->getDatosUsuario($usuario, $clave);
         if ($request->isXmlHttpRequest()) {
             if (count($usuario) == 1) {
                 $return = array();
@@ -170,5 +172,20 @@ class usuarioActions extends sfActions {
         $this->redirect("@homepage");
     }
 
+    public function executeLoginXML(sfWebRequest $request){
+        //$request->setParameter('correo', 'lajacke87@gmail.com');
+        //$request->setParameter('clave', '123456');
+        //$this->forward404Unless($request->hasParameter('correo')&&$request->hasParameter('clave'));
+        //$this->forward404Unless(ereg('Android', $_SERVER['HTTP_USER_AGENT']));
+        
+        $usuarioData = Doctrine_Core::getTable('Usuario')->getDatosUsuario($request->getParameter('correo'),$request->getParameter('clave'));
+        if(count($usuarioData)==1){
+            $returnArray['status'] = 'true';
+        }else{
+            $returnArray['status'] = 'false';
+        }
+        echo json_encode($returnArray);
+        die();
+    }
 }
 

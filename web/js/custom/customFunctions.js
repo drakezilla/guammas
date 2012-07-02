@@ -80,6 +80,15 @@ $(document).ready(function(){
             $('#pan-empresa').slideUp('fast');
         }else{
             $('#pan-empresa').slideDown('fast');
+            $('#pan-buscar').slideUp('fast');
+        }
+    })
+    $("#btn-pan-buscar").click(function(){
+        if($('#pan-buscar').is(':visible')){
+            $('#pan-buscar').slideUp('fast');
+        }else{
+            $('#pan-buscar').slideDown('fast');
+            $('#pan-empresa').slideUp('fast');
         }
     })
 })

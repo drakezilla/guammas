@@ -34,4 +34,10 @@ class bienvenidoActions extends sfActions {
         }
         $this->getUser()->getAttributeHolder()->remove("username");
     }
+
+    public function executeBusqueda(sfWebRequest $request) {
+        $this->forward404If(!$request->hasParameter("s"));
+        $this->empresas = Doctrine_Core::getTable('Ubicacion')->getForLuceneQuery($request->getParameter("s"));
+    }
+
 }

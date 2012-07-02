@@ -2,10 +2,14 @@
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
 # default rules
+
 usuarioXML:
   url: /usuarioXML
   param: {module: usuario, action: loginXML}
 
+busqueda:
+  url:    /busqueda
+  param:  { module: bienvenido, action: busqueda }
 
 logout:
   url: /logout

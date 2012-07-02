@@ -16,7 +16,9 @@ class Ubicacion extends BaseUbicacion {
         $this->setUsuarioId(sfContext::getInstance()->getUser()->getAttribute("usuario_id", '', "user_vars"));
         $this->setPrincipal(self::isPrincipal());
         $this->setEmpresaId(sfContext::getInstance()->getUser()->getAttribute("empresa"));
-        parent::save($conn);
+        $ret = parent::save($conn);
+        $this->updateLuceneIndex();
+        return $ret;
     }
 
     private static function isPrincipal() {
@@ -24,6 +26,34 @@ class Ubicacion extends BaseUbicacion {
         if (is_bool($principal)) {
             return $principal;
         }
+    }
+
+    public function updateLuceneIndex() {
+        $ubicacion = Doctrine_Core::getTable("Ubicacion")->findOneByEmpresaId(sfContext::getInstance()->getUser()->getAttribute('empresa'));
+        
+        $index = UbicacionTable::getLuceneIndex();
+
+        // remove an existing entry
+        if ($hit = $index->find('pk:' . $ubicacion->getId())) {
+            $index->delete($hit->id);
+        }
+
+        $doc = new Zend_Search_Lucene_Document();
+
+        // store job primary key URL to identify it in the search results
+        $doc->addField(Zend_Search_Lucene_Field::UnIndexed('pk', $ubicacion->getId()));
+
+        // index job fields
+
+        $doc->addField(Zend_Search_Lucene_Field::UnStored('nombre', $ubicacion->getOrganizacion()->getNombreOrganizacion(), 'utf-8'));
+        $doc->addField(Zend_Search_Lucene_Field::UnStored('ciudad', $ubicacion->getCiudad()->getNombreCiudad(), 'utf-8'));
+        $doc->addField(Zend_Search_Lucene_Field::UnStored('estado', $ubicacion->getCiudad()->getEstado()->getNombreEstado(), 'utf-8'));
+        $doc->addField(Zend_Search_Lucene_Field::UnStored('coordenada_x', $ubicacion->getCoordenadaX(), 'utf-8'));
+        $doc->addField(Zend_Search_Lucene_Field::UnStored('coordenada_y', $ubicacion->getCoordenadaY(), 'utf-8'));
+
+        // add job to the index
+        $index->addDocument($doc);
+        $index->commit();
     }
 
 }

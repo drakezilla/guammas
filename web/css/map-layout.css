@@ -30,3 +30,26 @@
     color: white; 
     text-align: right;
 }
+#pan-buscar{
+    height: 40px; 
+    z-index: 99; 
+    width: 300px;
+    position: relative; 
+    background: #191007; 
+    right: 214px; 
+    bottom: 5px; 
+    border-bottom-left-radius: 5px; 
+    border-bottom-right-radius: 5px; 
+    border-top-left-radius: 5px; 
+    display: none; 
+    padding-top: 10px; 
+    color: white; 
+    text-align: right;
+}
+#pan-buscar input{
+    width: 220px;
+    border: #999 solid thin;
+    border-radius: 5px;
+    height: 28px;
+    color: #aaa
+}

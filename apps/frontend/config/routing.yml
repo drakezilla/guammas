@@ -3,9 +3,9 @@
 
 # default rules
 
-usuarioXML:
-  url: /usuarioXML
-  param: {module: usuario, action: loginXML}
+loginREST:
+  url: /usuario/loginREST
+  param: {module: usuario, action: loginREST}
 
 busqueda:
   url:    /busqueda

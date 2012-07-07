@@ -10,6 +10,10 @@
  */
 class usuarioActions extends sfActions {
 
+    public function preExecute() {
+        $this->getUser()->getAttributeHolder()->remove("empresa");
+    }
+    
     public function executeNew(sfWebRequest $request) {
         if ($request->isXmlHttpRequest()) {
             $this->form = new UsuarioForm();

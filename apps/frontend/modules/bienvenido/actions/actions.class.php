@@ -15,6 +15,10 @@ class bienvenidoActions extends sfActions {
      *
      * @param sfRequest $request A request object
      */
+    public function preExecute() {
+        $this->getUser()->getAttributeHolder()->remove("empresa");
+    }
+    
     public function executeIndex(sfWebRequest $request) {
         if (!$this->getUser()->isAuthenticated()) {
             $this->setLayout('layout-bienvenido');

@@ -10,6 +10,10 @@
  */
 class empresaActions extends sfActions {
 
+    public function preExecute() {
+        $this->getUser()->getAttributeHolder()->remove("empresa");
+    }
+    
     public function executeNew(sfWebRequest $request) {
         $this->formOrganizacion = new OrganizacionForm();
         $this->formUbicacion = new UbicacionForm();
@@ -35,7 +39,6 @@ class empresaActions extends sfActions {
             $this->getUser()->setAttribute("principal", true);
             $ubicacion = $formUbicacion->save();
             $this->getUser()->getAttributeHolder()->remove("principal");
-            $this->getUser()->getAttributeHolder()->remove("empresa");
             $this->redirect('@exito');
         }
     }
@@ -57,6 +60,45 @@ class empresaActions extends sfActions {
         } else {
             $this->forward404();
         }
+    }
+
+    public function executeTags(sfWebRequest $request) {
+        $this->forward404Unless($request->isXmlHttpRequest());
+        $tags = Doctrine_Core::getTable("Tag")->getTags($request->getParameter('term'));
+        $retArray = array();
+        for ($i = 0; $i < count($tags); $i++) {
+            $retArray[$i]["id"] = $tags[$i]['id'];
+            $retArray[$i]["value"] = $tags[$i]['etiqueta'];
+            $retArray[$i]["label"] = $tags[$i]['etiqueta'];
+        }
+        echo json_encode($retArray);
+        die();
+    }
+
+    public function executeGuardarTags(sfWebRequest $request) {
+        $this->forward404Unless($request->isXmlHttpRequest());
+        //Primero ver los tags que ESTAN EN LA TABLA TAGS Y GUARDAR LOS OTROS
+        $existen = Doctrine_Core::getTable('Tag')->getIdTags($request->getParameter('tags'));
+        $tagExisten=array();
+        for ($i = 0; $i < count($existen); $i++) {
+            $tagExisten[$i] = $existen[$i]['etiqueta'];
+        }
+        $tagNoExiste=  array_diff($request->getParameter('tags'), $tagExisten);
+        for($i=0;$i<count($tagNoExiste);$i++){
+            $tag= new Tag();
+            $tag->guardarTag($tagNoExiste[$i]);
+        }
+        
+        //Segundo Traer el id de las etiquetas que cree
+        $allTagsSave= Doctrine_Core::getTable('Tag')->getIdTags($request->getParameter('tags'));
+        for($i=0;$i<count($allTagsSave);$i++){
+            $tagOrganizacion= new TagOrganizacion();
+            $tagOrganizacion->asignarTag($allTagsSave[$i]['id'], $this->getUser()->getAttribute('empresa'));
+        }
+
+
+
+        die();
     }
 
 }

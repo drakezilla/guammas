@@ -42,11 +42,12 @@ class UbicacionTable extends Doctrine_Table {
             return array();
         }
 
-        $q = $this->createQuery('suc')
-                ->whereIn('suc.id', $pks)
-                ->limit(20);
+        $query = Doctrine_Query::create()
+                ->select('*')
+                ->from("Organizacion")
+                ->whereIn("id",$pks);
 
-        return $q->execute();
+        return $query->execute();
     }
 
 }

@@ -10,10 +10,6 @@
  */
 class empresaActions extends sfActions {
 
-    public function preExecute() {
-        $this->getUser()->getAttributeHolder()->remove("empresa");
-    }
-    
     public function executeNew(sfWebRequest $request) {
         $this->formOrganizacion = new OrganizacionForm();
         $this->formUbicacion = new UbicacionForm();
@@ -96,6 +92,8 @@ class empresaActions extends sfActions {
             $tagOrganizacion->asignarTag($allTagsSave[$i]['id'], $this->getUser()->getAttribute('empresa'));
         }
 
+        $ubicacion = new Ubicacion();
+        $ubicacion->updateLuceneIndex();
 
 
         die();

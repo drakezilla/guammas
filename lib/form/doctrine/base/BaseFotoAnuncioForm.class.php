@@ -17,7 +17,7 @@ abstract class BaseFotoAnuncioForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
       'imagen'     => new sfWidgetFormInputText(),
-      'anuncio_id' => new sfWidgetFormInputText(),
+      'anuncio_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Anuncio'), 'add_empty' => false)),
       'activo'     => new sfWidgetFormInputText(),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
@@ -26,7 +26,7 @@ abstract class BaseFotoAnuncioForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'imagen'     => new sfValidatorString(array('max_length' => 255)),
-      'anuncio_id' => new sfValidatorInteger(),
+      'anuncio_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Anuncio'))),
       'activo'     => new sfValidatorInteger(),
       'created_at' => new sfValidatorDateTime(),
       'updated_at' => new sfValidatorDateTime(array('required' => false)),

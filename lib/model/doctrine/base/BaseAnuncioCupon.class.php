@@ -15,23 +15,26 @@ Doctrine_Manager::getInstance()->bindComponent('AnuncioCupon', 'doctrine');
  * @property date $fecha_disfrute_fin
  * @property integer $anuncio_id
  * @property Anuncio $Anuncio
+ * @property Doctrine_Collection $UsuarioCupon
  * 
- * @method integer      getId()                    Returns the current record's "id" value
- * @method integer      getCantidadInicial()       Returns the current record's "cantidad_inicial" value
- * @method integer      getCantidadRestante()      Returns the current record's "cantidad_restante" value
- * @method integer      getCantidadPersona()       Returns the current record's "cantidad_persona" value
- * @method date         getFechaDisfruteInicio()   Returns the current record's "fecha_disfrute_inicio" value
- * @method date         getFechaDisfruteFin()      Returns the current record's "fecha_disfrute_fin" value
- * @method integer      getAnuncioId()             Returns the current record's "anuncio_id" value
- * @method Anuncio      getAnuncio()               Returns the current record's "Anuncio" value
- * @method AnuncioCupon setId()                    Sets the current record's "id" value
- * @method AnuncioCupon setCantidadInicial()       Sets the current record's "cantidad_inicial" value
- * @method AnuncioCupon setCantidadRestante()      Sets the current record's "cantidad_restante" value
- * @method AnuncioCupon setCantidadPersona()       Sets the current record's "cantidad_persona" value
- * @method AnuncioCupon setFechaDisfruteInicio()   Sets the current record's "fecha_disfrute_inicio" value
- * @method AnuncioCupon setFechaDisfruteFin()      Sets the current record's "fecha_disfrute_fin" value
- * @method AnuncioCupon setAnuncioId()             Sets the current record's "anuncio_id" value
- * @method AnuncioCupon setAnuncio()               Sets the current record's "Anuncio" value
+ * @method integer             getId()                    Returns the current record's "id" value
+ * @method integer             getCantidadInicial()       Returns the current record's "cantidad_inicial" value
+ * @method integer             getCantidadRestante()      Returns the current record's "cantidad_restante" value
+ * @method integer             getCantidadPersona()       Returns the current record's "cantidad_persona" value
+ * @method date                getFechaDisfruteInicio()   Returns the current record's "fecha_disfrute_inicio" value
+ * @method date                getFechaDisfruteFin()      Returns the current record's "fecha_disfrute_fin" value
+ * @method integer             getAnuncioId()             Returns the current record's "anuncio_id" value
+ * @method Anuncio             getAnuncio()               Returns the current record's "Anuncio" value
+ * @method Doctrine_Collection getUsuarioCupon()          Returns the current record's "UsuarioCupon" collection
+ * @method AnuncioCupon        setId()                    Sets the current record's "id" value
+ * @method AnuncioCupon        setCantidadInicial()       Sets the current record's "cantidad_inicial" value
+ * @method AnuncioCupon        setCantidadRestante()      Sets the current record's "cantidad_restante" value
+ * @method AnuncioCupon        setCantidadPersona()       Sets the current record's "cantidad_persona" value
+ * @method AnuncioCupon        setFechaDisfruteInicio()   Sets the current record's "fecha_disfrute_inicio" value
+ * @method AnuncioCupon        setFechaDisfruteFin()      Sets the current record's "fecha_disfrute_fin" value
+ * @method AnuncioCupon        setAnuncioId()             Sets the current record's "anuncio_id" value
+ * @method AnuncioCupon        setAnuncio()               Sets the current record's "Anuncio" value
+ * @method AnuncioCupon        setUsuarioCupon()          Sets the current record's "UsuarioCupon" collection
  * 
  * @package    guammas
  * @subpackage model
@@ -113,5 +116,9 @@ abstract class BaseAnuncioCupon extends sfDoctrineRecord
         $this->hasOne('Anuncio', array(
              'local' => 'anuncio_id',
              'foreign' => 'id'));
+
+        $this->hasMany('UsuarioCupon', array(
+             'local' => 'id',
+             'foreign' => 'anuncio_cupon_id'));
     }
 }

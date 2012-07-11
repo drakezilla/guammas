@@ -9,29 +9,29 @@ Doctrine_Manager::getInstance()->bindComponent('Seguidor', 'doctrine');
  * 
  * @property integer $id
  * @property integer $usuario_id
- * @property integer $empresa_id
+ * @property integer $organizacion_id
  * @property integer $activo
  * @property timestamp $created_at
  * @property timestamp $updated_at
  * @property Organizacion $Organizacion
  * @property Usuario $Usuario
  * 
- * @method integer      getId()           Returns the current record's "id" value
- * @method integer      getUsuarioId()    Returns the current record's "usuario_id" value
- * @method integer      getEmpresaId()    Returns the current record's "empresa_id" value
- * @method integer      getActivo()       Returns the current record's "activo" value
- * @method timestamp    getCreatedAt()    Returns the current record's "created_at" value
- * @method timestamp    getUpdatedAt()    Returns the current record's "updated_at" value
- * @method Organizacion getOrganizacion() Returns the current record's "Organizacion" value
- * @method Usuario      getUsuario()      Returns the current record's "Usuario" value
- * @method Seguidor     setId()           Sets the current record's "id" value
- * @method Seguidor     setUsuarioId()    Sets the current record's "usuario_id" value
- * @method Seguidor     setEmpresaId()    Sets the current record's "empresa_id" value
- * @method Seguidor     setActivo()       Sets the current record's "activo" value
- * @method Seguidor     setCreatedAt()    Sets the current record's "created_at" value
- * @method Seguidor     setUpdatedAt()    Sets the current record's "updated_at" value
- * @method Seguidor     setOrganizacion() Sets the current record's "Organizacion" value
- * @method Seguidor     setUsuario()      Sets the current record's "Usuario" value
+ * @method integer      getId()              Returns the current record's "id" value
+ * @method integer      getUsuarioId()       Returns the current record's "usuario_id" value
+ * @method integer      getOrganizacionId()  Returns the current record's "organizacion_id" value
+ * @method integer      getActivo()          Returns the current record's "activo" value
+ * @method timestamp    getCreatedAt()       Returns the current record's "created_at" value
+ * @method timestamp    getUpdatedAt()       Returns the current record's "updated_at" value
+ * @method Organizacion getOrganizacion()    Returns the current record's "Organizacion" value
+ * @method Usuario      getUsuario()         Returns the current record's "Usuario" value
+ * @method Seguidor     setId()              Sets the current record's "id" value
+ * @method Seguidor     setUsuarioId()       Sets the current record's "usuario_id" value
+ * @method Seguidor     setOrganizacionId()  Sets the current record's "organizacion_id" value
+ * @method Seguidor     setActivo()          Sets the current record's "activo" value
+ * @method Seguidor     setCreatedAt()       Sets the current record's "created_at" value
+ * @method Seguidor     setUpdatedAt()       Sets the current record's "updated_at" value
+ * @method Seguidor     setOrganizacion()    Sets the current record's "Organizacion" value
+ * @method Seguidor     setUsuario()         Sets the current record's "Usuario" value
  * 
  * @package    guammas
  * @subpackage model
@@ -60,7 +60,7 @@ abstract class BaseSeguidor extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 4,
              ));
-        $this->hasColumn('empresa_id', 'integer', 4, array(
+        $this->hasColumn('organizacion_id', 'integer', 4, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
@@ -102,7 +102,7 @@ abstract class BaseSeguidor extends sfDoctrineRecord
     {
         parent::setUp();
         $this->hasOne('Organizacion', array(
-             'local' => 'empresa_id',
+             'local' => 'organizacion_id',
              'foreign' => 'id'));
 
         $this->hasOne('Usuario', array(

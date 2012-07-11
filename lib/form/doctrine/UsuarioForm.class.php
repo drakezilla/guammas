@@ -15,6 +15,7 @@ class UsuarioForm extends BaseUsuarioForm {
                 $this["actividad"], 
                 $this["ultimo_inicio_sesion"], 
                 $this["activo"], 
+                $this["rol_id"], 
                 $this["created_at"], 
                 $this["updated_at"]
         );

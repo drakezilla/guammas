@@ -13,9 +13,8 @@
 class Ubicacion extends BaseUbicacion {
 
     public function save(Doctrine_Connection $conn = null) {
-        $this->setUsuarioId(sfContext::getInstance()->getUser()->getAttribute("usuario_id", '', "user_vars"));
         $this->setPrincipal(self::isPrincipal());
-        $this->setEmpresaId(sfContext::getInstance()->getUser()->getAttribute("empresa"));
+        $this->setOrganizacionId(sfContext::getInstance()->getUser()->getAttribute("empresa"));
         $ret = parent::save($conn);
         $this->updateLuceneIndex();
         return $ret;

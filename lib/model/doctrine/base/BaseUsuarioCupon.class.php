@@ -11,18 +11,21 @@ Doctrine_Manager::getInstance()->bindComponent('UsuarioCupon', 'doctrine');
  * @property integer $usuario_id
  * @property integer $anuncio_cupon_id
  * @property timestamp $created_at
- * @property timestamp $updated_at
+ * @property Usuario $Usuario
+ * @property AnuncioCupon $AnuncioCupon
  * 
  * @method integer      getId()               Returns the current record's "id" value
  * @method integer      getUsuarioId()        Returns the current record's "usuario_id" value
  * @method integer      getAnuncioCuponId()   Returns the current record's "anuncio_cupon_id" value
  * @method timestamp    getCreatedAt()        Returns the current record's "created_at" value
- * @method timestamp    getUpdatedAt()        Returns the current record's "updated_at" value
+ * @method Usuario      getUsuario()          Returns the current record's "Usuario" value
+ * @method AnuncioCupon getAnuncioCupon()     Returns the current record's "AnuncioCupon" value
  * @method UsuarioCupon setId()               Sets the current record's "id" value
  * @method UsuarioCupon setUsuarioId()        Sets the current record's "usuario_id" value
  * @method UsuarioCupon setAnuncioCuponId()   Sets the current record's "anuncio_cupon_id" value
  * @method UsuarioCupon setCreatedAt()        Sets the current record's "created_at" value
- * @method UsuarioCupon setUpdatedAt()        Sets the current record's "updated_at" value
+ * @method UsuarioCupon setUsuario()          Sets the current record's "Usuario" value
+ * @method UsuarioCupon setAnuncioCupon()     Sets the current record's "AnuncioCupon" value
  * 
  * @package    guammas
  * @subpackage model
@@ -47,7 +50,7 @@ abstract class BaseUsuarioCupon extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => false,
+             'notnull' => true,
              'autoincrement' => false,
              'length' => 4,
              ));
@@ -56,20 +59,11 @@ abstract class BaseUsuarioCupon extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => false,
+             'notnull' => true,
              'autoincrement' => false,
              'length' => 4,
              ));
         $this->hasColumn('created_at', 'timestamp', 25, array(
-             'type' => 'timestamp',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => true,
-             'autoincrement' => false,
-             'length' => 25,
-             ));
-        $this->hasColumn('updated_at', 'timestamp', 25, array(
              'type' => 'timestamp',
              'fixed' => 0,
              'unsigned' => false,
@@ -83,6 +77,12 @@ abstract class BaseUsuarioCupon extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        
+        $this->hasOne('Usuario', array(
+             'local' => 'usuario_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('AnuncioCupon', array(
+             'local' => 'anuncio_cupon_id',
+             'foreign' => 'id'));
     }
 }

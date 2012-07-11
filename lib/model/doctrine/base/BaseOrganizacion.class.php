@@ -240,14 +240,14 @@ abstract class BaseOrganizacion extends sfDoctrineRecord
 
         $this->hasMany('Seguidor', array(
              'local' => 'id',
-             'foreign' => 'empresa_id'));
+             'foreign' => 'organizacion_id'));
 
         $this->hasMany('TagOrganizacion', array(
              'local' => 'id',
-             'foreign' => 'empresa_id'));
+             'foreign' => 'organizacion_id'));
 
         $this->hasMany('Ubicacion', array(
              'local' => 'id',
-             'foreign' => 'empresa_id'));
+             'foreign' => 'organizacion_id'));
     }
 }

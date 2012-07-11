@@ -10,28 +10,34 @@ Doctrine_Manager::getInstance()->bindComponent('DenunciaAnuncio', 'doctrine');
  * @property integer $id
  * @property string $denuncia_anuncio
  * @property integer $atendida
- * @property integer $sucursal_anuncio_id
+ * @property integer $ubicacion_anuncio_id
  * @property integer $usuario_id
  * @property timestamp $created_at
  * @property timestamp $updated_at
+ * @property UbicacionAnuncio $UbicacionAnuncio
+ * @property UbicacionAnuncio $UbicacionAnuncio_2
  * @property Usuario $Usuario
  * 
- * @method integer         getId()                  Returns the current record's "id" value
- * @method string          getDenunciaAnuncio()     Returns the current record's "denuncia_anuncio" value
- * @method integer         getAtendida()            Returns the current record's "atendida" value
- * @method integer         getSucursalAnuncioId()   Returns the current record's "sucursal_anuncio_id" value
- * @method integer         getUsuarioId()           Returns the current record's "usuario_id" value
- * @method timestamp       getCreatedAt()           Returns the current record's "created_at" value
- * @method timestamp       getUpdatedAt()           Returns the current record's "updated_at" value
- * @method Usuario         getUsuario()             Returns the current record's "Usuario" value
- * @method DenunciaAnuncio setId()                  Sets the current record's "id" value
- * @method DenunciaAnuncio setDenunciaAnuncio()     Sets the current record's "denuncia_anuncio" value
- * @method DenunciaAnuncio setAtendida()            Sets the current record's "atendida" value
- * @method DenunciaAnuncio setSucursalAnuncioId()   Sets the current record's "sucursal_anuncio_id" value
- * @method DenunciaAnuncio setUsuarioId()           Sets the current record's "usuario_id" value
- * @method DenunciaAnuncio setCreatedAt()           Sets the current record's "created_at" value
- * @method DenunciaAnuncio setUpdatedAt()           Sets the current record's "updated_at" value
- * @method DenunciaAnuncio setUsuario()             Sets the current record's "Usuario" value
+ * @method integer          getId()                   Returns the current record's "id" value
+ * @method string           getDenunciaAnuncio()      Returns the current record's "denuncia_anuncio" value
+ * @method integer          getAtendida()             Returns the current record's "atendida" value
+ * @method integer          getUbicacionAnuncioId()   Returns the current record's "ubicacion_anuncio_id" value
+ * @method integer          getUsuarioId()            Returns the current record's "usuario_id" value
+ * @method timestamp        getCreatedAt()            Returns the current record's "created_at" value
+ * @method timestamp        getUpdatedAt()            Returns the current record's "updated_at" value
+ * @method UbicacionAnuncio getUbicacionAnuncio()     Returns the current record's "UbicacionAnuncio" value
+ * @method UbicacionAnuncio getUbicacionAnuncio2()    Returns the current record's "UbicacionAnuncio_2" value
+ * @method Usuario          getUsuario()              Returns the current record's "Usuario" value
+ * @method DenunciaAnuncio  setId()                   Sets the current record's "id" value
+ * @method DenunciaAnuncio  setDenunciaAnuncio()      Sets the current record's "denuncia_anuncio" value
+ * @method DenunciaAnuncio  setAtendida()             Sets the current record's "atendida" value
+ * @method DenunciaAnuncio  setUbicacionAnuncioId()   Sets the current record's "ubicacion_anuncio_id" value
+ * @method DenunciaAnuncio  setUsuarioId()            Sets the current record's "usuario_id" value
+ * @method DenunciaAnuncio  setCreatedAt()            Sets the current record's "created_at" value
+ * @method DenunciaAnuncio  setUpdatedAt()            Sets the current record's "updated_at" value
+ * @method DenunciaAnuncio  setUbicacionAnuncio()     Sets the current record's "UbicacionAnuncio" value
+ * @method DenunciaAnuncio  setUbicacionAnuncio2()    Sets the current record's "UbicacionAnuncio_2" value
+ * @method DenunciaAnuncio  setUsuario()              Sets the current record's "Usuario" value
  * 
  * @package    guammas
  * @subpackage model
@@ -69,7 +75,7 @@ abstract class BaseDenunciaAnuncio extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 1,
              ));
-        $this->hasColumn('sucursal_anuncio_id', 'integer', 4, array(
+        $this->hasColumn('ubicacion_anuncio_id', 'integer', 4, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
@@ -110,6 +116,14 @@ abstract class BaseDenunciaAnuncio extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('UbicacionAnuncio', array(
+             'local' => 'ubicacion_anuncio_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('UbicacionAnuncio as UbicacionAnuncio_2', array(
+             'local' => 'ubicacion_anuncio_id',
+             'foreign' => 'id'));
+
         $this->hasOne('Usuario', array(
              'local' => 'usuario_id',
              'foreign' => 'id'));

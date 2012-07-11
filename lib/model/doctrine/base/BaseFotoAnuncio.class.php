@@ -13,6 +13,7 @@ Doctrine_Manager::getInstance()->bindComponent('FotoAnuncio', 'doctrine');
  * @property integer $activo
  * @property timestamp $created_at
  * @property timestamp $updated_at
+ * @property Anuncio $Anuncio
  * 
  * @method integer     getId()         Returns the current record's "id" value
  * @method string      getImagen()     Returns the current record's "imagen" value
@@ -20,12 +21,14 @@ Doctrine_Manager::getInstance()->bindComponent('FotoAnuncio', 'doctrine');
  * @method integer     getActivo()     Returns the current record's "activo" value
  * @method timestamp   getCreatedAt()  Returns the current record's "created_at" value
  * @method timestamp   getUpdatedAt()  Returns the current record's "updated_at" value
+ * @method Anuncio     getAnuncio()    Returns the current record's "Anuncio" value
  * @method FotoAnuncio setId()         Sets the current record's "id" value
  * @method FotoAnuncio setImagen()     Sets the current record's "imagen" value
  * @method FotoAnuncio setAnuncioId()  Sets the current record's "anuncio_id" value
  * @method FotoAnuncio setActivo()     Sets the current record's "activo" value
  * @method FotoAnuncio setCreatedAt()  Sets the current record's "created_at" value
  * @method FotoAnuncio setUpdatedAt()  Sets the current record's "updated_at" value
+ * @method FotoAnuncio setAnuncio()    Sets the current record's "Anuncio" value
  * 
  * @package    guammas
  * @subpackage model
@@ -95,6 +98,8 @@ abstract class BaseFotoAnuncio extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        
+        $this->hasOne('Anuncio', array(
+             'local' => 'anuncio_id',
+             'foreign' => 'id'));
     }
 }

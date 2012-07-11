@@ -15,6 +15,7 @@ Doctrine_Manager::getInstance()->bindComponent('AnuncioEvento', 'doctrine');
  * @property integer $anuncio_id
  * @property integer $ciudad_id
  * @property Anuncio $Anuncio
+ * @property Ciudad $Ciudad
  * 
  * @method integer       getId()                Returns the current record's "id" value
  * @method string        getCoordenadaX()       Returns the current record's "coordenada_x" value
@@ -24,6 +25,7 @@ Doctrine_Manager::getInstance()->bindComponent('AnuncioEvento', 'doctrine');
  * @method integer       getAnuncioId()         Returns the current record's "anuncio_id" value
  * @method integer       getCiudadId()          Returns the current record's "ciudad_id" value
  * @method Anuncio       getAnuncio()           Returns the current record's "Anuncio" value
+ * @method Ciudad        getCiudad()            Returns the current record's "Ciudad" value
  * @method AnuncioEvento setId()                Sets the current record's "id" value
  * @method AnuncioEvento setCoordenadaX()       Sets the current record's "coordenada_x" value
  * @method AnuncioEvento setCoordenadaY()       Sets the current record's "coordenada_y" value
@@ -32,6 +34,7 @@ Doctrine_Manager::getInstance()->bindComponent('AnuncioEvento', 'doctrine');
  * @method AnuncioEvento setAnuncioId()         Sets the current record's "anuncio_id" value
  * @method AnuncioEvento setCiudadId()          Sets the current record's "ciudad_id" value
  * @method AnuncioEvento setAnuncio()           Sets the current record's "Anuncio" value
+ * @method AnuncioEvento setCiudad()            Sets the current record's "Ciudad" value
  * 
  * @package    guammas
  * @subpackage model
@@ -112,6 +115,10 @@ abstract class BaseAnuncioEvento extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('Anuncio', array(
              'local' => 'anuncio_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Ciudad', array(
+             'local' => 'ciudad_id',
              'foreign' => 'id'));
     }
 }

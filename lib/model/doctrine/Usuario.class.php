@@ -14,6 +14,7 @@ class Usuario extends BaseUsuario {
 
     public function save(Doctrine_Connection $conn = null) {
         if ($this->isNew()) {
+            $this->setRolId(1);
             $this->setAvatar('default.png');
         }
         parent::save($conn);
@@ -38,18 +39,18 @@ class Usuario extends BaseUsuario {
         $i = 0;
         $arrayEmpresa = array();
         foreach ($empresas as $empresa) {
-            $arrayEmpresa[$i]["empresa_id"] = $empresa->getId();
-            $arrayEmpresa[$i]["empresa_nombre"] = $empresa->getNombreOrganizacion();
-            $arrayEmpresa[$i]["empresa_token"] = $empresa->getToken();
+            $arrayEmpresa[$i]["organizacion_id"] = $empresa->getId();
+            $arrayEmpresa[$i]["organizacion_nombre"] = $empresa->getNombreOrganizacion();
+            $arrayEmpresa[$i]["organizacion_token"] = $empresa->getToken();
             $i++;
         }
-        $sf_user->setAttribute("empresa", $arrayEmpresa, 'empr_vars');
+        $sf_user->setAttribute("organizacion", $arrayEmpresa, 'org_vars');
     }
 
     public static function removeVariablesSesion(sfUser $sf_user) {
         $sf_user->clearCredentials();
         $sf_user->setAuthenticated(false);
-        $sf_user->getAttributeHolder()->removeNamespace('empr_vars');
+        $sf_user->getAttributeHolder()->removeNamespace('org_vars');
         $sf_user->getAttributeHolder()->removeNamespace('user_vars');
         return true;
     }

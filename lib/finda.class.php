@@ -46,8 +46,8 @@ class finda {
         
         
         $organizacion = Doctrine_Core::getTable('Organizacion')->findOneById($this->empresa);
-        $ubicaciones = Doctrine_Core::getTable('Ubicacion')->findByEmpresaId($this->empresa);
-        $tags = Doctrine_Core::getTable('TagOrganizacion')->findByEmpresaId($this->empresa);
+        $ubicaciones = Doctrine_Core::getTable('Ubicacion')->findByOrganizacionId($this->empresa);
+        $tags = Doctrine_Core::getTable('TagOrganizacion')->findByOrganizacionId($this->empresa);
         
         $this->stringIndex=$organizacion->getNombreOrganizacion();
         

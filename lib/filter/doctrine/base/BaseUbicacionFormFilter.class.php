@@ -19,14 +19,13 @@ abstract class BaseUbicacionFormFilter extends BaseFormFilterDoctrine
       'coordenada_x'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'coordenada_y'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'telefono_1'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'telefono_2'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'telefono_2'        => new sfWidgetFormFilterInput(),
       'detalle_direccion' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'verificada'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'ciudad_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Ciudad'), 'add_empty' => true)),
-      'empresa_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Organizacion'), 'add_empty' => true)),
-      'usuario_id'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'organizacion_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Organizacion'), 'add_empty' => true)),
       'created_at'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
-      'updated_at'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'updated_at'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
     ));
 
     $this->setValidators(array(
@@ -40,8 +39,7 @@ abstract class BaseUbicacionFormFilter extends BaseFormFilterDoctrine
       'detalle_direccion' => new sfValidatorPass(array('required' => false)),
       'verificada'        => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'ciudad_id'         => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Ciudad'), 'column' => 'id')),
-      'empresa_id'        => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Organizacion'), 'column' => 'id')),
-      'usuario_id'        => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'organizacion_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Organizacion'), 'column' => 'id')),
       'created_at'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
     ));
@@ -74,8 +72,7 @@ abstract class BaseUbicacionFormFilter extends BaseFormFilterDoctrine
       'detalle_direccion' => 'Text',
       'verificada'        => 'Number',
       'ciudad_id'         => 'ForeignKey',
-      'empresa_id'        => 'ForeignKey',
-      'usuario_id'        => 'Number',
+      'organizacion_id'   => 'ForeignKey',
       'created_at'        => 'Date',
       'updated_at'        => 'Date',
     );

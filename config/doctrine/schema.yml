@@ -64,6 +64,13 @@ Anuncio:
       primary: false
       notnull: true
       autoincrement: false
+    horario_anuncio_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
     activo:
       type: integer(1)
       fixed: false
@@ -86,6 +93,14 @@ Anuncio:
       notnull: false
       autoincrement: false
   relations:
+    HorarioAnuncio:
+      local: horario_anuncio_id
+      foreign: id
+      type: one
+    TipoAnuncio:
+      local: tipo_anuncio_id
+      foreign: id
+      type: one
     AnuncioCupon:
       local: id
       foreign: anuncio_id
@@ -98,7 +113,7 @@ Anuncio:
       local: id
       foreign: anuncio_id
       type: many
-    HorarioAnuncio:
+    FotoAnuncio:
       local: id
       foreign: anuncio_id
       type: many
@@ -167,6 +182,10 @@ AnuncioCupon:
       local: anuncio_id
       foreign: id
       type: one
+    UsuarioCupon:
+      local: id
+      foreign: anuncio_cupon_id
+      type: many
 AnuncioEvento:
   connection: doctrine
   tableName: anuncio_evento
@@ -224,6 +243,10 @@ AnuncioEvento:
       local: anuncio_id
       foreign: id
       type: one
+    Ciudad:
+      local: ciudad_id
+      foreign: id
+      type: one
 Categoria:
   connection: doctrine
   tableName: categoria
@@ -248,7 +271,36 @@ Categoria:
       primary: false
       notnull: false
       autoincrement: false
+    usuario_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    sugerido:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
   relations:
+    Categoria:
+      local: id
+      foreign: categoria_padre_id
+      type: many
+    Usuario:
+      local: usuario_id
+      foreign: id
+      type: one
     Organizacion:
       local: id
       foreign: categoria_id
@@ -289,6 +341,10 @@ Ciudad:
       local: estado_id
       foreign: id
       type: one
+    AnuncioEvento:
+      local: id
+      foreign: ciudad_id
+      type: many
     Ubicacion:
       local: id
       foreign: ciudad_id
@@ -357,10 +413,18 @@ ComentarioAnuncio:
       notnull: false
       autoincrement: false
   relations:
+    DenunciaComentario:
+      local: id
+      foreign: id
+      type: one
     Anuncio:
       local: anuncio_id
       foreign: id
       type: one
+    ComentarioAnuncio:
+      local: id
+      foreign: comentario_padre_id
+      type: many
     Usuario:
       local: usuario_id
       foreign: id
@@ -389,7 +453,73 @@ DenunciaAnuncio:
       primary: false
       notnull: true
       autoincrement: false
-    sucursal_anuncio_id:
+    ubicacion_anuncio_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    usuario_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    UbicacionAnuncio:
+      local: ubicacion_anuncio_id
+      foreign: id
+      type: one
+    UbicacionAnuncio_2:
+      class: UbicacionAnuncio
+      local: ubicacion_anuncio_id
+      foreign: id
+      type: one
+    Usuario:
+      local: usuario_id
+      foreign: id
+      type: one
+DenunciaComentario:
+  connection: doctrine
+  tableName: denuncia_comentario
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    denuncia_comentario:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    atendida:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    comentario_anuncio_id:
       type: integer(4)
       fixed: false
       unsigned: false
@@ -422,60 +552,13 @@ DenunciaAnuncio:
       local: usuario_id
       foreign: id
       type: one
-DenunciaComentario:
+    ComentarioAnuncio:
+      local: id
+      foreign: id
+      type: many
+Dia:
   connection: doctrine
-  tableName: denuncia_comentario
-  columns:
-    id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    denuncia_comentario:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    atendida:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    comentario_anuncio_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    usuario_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-DetalleHorarioAnuncio:
-  connection: doctrine
-  tableName: detalle_horario_anuncio
+  tableName: dia
   columns:
     id:
       type: integer(4)
@@ -483,22 +566,8 @@ DetalleHorarioAnuncio:
       unsigned: false
       primary: true
       autoincrement: true
-    horario_anuncio_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    hora_inicio:
-      type: time(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    hora_fin:
-      type: time(25)
+    dia:
+      type: string(9)
       fixed: false
       unsigned: false
       primary: false
@@ -506,9 +575,13 @@ DetalleHorarioAnuncio:
       autoincrement: false
   relations:
     HorarioAnuncio:
-      local: horario_anuncio_id
-      foreign: id
-      type: one
+      local: id
+      foreign: dia_id
+      type: many
+    HorarioUbicacion:
+      local: id
+      foreign: dia_id
+      type: many
 Estado:
   connection: doctrine
   tableName: estado
@@ -576,6 +649,11 @@ FotoAnuncio:
       primary: false
       notnull: false
       autoincrement: false
+  relations:
+    Anuncio:
+      local: anuncio_id
+      foreign: id
+      type: one
 HorarioAnuncio:
   connection: doctrine
   tableName: horario_anuncio
@@ -586,26 +664,62 @@ HorarioAnuncio:
       unsigned: false
       primary: true
       autoincrement: true
-    dia:
-      type: string(9)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    anuncio_id:
+    dia_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
+    hora_inicio:
+      type: time(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    hora_fin:
+      type: time(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    tipo_horario_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
   relations:
-    Anuncio:
-      local: anuncio_id
+    Dia:
+      local: dia_id
       foreign: id
       type: one
-    DetalleHorarioAnuncio:
+    TipoHorario:
+      local: tipo_horario_id
+      foreign: id
+      type: one
+    Anuncio:
+      local: id
+      foreign: horario_anuncio_id
+      type: many
+    ServicioEspecial:
       local: id
       foreign: horario_anuncio_id
       type: many
@@ -617,11 +731,10 @@ HorarioUbicacion:
       type: integer(4)
       fixed: false
       unsigned: false
-      primary: false
-      notnull: true
+      primary: true
       autoincrement: false
-    dia:
-      type: string(10)
+    dia_id:
+      type: integer(4)
       fixed: false
       unsigned: false
       primary: false
@@ -662,16 +775,45 @@ HorarioUbicacion:
       primary: false
       notnull: true
       autoincrement: false
-    sucursal_id:
+    ubicacion_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
+    tipo_horario_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
   relations:
+    Dia:
+      local: dia_id
+      foreign: id
+      type: one
+    TipoHorario:
+      local: tipo_horario_id
+      foreign: id
+      type: one
     Ubicacion:
-      local: sucursal_id
+      local: ubicacion_id
       foreign: id
       type: one
 Organizacion:
@@ -800,15 +942,15 @@ Organizacion:
       type: one
     Seguidor:
       local: id
-      foreign: empresa_id
+      foreign: organizacion_id
       type: many
     TagOrganizacion:
       local: id
-      foreign: empresa_id
+      foreign: organizacion_id
       type: many
     Ubicacion:
       local: id
-      foreign: empresa_id
+      foreign: organizacion_id
       type: many
 Rol:
   connection: doctrine
@@ -849,7 +991,7 @@ Seguidor:
       primary: false
       notnull: true
       autoincrement: false
-    empresa_id:
+    organizacion_id:
       type: integer(4)
       fixed: false
       unsigned: false
@@ -879,7 +1021,7 @@ Seguidor:
       autoincrement: false
   relations:
     Organizacion:
-      local: empresa_id
+      local: organizacion_id
       foreign: id
       type: one
     Usuario:
@@ -938,6 +1080,13 @@ ServicioEspecial:
       primary: false
       notnull: true
       autoincrement: false
+    horario_anuncio_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
     activo:
       type: integer(1)
       fixed: false
@@ -959,6 +1108,11 @@ ServicioEspecial:
       primary: false
       notnull: false
       autoincrement: false
+  relations:
+    HorarioAnuncio:
+      local: horario_anuncio_id
+      foreign: id
+      type: one
 Tag:
   connection: doctrine
   tableName: tag
@@ -1024,12 +1178,12 @@ TagAnuncio:
       notnull: true
       autoincrement: false
   relations:
-    Anuncio:
-      local: anuncio_id
-      foreign: id
-      type: one
     Tag:
       local: tag_id
+      foreign: id
+      type: one
+    Anuncio:
+      local: anuncio_id
       foreign: id
       type: one
 TagOrganizacion:
@@ -1049,7 +1203,7 @@ TagOrganizacion:
       primary: false
       notnull: false
       autoincrement: false
-    empresa_id:
+    organizacion_id:
       type: integer(4)
       fixed: false
       unsigned: false
@@ -1057,12 +1211,12 @@ TagOrganizacion:
       notnull: false
       autoincrement: false
   relations:
-    Organizacion:
-      local: empresa_id
-      foreign: id
-      type: one
     Tag:
       local: tag_id
+      foreign: id
+      type: one
+    Organizacion:
+      local: organizacion_id
       foreign: id
       type: one
 TipoAnuncio:
@@ -1082,6 +1236,112 @@ TipoAnuncio:
       primary: false
       notnull: true
       autoincrement: false
+  relations:
+    Anuncio:
+      local: id
+      foreign: tipo_anuncio_id
+      type: many
+TipoEvento:
+  connection: doctrine
+  tableName: tipo_evento
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    nombre_tipo_evento:
+      type: string(75)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    sugerido:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    usuario_sugiere_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    updated_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Usuario:
+      local: usuario_sugiere_id
+      foreign: id
+      type: one
+TipoHorario:
+  connection: doctrine
+  tableName: tipo_horario
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    nombre_tipo_horario:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    usuario_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    anuncio:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    created_at:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Usuario:
+      local: usuario_id
+      foreign: id
+      type: one
+    HorarioAnuncio:
+      local: id
+      foreign: tipo_horario_id
+      type: many
+    HorarioUbicacion:
+      local: id
+      foreign: tipo_horario_id
+      type: many
 Ubicacion:
   connection: doctrine
   tableName: ubicacion
@@ -1139,7 +1399,7 @@ Ubicacion:
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      notnull: false
       autoincrement: false
     detalle_direccion:
       type: string()
@@ -1162,14 +1422,7 @@ Ubicacion:
       primary: false
       notnull: true
       autoincrement: false
-    empresa_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    usuario_id:
+    organizacion_id:
       type: integer(4)
       fixed: false
       unsigned: false
@@ -1188,7 +1441,7 @@ Ubicacion:
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      notnull: false
       autoincrement: false
   relations:
     Ciudad:
@@ -1196,20 +1449,20 @@ Ubicacion:
       foreign: id
       type: one
     Organizacion:
-      local: empresa_id
+      local: organizacion_id
       foreign: id
       type: one
     HorarioUbicacion:
       local: id
-      foreign: sucursal_id
+      foreign: ubicacion_id
       type: many
     UbicacionAnuncio:
       local: id
-      foreign: sucursal_id
+      foreign: ubicacion_id
       type: many
-    ValoracionSucursal:
+    ValoracionUbicacion:
       local: id
-      foreign: sucursal_id
+      foreign: ubicacion_id
       type: many
 UbicacionAnuncio:
   connection: doctrine
@@ -1221,19 +1474,19 @@ UbicacionAnuncio:
       unsigned: false
       primary: true
       autoincrement: true
-    sucursal_id:
+    ubicacion_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
-      notnull: false
+      notnull: true
       autoincrement: false
     anuncio_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
-      notnull: false
+      notnull: true
       autoincrement: false
     created_at:
       type: timestamp(25)
@@ -1247,17 +1500,26 @@ UbicacionAnuncio:
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      notnull: false
       autoincrement: false
   relations:
+    Ubicacion:
+      local: ubicacion_id
+      foreign: id
+      type: one
     Anuncio:
       local: anuncio_id
       foreign: id
       type: one
-    Ubicacion:
-      local: sucursal_id
-      foreign: id
-      type: one
+    DenunciaAnuncio:
+      local: id
+      foreign: ubicacion_anuncio_id
+      type: many
+    DenunciaAnuncio_2:
+      class: DenunciaAnuncio
+      local: id
+      foreign: ubicacion_anuncio_id
+      type: many
 Usuario:
   connection: doctrine
   tableName: usuario
@@ -1269,14 +1531,14 @@ Usuario:
       primary: true
       autoincrement: true
     nombre_usuario:
-      type: string(20)
+      type: string(50)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
     contrasena:
-      type: string(48)
+      type: string(255)
       fixed: false
       unsigned: false
       primary: false
@@ -1345,11 +1607,19 @@ Usuario:
       primary: false
       notnull: false
       autoincrement: false
-    pref_correo_electronico_publico:
-      type: boolean(1)
+    perfil_googleplus:
+      type: string(255)
       fixed: false
       unsigned: false
       primary: false
+      notnull: false
+      autoincrement: false
+    pref_correo_electronico_publico:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: '0'
       notnull: true
       autoincrement: false
     rol_id:
@@ -1357,8 +1627,7 @@ Usuario:
       fixed: false
       unsigned: false
       primary: false
-      default: '1'
-      notnull: false
+      notnull: true
       autoincrement: false
     ciudad_id:
       type: integer(4)
@@ -1382,14 +1651,18 @@ Usuario:
       notnull: false
       autoincrement: false
   relations:
-    Ciudad:
-      local: ciudad_id
-      foreign: id
-      type: one
     Rol:
       local: rol_id
       foreign: id
       type: one
+    Ciudad:
+      local: ciudad_id
+      foreign: id
+      type: one
+    Categoria:
+      local: id
+      foreign: usuario_id
+      type: many
     ComentarioAnuncio:
       local: id
       foreign: usuario_id
@@ -1398,11 +1671,31 @@ Usuario:
       local: id
       foreign: usuario_id
       type: many
+    DenunciaComentario:
+      local: id
+      foreign: usuario_id
+      type: many
     Organizacion:
       local: id
       foreign: usuario_id
       type: many
     Seguidor:
+      local: id
+      foreign: usuario_id
+      type: many
+    TipoEvento:
+      local: id
+      foreign: usuario_sugiere_id
+      type: many
+    TipoHorario:
+      local: id
+      foreign: usuario_id
+      type: many
+    UsuarioCupon:
+      local: id
+      foreign: usuario_id
+      type: many
+    ValoracionUbicacion:
       local: id
       foreign: usuario_id
       type: many
@@ -1421,14 +1714,14 @@ UsuarioCupon:
       fixed: false
       unsigned: false
       primary: false
-      notnull: false
+      notnull: true
       autoincrement: false
     anuncio_cupon_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
-      notnull: false
+      notnull: true
       autoincrement: false
     created_at:
       type: timestamp(25)
@@ -1437,68 +1730,18 @@ UsuarioCupon:
       primary: false
       notnull: true
       autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-ValoracionInstitucion:
+  relations:
+    Usuario:
+      local: usuario_id
+      foreign: id
+      type: one
+    AnuncioCupon:
+      local: anuncio_cupon_id
+      foreign: id
+      type: one
+ValoracionUbicacion:
   connection: doctrine
-  tableName: valoracion_institucion
-  columns:
-    id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    puntos:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    observacion:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    institucion_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    usuario_id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-ValoracionSucursal:
-  connection: doctrine
-  tableName: valoracion_sucursal
+  tableName: valoracion_ubicacion
   columns:
     id:
       type: integer(4)
@@ -1527,7 +1770,7 @@ ValoracionSucursal:
       primary: false
       notnull: true
       autoincrement: false
-    sucursal_id:
+    ubicacion_id:
       type: integer(4)
       fixed: false
       unsigned: false
@@ -1535,13 +1778,6 @@ ValoracionSucursal:
       notnull: true
       autoincrement: false
     created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
       type: timestamp(25)
       fixed: false
       unsigned: false
@@ -1550,6 +1786,10 @@ ValoracionSucursal:
       autoincrement: false
   relations:
     Ubicacion:
-      local: sucursal_id
+      local: ubicacion_id
+      foreign: id
+      type: one
+    Usuario:
+      local: usuario_id
       foreign: id
       type: one

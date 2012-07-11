@@ -1,0 +1,1 @@
+<a href="<?php echo url_for("@sucursal?token=".$sf_request->getParameter('token')) ?>">sucursal</a>

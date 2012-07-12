@@ -9,20 +9,20 @@ Doctrine_Manager::getInstance()->bindComponent('TagOrganizacion', 'doctrine');
  * 
  * @property integer $id
  * @property integer $tag_id
- * @property integer $empresa_id
- * @property Organizacion $Organizacion
+ * @property integer $organizacion_id
  * @property Tag $Tag
+ * @property Organizacion $Organizacion
  * 
- * @method integer         getId()           Returns the current record's "id" value
- * @method integer         getTagId()        Returns the current record's "tag_id" value
- * @method integer         getEmpresaId()    Returns the current record's "empresa_id" value
- * @method Organizacion    getOrganizacion() Returns the current record's "Organizacion" value
- * @method Tag             getTag()          Returns the current record's "Tag" value
- * @method TagOrganizacion setId()           Sets the current record's "id" value
- * @method TagOrganizacion setTagId()        Sets the current record's "tag_id" value
- * @method TagOrganizacion setEmpresaId()    Sets the current record's "empresa_id" value
- * @method TagOrganizacion setOrganizacion() Sets the current record's "Organizacion" value
- * @method TagOrganizacion setTag()          Sets the current record's "Tag" value
+ * @method integer         getId()              Returns the current record's "id" value
+ * @method integer         getTagId()           Returns the current record's "tag_id" value
+ * @method integer         getOrganizacionId()  Returns the current record's "organizacion_id" value
+ * @method Tag             getTag()             Returns the current record's "Tag" value
+ * @method Organizacion    getOrganizacion()    Returns the current record's "Organizacion" value
+ * @method TagOrganizacion setId()              Sets the current record's "id" value
+ * @method TagOrganizacion setTagId()           Sets the current record's "tag_id" value
+ * @method TagOrganizacion setOrganizacionId()  Sets the current record's "organizacion_id" value
+ * @method TagOrganizacion setTag()             Sets the current record's "Tag" value
+ * @method TagOrganizacion setOrganizacion()    Sets the current record's "Organizacion" value
  * 
  * @package    guammas
  * @subpackage model
@@ -51,7 +51,7 @@ abstract class BaseTagOrganizacion extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 4,
              ));
-        $this->hasColumn('empresa_id', 'integer', 4, array(
+        $this->hasColumn('organizacion_id', 'integer', 4, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
@@ -65,12 +65,12 @@ abstract class BaseTagOrganizacion extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Organizacion', array(
-             'local' => 'empresa_id',
-             'foreign' => 'id'));
-
         $this->hasOne('Tag', array(
              'local' => 'tag_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Organizacion', array(
+             'local' => 'organizacion_id',
              'foreign' => 'id'));
     }
 }

@@ -15,15 +15,23 @@ abstract class BaseHorarioAnuncioForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'         => new sfWidgetFormInputHidden(),
-      'dia'        => new sfWidgetFormInputText(),
-      'anuncio_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Anuncio'), 'add_empty' => false)),
+      'id'              => new sfWidgetFormInputHidden(),
+      'dia_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Dia'), 'add_empty' => false)),
+      'hora_inicio'     => new sfWidgetFormTime(),
+      'hora_fin'        => new sfWidgetFormTime(),
+      'tipo_horario_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('TipoHorario'), 'add_empty' => false)),
+      'created_at'      => new sfWidgetFormDateTime(),
+      'updated_at'      => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
-      'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'dia'        => new sfValidatorString(array('max_length' => 9)),
-      'anuncio_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Anuncio'))),
+      'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'dia_id'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Dia'))),
+      'hora_inicio'     => new sfValidatorTime(),
+      'hora_fin'        => new sfValidatorTime(),
+      'tipo_horario_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('TipoHorario'))),
+      'created_at'      => new sfValidatorDateTime(),
+      'updated_at'      => new sfValidatorDateTime(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('horario_anuncio[%s]');

@@ -14,9 +14,11 @@ Doctrine_Manager::getInstance()->bindComponent('ServicioEspecial', 'doctrine');
  * @property string $descripcion
  * @property float $precio
  * @property string $imagen
+ * @property integer $horario_anuncio_id
  * @property integer $activo
  * @property timestamp $created_at
  * @property timestamp $updated_at
+ * @property HorarioAnuncio $HorarioAnuncio
  * 
  * @method integer          getId()                       Returns the current record's "id" value
  * @method string           getNombreServicioEspecial()   Returns the current record's "nombre_servicio_especial" value
@@ -25,9 +27,11 @@ Doctrine_Manager::getInstance()->bindComponent('ServicioEspecial', 'doctrine');
  * @method string           getDescripcion()              Returns the current record's "descripcion" value
  * @method float            getPrecio()                   Returns the current record's "precio" value
  * @method string           getImagen()                   Returns the current record's "imagen" value
+ * @method integer          getHorarioAnuncioId()         Returns the current record's "horario_anuncio_id" value
  * @method integer          getActivo()                   Returns the current record's "activo" value
  * @method timestamp        getCreatedAt()                Returns the current record's "created_at" value
  * @method timestamp        getUpdatedAt()                Returns the current record's "updated_at" value
+ * @method HorarioAnuncio   getHorarioAnuncio()           Returns the current record's "HorarioAnuncio" value
  * @method ServicioEspecial setId()                       Sets the current record's "id" value
  * @method ServicioEspecial setNombreServicioEspecial()   Sets the current record's "nombre_servicio_especial" value
  * @method ServicioEspecial setQueIncluye()               Sets the current record's "que_incluye" value
@@ -35,9 +39,11 @@ Doctrine_Manager::getInstance()->bindComponent('ServicioEspecial', 'doctrine');
  * @method ServicioEspecial setDescripcion()              Sets the current record's "descripcion" value
  * @method ServicioEspecial setPrecio()                   Sets the current record's "precio" value
  * @method ServicioEspecial setImagen()                   Sets the current record's "imagen" value
+ * @method ServicioEspecial setHorarioAnuncioId()         Sets the current record's "horario_anuncio_id" value
  * @method ServicioEspecial setActivo()                   Sets the current record's "activo" value
  * @method ServicioEspecial setCreatedAt()                Sets the current record's "created_at" value
  * @method ServicioEspecial setUpdatedAt()                Sets the current record's "updated_at" value
+ * @method ServicioEspecial setHorarioAnuncio()           Sets the current record's "HorarioAnuncio" value
  * 
  * @package    guammas
  * @subpackage model
@@ -111,6 +117,15 @@ abstract class BaseServicioEspecial extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 255,
              ));
+        $this->hasColumn('horario_anuncio_id', 'integer', 4, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 4,
+             ));
         $this->hasColumn('activo', 'integer', 1, array(
              'type' => 'integer',
              'fixed' => 0,
@@ -143,6 +158,8 @@ abstract class BaseServicioEspecial extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        
+        $this->hasOne('HorarioAnuncio', array(
+             'local' => 'horario_anuncio_id',
+             'foreign' => 'id'));
     }
 }

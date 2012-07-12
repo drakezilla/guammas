@@ -18,56 +18,53 @@ Doctrine_Manager::getInstance()->bindComponent('Ubicacion', 'doctrine');
  * @property string $detalle_direccion
  * @property integer $verificada
  * @property integer $ciudad_id
- * @property integer $empresa_id
- * @property integer $usuario_id
+ * @property integer $organizacion_id
  * @property timestamp $created_at
  * @property timestamp $updated_at
  * @property Ciudad $Ciudad
  * @property Organizacion $Organizacion
  * @property Doctrine_Collection $HorarioUbicacion
  * @property Doctrine_Collection $UbicacionAnuncio
- * @property Doctrine_Collection $ValoracionSucursal
+ * @property Doctrine_Collection $ValoracionUbicacion
  * 
- * @method integer             getId()                 Returns the current record's "id" value
- * @method string              getRif()                Returns the current record's "rif" value
- * @method string              getNombre()             Returns the current record's "nombre" value
- * @method integer             getPrincipal()          Returns the current record's "principal" value
- * @method string              getCoordenadaX()        Returns the current record's "coordenada_x" value
- * @method string              getCoordenadaY()        Returns the current record's "coordenada_y" value
- * @method string              getTelefono1()          Returns the current record's "telefono_1" value
- * @method string              getTelefono2()          Returns the current record's "telefono_2" value
- * @method string              getDetalleDireccion()   Returns the current record's "detalle_direccion" value
- * @method integer             getVerificada()         Returns the current record's "verificada" value
- * @method integer             getCiudadId()           Returns the current record's "ciudad_id" value
- * @method integer             getEmpresaId()          Returns the current record's "empresa_id" value
- * @method integer             getUsuarioId()          Returns the current record's "usuario_id" value
- * @method timestamp           getCreatedAt()          Returns the current record's "created_at" value
- * @method timestamp           getUpdatedAt()          Returns the current record's "updated_at" value
- * @method Ciudad              getCiudad()             Returns the current record's "Ciudad" value
- * @method Organizacion        getOrganizacion()       Returns the current record's "Organizacion" value
- * @method Doctrine_Collection getHorarioUbicacion()   Returns the current record's "HorarioUbicacion" collection
- * @method Doctrine_Collection getUbicacionAnuncio()   Returns the current record's "UbicacionAnuncio" collection
- * @method Doctrine_Collection getValoracionSucursal() Returns the current record's "ValoracionSucursal" collection
- * @method Ubicacion           setId()                 Sets the current record's "id" value
- * @method Ubicacion           setRif()                Sets the current record's "rif" value
- * @method Ubicacion           setNombre()             Sets the current record's "nombre" value
- * @method Ubicacion           setPrincipal()          Sets the current record's "principal" value
- * @method Ubicacion           setCoordenadaX()        Sets the current record's "coordenada_x" value
- * @method Ubicacion           setCoordenadaY()        Sets the current record's "coordenada_y" value
- * @method Ubicacion           setTelefono1()          Sets the current record's "telefono_1" value
- * @method Ubicacion           setTelefono2()          Sets the current record's "telefono_2" value
- * @method Ubicacion           setDetalleDireccion()   Sets the current record's "detalle_direccion" value
- * @method Ubicacion           setVerificada()         Sets the current record's "verificada" value
- * @method Ubicacion           setCiudadId()           Sets the current record's "ciudad_id" value
- * @method Ubicacion           setEmpresaId()          Sets the current record's "empresa_id" value
- * @method Ubicacion           setUsuarioId()          Sets the current record's "usuario_id" value
- * @method Ubicacion           setCreatedAt()          Sets the current record's "created_at" value
- * @method Ubicacion           setUpdatedAt()          Sets the current record's "updated_at" value
- * @method Ubicacion           setCiudad()             Sets the current record's "Ciudad" value
- * @method Ubicacion           setOrganizacion()       Sets the current record's "Organizacion" value
- * @method Ubicacion           setHorarioUbicacion()   Sets the current record's "HorarioUbicacion" collection
- * @method Ubicacion           setUbicacionAnuncio()   Sets the current record's "UbicacionAnuncio" collection
- * @method Ubicacion           setValoracionSucursal() Sets the current record's "ValoracionSucursal" collection
+ * @method integer             getId()                  Returns the current record's "id" value
+ * @method string              getRif()                 Returns the current record's "rif" value
+ * @method string              getNombre()              Returns the current record's "nombre" value
+ * @method integer             getPrincipal()           Returns the current record's "principal" value
+ * @method string              getCoordenadaX()         Returns the current record's "coordenada_x" value
+ * @method string              getCoordenadaY()         Returns the current record's "coordenada_y" value
+ * @method string              getTelefono1()           Returns the current record's "telefono_1" value
+ * @method string              getTelefono2()           Returns the current record's "telefono_2" value
+ * @method string              getDetalleDireccion()    Returns the current record's "detalle_direccion" value
+ * @method integer             getVerificada()          Returns the current record's "verificada" value
+ * @method integer             getCiudadId()            Returns the current record's "ciudad_id" value
+ * @method integer             getOrganizacionId()      Returns the current record's "organizacion_id" value
+ * @method timestamp           getCreatedAt()           Returns the current record's "created_at" value
+ * @method timestamp           getUpdatedAt()           Returns the current record's "updated_at" value
+ * @method Ciudad              getCiudad()              Returns the current record's "Ciudad" value
+ * @method Organizacion        getOrganizacion()        Returns the current record's "Organizacion" value
+ * @method Doctrine_Collection getHorarioUbicacion()    Returns the current record's "HorarioUbicacion" collection
+ * @method Doctrine_Collection getUbicacionAnuncio()    Returns the current record's "UbicacionAnuncio" collection
+ * @method Doctrine_Collection getValoracionUbicacion() Returns the current record's "ValoracionUbicacion" collection
+ * @method Ubicacion           setId()                  Sets the current record's "id" value
+ * @method Ubicacion           setRif()                 Sets the current record's "rif" value
+ * @method Ubicacion           setNombre()              Sets the current record's "nombre" value
+ * @method Ubicacion           setPrincipal()           Sets the current record's "principal" value
+ * @method Ubicacion           setCoordenadaX()         Sets the current record's "coordenada_x" value
+ * @method Ubicacion           setCoordenadaY()         Sets the current record's "coordenada_y" value
+ * @method Ubicacion           setTelefono1()           Sets the current record's "telefono_1" value
+ * @method Ubicacion           setTelefono2()           Sets the current record's "telefono_2" value
+ * @method Ubicacion           setDetalleDireccion()    Sets the current record's "detalle_direccion" value
+ * @method Ubicacion           setVerificada()          Sets the current record's "verificada" value
+ * @method Ubicacion           setCiudadId()            Sets the current record's "ciudad_id" value
+ * @method Ubicacion           setOrganizacionId()      Sets the current record's "organizacion_id" value
+ * @method Ubicacion           setCreatedAt()           Sets the current record's "created_at" value
+ * @method Ubicacion           setUpdatedAt()           Sets the current record's "updated_at" value
+ * @method Ubicacion           setCiudad()              Sets the current record's "Ciudad" value
+ * @method Ubicacion           setOrganizacion()        Sets the current record's "Organizacion" value
+ * @method Ubicacion           setHorarioUbicacion()    Sets the current record's "HorarioUbicacion" collection
+ * @method Ubicacion           setUbicacionAnuncio()    Sets the current record's "UbicacionAnuncio" collection
+ * @method Ubicacion           setValoracionUbicacion() Sets the current record's "ValoracionUbicacion" collection
  * 
  * @package    guammas
  * @subpackage model
@@ -146,7 +143,7 @@ abstract class BaseUbicacion extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
+             'notnull' => false,
              'autoincrement' => false,
              'length' => 12,
              ));
@@ -177,16 +174,7 @@ abstract class BaseUbicacion extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 4,
              ));
-        $this->hasColumn('empresa_id', 'integer', 4, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
-             'length' => 4,
-             ));
-        $this->hasColumn('usuario_id', 'integer', 4, array(
+        $this->hasColumn('organizacion_id', 'integer', 4, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
@@ -209,7 +197,7 @@ abstract class BaseUbicacion extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
+             'notnull' => false,
              'autoincrement' => false,
              'length' => 25,
              ));
@@ -223,19 +211,19 @@ abstract class BaseUbicacion extends sfDoctrineRecord
              'foreign' => 'id'));
 
         $this->hasOne('Organizacion', array(
-             'local' => 'empresa_id',
+             'local' => 'organizacion_id',
              'foreign' => 'id'));
 
         $this->hasMany('HorarioUbicacion', array(
              'local' => 'id',
-             'foreign' => 'sucursal_id'));
+             'foreign' => 'ubicacion_id'));
 
         $this->hasMany('UbicacionAnuncio', array(
              'local' => 'id',
-             'foreign' => 'sucursal_id'));
+             'foreign' => 'ubicacion_id'));
 
-        $this->hasMany('ValoracionSucursal', array(
+        $this->hasMany('ValoracionUbicacion', array(
              'local' => 'id',
-             'foreign' => 'sucursal_id'));
+             'foreign' => 'ubicacion_id'));
     }
 }

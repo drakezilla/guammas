@@ -14,21 +14,27 @@ Doctrine_Manager::getInstance()->bindComponent('DenunciaComentario', 'doctrine')
  * @property integer $usuario_id
  * @property timestamp $created_at
  * @property timestamp $updated_at
+ * @property Usuario $Usuario
+ * @property Doctrine_Collection $ComentarioAnuncio
  * 
- * @method integer            getId()                    Returns the current record's "id" value
- * @method string             getDenunciaComentario()    Returns the current record's "denuncia_comentario" value
- * @method integer            getAtendida()              Returns the current record's "atendida" value
- * @method integer            getComentarioAnuncioId()   Returns the current record's "comentario_anuncio_id" value
- * @method integer            getUsuarioId()             Returns the current record's "usuario_id" value
- * @method timestamp          getCreatedAt()             Returns the current record's "created_at" value
- * @method timestamp          getUpdatedAt()             Returns the current record's "updated_at" value
- * @method DenunciaComentario setId()                    Sets the current record's "id" value
- * @method DenunciaComentario setDenunciaComentario()    Sets the current record's "denuncia_comentario" value
- * @method DenunciaComentario setAtendida()              Sets the current record's "atendida" value
- * @method DenunciaComentario setComentarioAnuncioId()   Sets the current record's "comentario_anuncio_id" value
- * @method DenunciaComentario setUsuarioId()             Sets the current record's "usuario_id" value
- * @method DenunciaComentario setCreatedAt()             Sets the current record's "created_at" value
- * @method DenunciaComentario setUpdatedAt()             Sets the current record's "updated_at" value
+ * @method integer             getId()                    Returns the current record's "id" value
+ * @method string              getDenunciaComentario()    Returns the current record's "denuncia_comentario" value
+ * @method integer             getAtendida()              Returns the current record's "atendida" value
+ * @method integer             getComentarioAnuncioId()   Returns the current record's "comentario_anuncio_id" value
+ * @method integer             getUsuarioId()             Returns the current record's "usuario_id" value
+ * @method timestamp           getCreatedAt()             Returns the current record's "created_at" value
+ * @method timestamp           getUpdatedAt()             Returns the current record's "updated_at" value
+ * @method Usuario             getUsuario()               Returns the current record's "Usuario" value
+ * @method Doctrine_Collection getComentarioAnuncio()     Returns the current record's "ComentarioAnuncio" collection
+ * @method DenunciaComentario  setId()                    Sets the current record's "id" value
+ * @method DenunciaComentario  setDenunciaComentario()    Sets the current record's "denuncia_comentario" value
+ * @method DenunciaComentario  setAtendida()              Sets the current record's "atendida" value
+ * @method DenunciaComentario  setComentarioAnuncioId()   Sets the current record's "comentario_anuncio_id" value
+ * @method DenunciaComentario  setUsuarioId()             Sets the current record's "usuario_id" value
+ * @method DenunciaComentario  setCreatedAt()             Sets the current record's "created_at" value
+ * @method DenunciaComentario  setUpdatedAt()             Sets the current record's "updated_at" value
+ * @method DenunciaComentario  setUsuario()               Sets the current record's "Usuario" value
+ * @method DenunciaComentario  setComentarioAnuncio()     Sets the current record's "ComentarioAnuncio" collection
  * 
  * @package    guammas
  * @subpackage model
@@ -44,8 +50,7 @@ abstract class BaseDenunciaComentario extends sfDoctrineRecord
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
-             'primary' => false,
-             'notnull' => true,
+             'primary' => true,
              'autoincrement' => false,
              'length' => 4,
              ));
@@ -71,7 +76,8 @@ abstract class BaseDenunciaComentario extends sfDoctrineRecord
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
-             'primary' => true,
+             'primary' => false,
+             'notnull' => true,
              'autoincrement' => false,
              'length' => 4,
              ));
@@ -79,7 +85,8 @@ abstract class BaseDenunciaComentario extends sfDoctrineRecord
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
-             'primary' => true,
+             'primary' => false,
+             'notnull' => true,
              'autoincrement' => false,
              'length' => 4,
              ));
@@ -106,6 +113,12 @@ abstract class BaseDenunciaComentario extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        
+        $this->hasOne('Usuario', array(
+             'local' => 'usuario_id',
+             'foreign' => 'id'));
+
+        $this->hasMany('ComentarioAnuncio', array(
+             'local' => 'id',
+             'foreign' => 'id'));
     }
 }

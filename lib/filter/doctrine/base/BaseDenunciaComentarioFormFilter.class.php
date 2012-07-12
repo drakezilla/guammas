@@ -13,17 +13,19 @@ abstract class BaseDenunciaComentarioFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'                    => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'denuncia_comentario'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'atendida'              => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'comentario_anuncio_id' => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'usuario_id'            => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Usuario'), 'add_empty' => true)),
       'created_at'            => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'            => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
     ));
 
     $this->setValidators(array(
-      'id'                    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'denuncia_comentario'   => new sfValidatorPass(array('required' => false)),
       'atendida'              => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'comentario_anuncio_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'usuario_id'            => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Usuario'), 'column' => 'id')),
       'created_at'            => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'            => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
     ));
@@ -49,7 +51,7 @@ abstract class BaseDenunciaComentarioFormFilter extends BaseFormFilterDoctrine
       'denuncia_comentario'   => 'Text',
       'atendida'              => 'Number',
       'comentario_anuncio_id' => 'Number',
-      'usuario_id'            => 'Number',
+      'usuario_id'            => 'ForeignKey',
       'created_at'            => 'Date',
       'updated_at'            => 'Date',
     );

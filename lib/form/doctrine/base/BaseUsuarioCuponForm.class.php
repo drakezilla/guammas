@@ -16,18 +16,16 @@ abstract class BaseUsuarioCuponForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'               => new sfWidgetFormInputHidden(),
-      'usuario_id'       => new sfWidgetFormInputText(),
-      'anuncio_cupon_id' => new sfWidgetFormInputText(),
+      'usuario_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Usuario'), 'add_empty' => false)),
+      'anuncio_cupon_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AnuncioCupon'), 'add_empty' => false)),
       'created_at'       => new sfWidgetFormDateTime(),
-      'updated_at'       => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
       'id'               => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'usuario_id'       => new sfValidatorInteger(array('required' => false)),
-      'anuncio_cupon_id' => new sfValidatorInteger(array('required' => false)),
+      'usuario_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Usuario'))),
+      'anuncio_cupon_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('AnuncioCupon'))),
       'created_at'       => new sfValidatorDateTime(),
-      'updated_at'       => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('usuario_cupon[%s]');

@@ -42,11 +42,34 @@ class UbicacionTable extends Doctrine_Table {
             return array();
         }
 
-        $q = $this->createQuery('suc')
-                ->whereIn('suc.id', $pks)
-                ->limit(20);
+        $query = Doctrine_Query::create()
+                ->select('*')
+                ->from("Organizacion")
+                ->whereIn("id",$pks);
 
-        return $q->execute();
+        return $query->execute();
+    }
+    
+    public function getSucursalesPorOrganizacion($token){
+        $query = Doctrine_Query::create()
+                ->select('ubi.coordenada_x, ubi.coordenada_y, ubi.detalle_direccion')
+                ->from('Ubicacion ubi')
+                ->innerJoin('ubi.Organizacion org')
+                ->where('org.token=?',$token)
+                ->execute();
+        return $this->jsonSucursales($query);
+    }
+    
+    private static function jsonSucursales($query){
+        $arrayJsonSucursales = array();
+        for($i=0;$i<count($query);$i++){
+            $arrayJsonSucursales[$i]['principal'] = $query[$i]['principal'];
+            $arrayJsonSucursales[$i]['coordenada_x'] = $query[$i]['coordenada_x'];
+            $arrayJsonSucursales[$i]['coordenada_y'] = $query[$i]['coordenada_y'];
+            $arrayJsonSucursales[$i]['detalle_direccion'] = $query[$i]['detalle_direccion'];
+            $arrayJsonSucursales[$i]['telefono'] = $query[$i]['telefono_1'];
+        }
+        return $arrayJsonSucursales;
     }
 
 }

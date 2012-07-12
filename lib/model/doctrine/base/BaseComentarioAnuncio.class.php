@@ -15,29 +15,35 @@ Doctrine_Manager::getInstance()->bindComponent('ComentarioAnuncio', 'doctrine');
  * @property integer $anuncio_id
  * @property timestamp $created_at
  * @property timestamp $updated_at
+ * @property DenunciaComentario $DenunciaComentario
  * @property Anuncio $Anuncio
+ * @property Doctrine_Collection $ComentarioAnuncio
  * @property Usuario $Usuario
  * 
- * @method integer           getId()                  Returns the current record's "id" value
- * @method string            getComentario()          Returns the current record's "comentario" value
- * @method integer           getUsuarioId()           Returns the current record's "usuario_id" value
- * @method integer           getDenunciado()          Returns the current record's "denunciado" value
- * @method integer           getComentarioPadreId()   Returns the current record's "comentario_padre_id" value
- * @method integer           getAnuncioId()           Returns the current record's "anuncio_id" value
- * @method timestamp         getCreatedAt()           Returns the current record's "created_at" value
- * @method timestamp         getUpdatedAt()           Returns the current record's "updated_at" value
- * @method Anuncio           getAnuncio()             Returns the current record's "Anuncio" value
- * @method Usuario           getUsuario()             Returns the current record's "Usuario" value
- * @method ComentarioAnuncio setId()                  Sets the current record's "id" value
- * @method ComentarioAnuncio setComentario()          Sets the current record's "comentario" value
- * @method ComentarioAnuncio setUsuarioId()           Sets the current record's "usuario_id" value
- * @method ComentarioAnuncio setDenunciado()          Sets the current record's "denunciado" value
- * @method ComentarioAnuncio setComentarioPadreId()   Sets the current record's "comentario_padre_id" value
- * @method ComentarioAnuncio setAnuncioId()           Sets the current record's "anuncio_id" value
- * @method ComentarioAnuncio setCreatedAt()           Sets the current record's "created_at" value
- * @method ComentarioAnuncio setUpdatedAt()           Sets the current record's "updated_at" value
- * @method ComentarioAnuncio setAnuncio()             Sets the current record's "Anuncio" value
- * @method ComentarioAnuncio setUsuario()             Sets the current record's "Usuario" value
+ * @method integer             getId()                  Returns the current record's "id" value
+ * @method string              getComentario()          Returns the current record's "comentario" value
+ * @method integer             getUsuarioId()           Returns the current record's "usuario_id" value
+ * @method integer             getDenunciado()          Returns the current record's "denunciado" value
+ * @method integer             getComentarioPadreId()   Returns the current record's "comentario_padre_id" value
+ * @method integer             getAnuncioId()           Returns the current record's "anuncio_id" value
+ * @method timestamp           getCreatedAt()           Returns the current record's "created_at" value
+ * @method timestamp           getUpdatedAt()           Returns the current record's "updated_at" value
+ * @method DenunciaComentario  getDenunciaComentario()  Returns the current record's "DenunciaComentario" value
+ * @method Anuncio             getAnuncio()             Returns the current record's "Anuncio" value
+ * @method Doctrine_Collection getComentarioAnuncio()   Returns the current record's "ComentarioAnuncio" collection
+ * @method Usuario             getUsuario()             Returns the current record's "Usuario" value
+ * @method ComentarioAnuncio   setId()                  Sets the current record's "id" value
+ * @method ComentarioAnuncio   setComentario()          Sets the current record's "comentario" value
+ * @method ComentarioAnuncio   setUsuarioId()           Sets the current record's "usuario_id" value
+ * @method ComentarioAnuncio   setDenunciado()          Sets the current record's "denunciado" value
+ * @method ComentarioAnuncio   setComentarioPadreId()   Sets the current record's "comentario_padre_id" value
+ * @method ComentarioAnuncio   setAnuncioId()           Sets the current record's "anuncio_id" value
+ * @method ComentarioAnuncio   setCreatedAt()           Sets the current record's "created_at" value
+ * @method ComentarioAnuncio   setUpdatedAt()           Sets the current record's "updated_at" value
+ * @method ComentarioAnuncio   setDenunciaComentario()  Sets the current record's "DenunciaComentario" value
+ * @method ComentarioAnuncio   setAnuncio()             Sets the current record's "Anuncio" value
+ * @method ComentarioAnuncio   setComentarioAnuncio()   Sets the current record's "ComentarioAnuncio" collection
+ * @method ComentarioAnuncio   setUsuario()             Sets the current record's "Usuario" value
  * 
  * @package    guammas
  * @subpackage model
@@ -125,9 +131,17 @@ abstract class BaseComentarioAnuncio extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('DenunciaComentario', array(
+             'local' => 'id',
+             'foreign' => 'id'));
+
         $this->hasOne('Anuncio', array(
              'local' => 'anuncio_id',
              'foreign' => 'id'));
+
+        $this->hasMany('ComentarioAnuncio', array(
+             'local' => 'id',
+             'foreign' => 'comentario_padre_id'));
 
         $this->hasOne('Usuario', array(
              'local' => 'usuario_id',

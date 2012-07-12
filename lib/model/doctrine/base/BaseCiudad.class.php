@@ -12,6 +12,7 @@ Doctrine_Manager::getInstance()->bindComponent('Ciudad', 'doctrine');
  * @property integer $aprobada
  * @property string $estado_id
  * @property Estado $Estado
+ * @property Doctrine_Collection $AnuncioEvento
  * @property Doctrine_Collection $Ubicacion
  * @property Doctrine_Collection $Usuario
  * 
@@ -20,6 +21,7 @@ Doctrine_Manager::getInstance()->bindComponent('Ciudad', 'doctrine');
  * @method integer             getAprobada()      Returns the current record's "aprobada" value
  * @method string              getEstadoId()      Returns the current record's "estado_id" value
  * @method Estado              getEstado()        Returns the current record's "Estado" value
+ * @method Doctrine_Collection getAnuncioEvento() Returns the current record's "AnuncioEvento" collection
  * @method Doctrine_Collection getUbicacion()     Returns the current record's "Ubicacion" collection
  * @method Doctrine_Collection getUsuario()       Returns the current record's "Usuario" collection
  * @method Ciudad              setId()            Sets the current record's "id" value
@@ -27,6 +29,7 @@ Doctrine_Manager::getInstance()->bindComponent('Ciudad', 'doctrine');
  * @method Ciudad              setAprobada()      Sets the current record's "aprobada" value
  * @method Ciudad              setEstadoId()      Sets the current record's "estado_id" value
  * @method Ciudad              setEstado()        Sets the current record's "Estado" value
+ * @method Ciudad              setAnuncioEvento() Sets the current record's "AnuncioEvento" collection
  * @method Ciudad              setUbicacion()     Sets the current record's "Ubicacion" collection
  * @method Ciudad              setUsuario()       Sets the current record's "Usuario" collection
  * 
@@ -83,6 +86,10 @@ abstract class BaseCiudad extends sfDoctrineRecord
         $this->hasOne('Estado', array(
              'local' => 'estado_id',
              'foreign' => 'id'));
+
+        $this->hasMany('AnuncioEvento', array(
+             'local' => 'id',
+             'foreign' => 'ciudad_id'));
 
         $this->hasMany('Ubicacion', array(
              'local' => 'id',

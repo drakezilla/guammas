@@ -21,7 +21,7 @@ abstract class BaseAnuncioEventoForm extends BaseFormDoctrine
       'telefono_evento'   => new sfWidgetFormInputText(),
       'pagina_web_evento' => new sfWidgetFormInputText(),
       'anuncio_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Anuncio'), 'add_empty' => false)),
-      'ciudad_id'         => new sfWidgetFormInputText(),
+      'ciudad_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Ciudad'), 'add_empty' => false)),
     ));
 
     $this->setValidators(array(
@@ -31,7 +31,7 @@ abstract class BaseAnuncioEventoForm extends BaseFormDoctrine
       'telefono_evento'   => new sfValidatorString(array('max_length' => 11, 'required' => false)),
       'pagina_web_evento' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'anuncio_id'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Anuncio'))),
-      'ciudad_id'         => new sfValidatorInteger(),
+      'ciudad_id'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Ciudad'))),
     ));
 
     $this->widgetSchema->setNameFormat('anuncio_evento[%s]');

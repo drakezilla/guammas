@@ -9,11 +9,14 @@ Doctrine_Manager::getInstance()->bindComponent('TipoAnuncio', 'doctrine');
  * 
  * @property integer $id
  * @property string $nombre_tipo_anuncio
+ * @property Doctrine_Collection $Anuncio
  * 
- * @method integer     getId()                  Returns the current record's "id" value
- * @method string      getNombreTipoAnuncio()   Returns the current record's "nombre_tipo_anuncio" value
- * @method TipoAnuncio setId()                  Sets the current record's "id" value
- * @method TipoAnuncio setNombreTipoAnuncio()   Sets the current record's "nombre_tipo_anuncio" value
+ * @method integer             getId()                  Returns the current record's "id" value
+ * @method string              getNombreTipoAnuncio()   Returns the current record's "nombre_tipo_anuncio" value
+ * @method Doctrine_Collection getAnuncio()             Returns the current record's "Anuncio" collection
+ * @method TipoAnuncio         setId()                  Sets the current record's "id" value
+ * @method TipoAnuncio         setNombreTipoAnuncio()   Sets the current record's "nombre_tipo_anuncio" value
+ * @method TipoAnuncio         setAnuncio()             Sets the current record's "Anuncio" collection
  * 
  * @package    guammas
  * @subpackage model
@@ -47,6 +50,8 @@ abstract class BaseTipoAnuncio extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        
+        $this->hasMany('Anuncio', array(
+             'local' => 'id',
+             'foreign' => 'tipo_anuncio_id'));
     }
 }

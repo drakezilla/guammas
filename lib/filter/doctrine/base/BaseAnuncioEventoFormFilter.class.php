@@ -18,7 +18,7 @@ abstract class BaseAnuncioEventoFormFilter extends BaseFormFilterDoctrine
       'telefono_evento'   => new sfWidgetFormFilterInput(),
       'pagina_web_evento' => new sfWidgetFormFilterInput(),
       'anuncio_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Anuncio'), 'add_empty' => true)),
-      'ciudad_id'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'ciudad_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Ciudad'), 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -27,7 +27,7 @@ abstract class BaseAnuncioEventoFormFilter extends BaseFormFilterDoctrine
       'telefono_evento'   => new sfValidatorPass(array('required' => false)),
       'pagina_web_evento' => new sfValidatorPass(array('required' => false)),
       'anuncio_id'        => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Anuncio'), 'column' => 'id')),
-      'ciudad_id'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'ciudad_id'         => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Ciudad'), 'column' => 'id')),
     ));
 
     $this->widgetSchema->setNameFormat('anuncio_evento_filters[%s]');
@@ -53,7 +53,7 @@ abstract class BaseAnuncioEventoFormFilter extends BaseFormFilterDoctrine
       'telefono_evento'   => 'Text',
       'pagina_web_evento' => 'Text',
       'anuncio_id'        => 'ForeignKey',
-      'ciudad_id'         => 'Number',
+      'ciudad_id'         => 'ForeignKey',
     );
   }
 }

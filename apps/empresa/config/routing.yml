@@ -1,0 +1,52 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# default rules
+busqueda:
+  url:    /busqueda
+  param:  { module: bienvenido, action: busqueda }
+
+editarUsuario:
+  url: /perfil/:nombre_usuario
+  param: { module: usuario, action: edit }
+  
+logout:
+  url: /logout
+  param: {module: usuario, action: logout }
+
+sucursal:
+  url: /cpanel/sucursal/:token
+  param: { module: cpanel, action: sucursal}
+  options:
+    column: token
+    
+getSucursales:
+  url: /cpanel/getSucursales/:token
+  param: { module: cpanel, action: getSucursales}
+  options:
+    column: token
+
+anuncio:
+  url: /cpanel/anuncio/:token
+  param: { module: cpanel, action: anuncio}
+  options:
+    column: token
+
+cpanel:
+  url: /cpanel/:token
+  param: { module: cpanel, action: index}
+  options:
+    column: token
+
+homepage:
+  url:   /
+  param: { module: default, action: index }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

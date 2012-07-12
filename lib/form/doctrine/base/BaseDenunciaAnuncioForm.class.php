@@ -15,23 +15,23 @@ abstract class BaseDenunciaAnuncioForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'                  => new sfWidgetFormInputHidden(),
-      'denuncia_anuncio'    => new sfWidgetFormTextarea(),
-      'atendida'            => new sfWidgetFormInputText(),
-      'sucursal_anuncio_id' => new sfWidgetFormInputText(),
-      'usuario_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Usuario'), 'add_empty' => false)),
-      'created_at'          => new sfWidgetFormDateTime(),
-      'updated_at'          => new sfWidgetFormDateTime(),
+      'id'                   => new sfWidgetFormInputHidden(),
+      'denuncia_anuncio'     => new sfWidgetFormTextarea(),
+      'atendida'             => new sfWidgetFormInputText(),
+      'ubicacion_anuncio_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('UbicacionAnuncio'), 'add_empty' => false)),
+      'usuario_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Usuario'), 'add_empty' => false)),
+      'created_at'           => new sfWidgetFormDateTime(),
+      'updated_at'           => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
-      'id'                  => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'denuncia_anuncio'    => new sfValidatorString(),
-      'atendida'            => new sfValidatorInteger(),
-      'sucursal_anuncio_id' => new sfValidatorInteger(),
-      'usuario_id'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Usuario'))),
-      'created_at'          => new sfValidatorDateTime(),
-      'updated_at'          => new sfValidatorDateTime(array('required' => false)),
+      'id'                   => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'denuncia_anuncio'     => new sfValidatorString(),
+      'atendida'             => new sfValidatorInteger(),
+      'ubicacion_anuncio_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('UbicacionAnuncio'))),
+      'usuario_id'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Usuario'))),
+      'created_at'           => new sfValidatorDateTime(),
+      'updated_at'           => new sfValidatorDateTime(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('denuncia_anuncio[%s]');

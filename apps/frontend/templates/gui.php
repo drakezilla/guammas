@@ -5,7 +5,7 @@
             <?php echo image_tag('stylistica-icons/24x24/search.png',array('id'=>'btn-pan-buscar')) ?>
             <?php echo image_tag('stylistica-icons/24x24/id_card.png',array('id'=>'btn-pan-empresa')) ?>
             <?php include 'pan-empresa.php'; ?>
-            <?php include 'pan-buscar.php'; ?>
+            <?php //include 'pan-buscar.php'; ?>
         </div>
     </div>
     <div class="span-2 last" id="dash">

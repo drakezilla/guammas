@@ -13,9 +13,8 @@
 class Ubicacion extends BaseUbicacion {
 
     public function save(Doctrine_Connection $conn = null) {
-        $this->setUsuarioId(sfContext::getInstance()->getUser()->getAttribute("usuario_id", '', "user_vars"));
         $this->setPrincipal(self::isPrincipal());
-        $this->setEmpresaId(sfContext::getInstance()->getUser()->getAttribute("empresa"));
+        $this->setOrganizacionId(sfContext::getInstance()->getUser()->getAttribute("empresa"));
         $ret = parent::save($conn);
         $this->updateLuceneIndex();
         return $ret;
@@ -29,29 +28,25 @@ class Ubicacion extends BaseUbicacion {
     }
 
     public function updateLuceneIndex() {
-        $ubicacion = Doctrine_Core::getTable("Ubicacion")->findOneByEmpresaId(sfContext::getInstance()->getUser()->getAttribute('empresa'));
         
+        $empresa = sfContext::getInstance()->getUser()->getAttribute('empresa');
         $index = UbicacionTable::getLuceneIndex();
 
-        // remove an existing entry
-        if ($hit = $index->find('pk:' . $ubicacion->getId())) {
+        if ($hit = $index->find('pk:' . $empresa)) {
             $index->delete($hit->id);
         }
-
+        
         $doc = new Zend_Search_Lucene_Document();
-
+        
+        $stringIndex= new finda($empresa);
+        $indexFinda=$stringIndex->indexConstructor();
+        
         // store job primary key URL to identify it in the search results
-        $doc->addField(Zend_Search_Lucene_Field::UnIndexed('pk', $ubicacion->getId()));
+        
+        $doc->addField(Zend_Search_Lucene_Field::UnIndexed('pk', $empresa));
 
-        // index job fields
-
-        $doc->addField(Zend_Search_Lucene_Field::UnStored('nombre', $ubicacion->getOrganizacion()->getNombreOrganizacion(), 'utf-8'));
-        $doc->addField(Zend_Search_Lucene_Field::UnStored('ciudad', $ubicacion->getCiudad()->getNombreCiudad(), 'utf-8'));
-        $doc->addField(Zend_Search_Lucene_Field::UnStored('estado', $ubicacion->getCiudad()->getEstado()->getNombreEstado(), 'utf-8'));
-        $doc->addField(Zend_Search_Lucene_Field::UnStored('coordenada_x', $ubicacion->getCoordenadaX(), 'utf-8'));
-        $doc->addField(Zend_Search_Lucene_Field::UnStored('coordenada_y', $ubicacion->getCoordenadaY(), 'utf-8'));
-
-        // add job to the index
+        $doc->addField(Zend_Search_Lucene_Field::UnStored('finda', $indexFinda, 'utf-8'));
+        
         $index->addDocument($doc);
         $index->commit();
     }

@@ -26,8 +26,7 @@ abstract class BaseUbicacionForm extends BaseFormDoctrine
       'detalle_direccion' => new sfWidgetFormTextarea(),
       'verificada'        => new sfWidgetFormInputText(),
       'ciudad_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Ciudad'), 'add_empty' => false)),
-      'empresa_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Organizacion'), 'add_empty' => true)),
-      'usuario_id'        => new sfWidgetFormInputText(),
+      'organizacion_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Organizacion'), 'add_empty' => false)),
       'created_at'        => new sfWidgetFormDateTime(),
       'updated_at'        => new sfWidgetFormDateTime(),
     ));
@@ -40,14 +39,13 @@ abstract class BaseUbicacionForm extends BaseFormDoctrine
       'coordenada_x'      => new sfValidatorString(array('max_length' => 30)),
       'coordenada_y'      => new sfValidatorString(array('max_length' => 30)),
       'telefono_1'        => new sfValidatorString(array('max_length' => 12)),
-      'telefono_2'        => new sfValidatorString(array('max_length' => 12)),
+      'telefono_2'        => new sfValidatorString(array('max_length' => 12, 'required' => false)),
       'detalle_direccion' => new sfValidatorString(),
       'verificada'        => new sfValidatorInteger(),
       'ciudad_id'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Ciudad'))),
-      'empresa_id'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Organizacion'), 'required' => false)),
-      'usuario_id'        => new sfValidatorInteger(),
+      'organizacion_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Organizacion'))),
       'created_at'        => new sfValidatorDateTime(),
-      'updated_at'        => new sfValidatorDateTime(),
+      'updated_at'        => new sfValidatorDateTime(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('ubicacion[%s]');

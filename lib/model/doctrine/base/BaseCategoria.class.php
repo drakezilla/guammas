@@ -10,15 +10,30 @@ Doctrine_Manager::getInstance()->bindComponent('Categoria', 'doctrine');
  * @property integer $id
  * @property string $nombre_categoria
  * @property integer $categoria_padre_id
+ * @property integer $usuario_id
+ * @property integer $sugerido
+ * @property timestamp $created_at
+ * @property Doctrine_Collection $Categoria
+ * @property Usuario $Usuario
  * @property Doctrine_Collection $Organizacion
  * 
  * @method integer             getId()                 Returns the current record's "id" value
  * @method string              getNombreCategoria()    Returns the current record's "nombre_categoria" value
  * @method integer             getCategoriaPadreId()   Returns the current record's "categoria_padre_id" value
+ * @method integer             getUsuarioId()          Returns the current record's "usuario_id" value
+ * @method integer             getSugerido()           Returns the current record's "sugerido" value
+ * @method timestamp           getCreatedAt()          Returns the current record's "created_at" value
+ * @method Doctrine_Collection getCategoria()          Returns the current record's "Categoria" collection
+ * @method Usuario             getUsuario()            Returns the current record's "Usuario" value
  * @method Doctrine_Collection getOrganizacion()       Returns the current record's "Organizacion" collection
  * @method Categoria           setId()                 Sets the current record's "id" value
  * @method Categoria           setNombreCategoria()    Sets the current record's "nombre_categoria" value
  * @method Categoria           setCategoriaPadreId()   Sets the current record's "categoria_padre_id" value
+ * @method Categoria           setUsuarioId()          Sets the current record's "usuario_id" value
+ * @method Categoria           setSugerido()           Sets the current record's "sugerido" value
+ * @method Categoria           setCreatedAt()          Sets the current record's "created_at" value
+ * @method Categoria           setCategoria()          Sets the current record's "Categoria" collection
+ * @method Categoria           setUsuario()            Sets the current record's "Usuario" value
  * @method Categoria           setOrganizacion()       Sets the current record's "Organizacion" collection
  * 
  * @package    guammas
@@ -57,11 +72,46 @@ abstract class BaseCategoria extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 4,
              ));
+        $this->hasColumn('usuario_id', 'integer', 4, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 4,
+             ));
+        $this->hasColumn('sugerido', 'integer', 1, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
+        $this->hasColumn('created_at', 'timestamp', 25, array(
+             'type' => 'timestamp',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 25,
+             ));
     }
 
     public function setUp()
     {
         parent::setUp();
+        $this->hasMany('Categoria', array(
+             'local' => 'id',
+             'foreign' => 'categoria_padre_id'));
+
+        $this->hasOne('Usuario', array(
+             'local' => 'usuario_id',
+             'foreign' => 'id'));
+
         $this->hasMany('Organizacion', array(
              'local' => 'id',
              'foreign' => 'categoria_id'));

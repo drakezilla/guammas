@@ -17,6 +17,7 @@ class UbicacionForm extends BaseUbicacionForm {
                 $this['telefono_2'],
                 $this['verificada'],
                 $this['usuario_id'],
+                $this['organizacion_id'],
                 $this['created_at'],
                 $this['updated_at']
              );

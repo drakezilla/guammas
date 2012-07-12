@@ -13,7 +13,7 @@
 class TagOrganizacion extends BaseTagOrganizacion {
     public function asignarTag($tag_id,$empresa_id){
         $this->setTagId($tag_id);
-        $this->setEmpresaId($empresa_id);
+        $this->setOrganizacionId($empresa_id);
         $this->save();
     }
 }

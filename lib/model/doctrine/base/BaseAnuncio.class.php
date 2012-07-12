@@ -16,52 +16,61 @@ Doctrine_Manager::getInstance()->bindComponent('Anuncio', 'doctrine');
  * @property date $fecha_inicio
  * @property date $fecha_fin
  * @property integer $tipo_anuncio_id
+ * @property integer $horario_anuncio_id
  * @property integer $activo
  * @property timestamp $created_at
  * @property timestamp $updated_at
+ * @property HorarioAnuncio $HorarioAnuncio
+ * @property TipoAnuncio $TipoAnuncio
  * @property Doctrine_Collection $AnuncioCupon
  * @property Doctrine_Collection $AnuncioEvento
  * @property Doctrine_Collection $ComentarioAnuncio
- * @property Doctrine_Collection $HorarioAnuncio
+ * @property Doctrine_Collection $FotoAnuncio
  * @property Doctrine_Collection $TagAnuncio
  * @property Doctrine_Collection $UbicacionAnuncio
  * 
- * @method integer             getId()                Returns the current record's "id" value
- * @method string              getTitulo()            Returns the current record's "titulo" value
- * @method string              getQueIncluye()        Returns the current record's "que_incluye" value
- * @method string              getCondiciones()       Returns the current record's "condiciones" value
- * @method string              getDescripcion()       Returns the current record's "descripcion" value
- * @method float               getPrecio()            Returns the current record's "precio" value
- * @method date                getFechaInicio()       Returns the current record's "fecha_inicio" value
- * @method date                getFechaFin()          Returns the current record's "fecha_fin" value
- * @method integer             getTipoAnuncioId()     Returns the current record's "tipo_anuncio_id" value
- * @method integer             getActivo()            Returns the current record's "activo" value
- * @method timestamp           getCreatedAt()         Returns the current record's "created_at" value
- * @method timestamp           getUpdatedAt()         Returns the current record's "updated_at" value
- * @method Doctrine_Collection getAnuncioCupon()      Returns the current record's "AnuncioCupon" collection
- * @method Doctrine_Collection getAnuncioEvento()     Returns the current record's "AnuncioEvento" collection
- * @method Doctrine_Collection getComentarioAnuncio() Returns the current record's "ComentarioAnuncio" collection
- * @method Doctrine_Collection getHorarioAnuncio()    Returns the current record's "HorarioAnuncio" collection
- * @method Doctrine_Collection getTagAnuncio()        Returns the current record's "TagAnuncio" collection
- * @method Doctrine_Collection getUbicacionAnuncio()  Returns the current record's "UbicacionAnuncio" collection
- * @method Anuncio             setId()                Sets the current record's "id" value
- * @method Anuncio             setTitulo()            Sets the current record's "titulo" value
- * @method Anuncio             setQueIncluye()        Sets the current record's "que_incluye" value
- * @method Anuncio             setCondiciones()       Sets the current record's "condiciones" value
- * @method Anuncio             setDescripcion()       Sets the current record's "descripcion" value
- * @method Anuncio             setPrecio()            Sets the current record's "precio" value
- * @method Anuncio             setFechaInicio()       Sets the current record's "fecha_inicio" value
- * @method Anuncio             setFechaFin()          Sets the current record's "fecha_fin" value
- * @method Anuncio             setTipoAnuncioId()     Sets the current record's "tipo_anuncio_id" value
- * @method Anuncio             setActivo()            Sets the current record's "activo" value
- * @method Anuncio             setCreatedAt()         Sets the current record's "created_at" value
- * @method Anuncio             setUpdatedAt()         Sets the current record's "updated_at" value
- * @method Anuncio             setAnuncioCupon()      Sets the current record's "AnuncioCupon" collection
- * @method Anuncio             setAnuncioEvento()     Sets the current record's "AnuncioEvento" collection
- * @method Anuncio             setComentarioAnuncio() Sets the current record's "ComentarioAnuncio" collection
- * @method Anuncio             setHorarioAnuncio()    Sets the current record's "HorarioAnuncio" collection
- * @method Anuncio             setTagAnuncio()        Sets the current record's "TagAnuncio" collection
- * @method Anuncio             setUbicacionAnuncio()  Sets the current record's "UbicacionAnuncio" collection
+ * @method integer             getId()                 Returns the current record's "id" value
+ * @method string              getTitulo()             Returns the current record's "titulo" value
+ * @method string              getQueIncluye()         Returns the current record's "que_incluye" value
+ * @method string              getCondiciones()        Returns the current record's "condiciones" value
+ * @method string              getDescripcion()        Returns the current record's "descripcion" value
+ * @method float               getPrecio()             Returns the current record's "precio" value
+ * @method date                getFechaInicio()        Returns the current record's "fecha_inicio" value
+ * @method date                getFechaFin()           Returns the current record's "fecha_fin" value
+ * @method integer             getTipoAnuncioId()      Returns the current record's "tipo_anuncio_id" value
+ * @method integer             getHorarioAnuncioId()   Returns the current record's "horario_anuncio_id" value
+ * @method integer             getActivo()             Returns the current record's "activo" value
+ * @method timestamp           getCreatedAt()          Returns the current record's "created_at" value
+ * @method timestamp           getUpdatedAt()          Returns the current record's "updated_at" value
+ * @method HorarioAnuncio      getHorarioAnuncio()     Returns the current record's "HorarioAnuncio" value
+ * @method TipoAnuncio         getTipoAnuncio()        Returns the current record's "TipoAnuncio" value
+ * @method Doctrine_Collection getAnuncioCupon()       Returns the current record's "AnuncioCupon" collection
+ * @method Doctrine_Collection getAnuncioEvento()      Returns the current record's "AnuncioEvento" collection
+ * @method Doctrine_Collection getComentarioAnuncio()  Returns the current record's "ComentarioAnuncio" collection
+ * @method Doctrine_Collection getFotoAnuncio()        Returns the current record's "FotoAnuncio" collection
+ * @method Doctrine_Collection getTagAnuncio()         Returns the current record's "TagAnuncio" collection
+ * @method Doctrine_Collection getUbicacionAnuncio()   Returns the current record's "UbicacionAnuncio" collection
+ * @method Anuncio             setId()                 Sets the current record's "id" value
+ * @method Anuncio             setTitulo()             Sets the current record's "titulo" value
+ * @method Anuncio             setQueIncluye()         Sets the current record's "que_incluye" value
+ * @method Anuncio             setCondiciones()        Sets the current record's "condiciones" value
+ * @method Anuncio             setDescripcion()        Sets the current record's "descripcion" value
+ * @method Anuncio             setPrecio()             Sets the current record's "precio" value
+ * @method Anuncio             setFechaInicio()        Sets the current record's "fecha_inicio" value
+ * @method Anuncio             setFechaFin()           Sets the current record's "fecha_fin" value
+ * @method Anuncio             setTipoAnuncioId()      Sets the current record's "tipo_anuncio_id" value
+ * @method Anuncio             setHorarioAnuncioId()   Sets the current record's "horario_anuncio_id" value
+ * @method Anuncio             setActivo()             Sets the current record's "activo" value
+ * @method Anuncio             setCreatedAt()          Sets the current record's "created_at" value
+ * @method Anuncio             setUpdatedAt()          Sets the current record's "updated_at" value
+ * @method Anuncio             setHorarioAnuncio()     Sets the current record's "HorarioAnuncio" value
+ * @method Anuncio             setTipoAnuncio()        Sets the current record's "TipoAnuncio" value
+ * @method Anuncio             setAnuncioCupon()       Sets the current record's "AnuncioCupon" collection
+ * @method Anuncio             setAnuncioEvento()      Sets the current record's "AnuncioEvento" collection
+ * @method Anuncio             setComentarioAnuncio()  Sets the current record's "ComentarioAnuncio" collection
+ * @method Anuncio             setFotoAnuncio()        Sets the current record's "FotoAnuncio" collection
+ * @method Anuncio             setTagAnuncio()         Sets the current record's "TagAnuncio" collection
+ * @method Anuncio             setUbicacionAnuncio()   Sets the current record's "UbicacionAnuncio" collection
  * 
  * @package    guammas
  * @subpackage model
@@ -153,6 +162,15 @@ abstract class BaseAnuncio extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 4,
              ));
+        $this->hasColumn('horario_anuncio_id', 'integer', 4, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 4,
+             ));
         $this->hasColumn('activo', 'integer', 1, array(
              'type' => 'integer',
              'fixed' => 0,
@@ -185,6 +203,14 @@ abstract class BaseAnuncio extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('HorarioAnuncio', array(
+             'local' => 'horario_anuncio_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('TipoAnuncio', array(
+             'local' => 'tipo_anuncio_id',
+             'foreign' => 'id'));
+
         $this->hasMany('AnuncioCupon', array(
              'local' => 'id',
              'foreign' => 'anuncio_id'));
@@ -197,7 +223,7 @@ abstract class BaseAnuncio extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'anuncio_id'));
 
-        $this->hasMany('HorarioAnuncio', array(
+        $this->hasMany('FotoAnuncio', array(
              'local' => 'id',
              'foreign' => 'anuncio_id'));
 

@@ -3,6 +3,10 @@
 
 # default rules
 
+crearCuentaREST:
+  url: /usuario/crearCuentaREST
+  param: {module: usuario, action: crearCuentaREST}
+
 loginREST:
   url: /usuario/loginREST
   param: {module: usuario, action: loginREST}

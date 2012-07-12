@@ -13,7 +13,7 @@ class usuarioActions extends sfActions {
     public function preExecute() {
         $this->getUser()->getAttributeHolder()->remove("empresa");
     }
-    
+
     public function executeNew(sfWebRequest $request) {
         if ($request->isXmlHttpRequest()) {
             $this->form = new UsuarioForm();
@@ -87,7 +87,7 @@ class usuarioActions extends sfActions {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
             $usuario = $form->save();
-            $this->getUser()->setAttribute("username", $usuario->getNombreUsuario(),"user_vars");
+            $this->getUser()->setAttribute("username", $usuario->getNombreUsuario(), "user_vars");
             return true;
         } else {
             return false;
@@ -113,8 +113,8 @@ class usuarioActions extends sfActions {
     }
 
     protected function logingIn($form, sfWebRequest $request) {
-        $clave=$form['password'];
-        $usuario=$form['username'];
+        $clave = $form['password'];
+        $usuario = $form['username'];
         $usuario = Doctrine_Core::getTable("Usuario")->getDatosUsuario($usuario, $clave);
         if ($request->isXmlHttpRequest()) {
             if (count($usuario) == 1) {
@@ -142,7 +142,7 @@ class usuarioActions extends sfActions {
 
     public function executeEdit(sfWebRequest $request) {
         $this->forward404Unless($usuario = Doctrine_Core::getTable('Usuario')->findOneByNombreUsuario(array($request->getParameter('nombre_usuario'))), sprintf('Object usuario does not exist (%s).', $request->getParameter('nombre_usuario')));
-        $this->formUsuario= new UsuarioForm($usuario);
+        $this->formUsuario = new UsuarioForm($usuario);
     }
 
     public function executeUpdate(sfWebRequest $request) {
@@ -154,7 +154,7 @@ class usuarioActions extends sfActions {
 
         if ($this->processForm($request, $this->formUsuario)) {
             $this->getUser()->setFlash("notice", "Gracias! todos tus cambios fueron cambiado con exito");
-            $this->redirect("@editarUsuario?nombre_usuario=" . $this->getUser()->getAttribute('usuario_username','',"user_vars"));
+            $this->redirect("@editarUsuario?nombre_usuario=" . $this->getUser()->getAttribute('usuario_username', '', "user_vars"));
         } else {
             $this->getUser()->setFlash("error", "Oops, ha ocurrido algo que no deberia, por favor intenta mas tarde!");
             $this->setTemplate("edit");
@@ -170,24 +170,46 @@ class usuarioActions extends sfActions {
         $request->setParameter("usuario", $form);
         return $request;
     }
-    
-    public function executeLogout(sfWebRequest $request){
+
+    public function executeLogout(sfWebRequest $request) {
         Usuario::removeVariablesSesion($this->getUser());
         $this->redirect("@homepage");
     }
 
-    public function executeLoginREST(sfWebRequest $request){
-        $this->forward404Unless($request->hasParameter('correo')&&$request->hasParameter('clave'));
-        $this->forward404Unless(ereg('Android', $_SERVER['HTTP_USER_AGENT']));
-        
-        $usuarioData = Doctrine_Core::getTable('Usuario')->getDatosUsuario($request->getParameter('correo'),$request->getParameter('clave'));
-        if(count($usuarioData)==1){
-            $returnArray['status'] = 'true';
-        }else{
+    public function executeLoginREST(sfWebRequest $request) {
+        if (!$request->hasParameter('alias') || !$request->hasParameter('clave')) {
             $returnArray['status'] = 'false';
+        } else {
+
+            $usuarioData = Doctrine_Core::getTable('Usuario')->getDatosUsuario($request->getParameter('alias'), $request->getParameter('clave'));
+            if (count($usuarioData) == 1) {
+                $returnArray['status'] = 'true';
+            } else {
+                $returnArray['status'] = 'false';
+            }
         }
         echo json_encode($returnArray);
         die();
     }
+
+    public function executeCrearCuentaREST(sfWebRequest $request) {
+        if (!$request->hasParameter('alias') || !$request->hasParameter('clave') || !$request->hasParameter('correo')) {
+            $returnArray['status'] = 'false';
+        }else{
+            $movilForm['alias']= $request->getParameter('alias');
+            $movilForm['clave']= $request->getParameter('clave');
+            $movilForm['correo']= $request->getParameter('correo');
+            $usuarioMovil = new Usuario();
+            $saveUsuario = $usuarioMovil-> crearUsuarioMovil($movilForm);
+            if($saveUsuario){
+                $returnArray['status'] = 'true';
+            }else{
+                $returnArray['status'] = 'false';
+            }
+        }
+        echo json_encode($returnArray);
+        die();
+    }
+
 }
 

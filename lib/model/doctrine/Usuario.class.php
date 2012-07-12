@@ -19,6 +19,15 @@ class Usuario extends BaseUsuario {
         }
         parent::save($conn);
     }
+    
+    public function crearUsuarioMovil($movilForm){
+        $this->setNombreUsuario($movilForm['alias']);
+        $this->setCorreoElectronico($movilForm['correo']);
+        $this->setContrasena($movilForm['clave']);
+        $this->setActivo(0);
+        $this->save();
+        return true;
+    }
 
     public static function setVariableSesion($datosUsusario, sfUser $sf_user) {
         self::removeVariablesSesion($sf_user);

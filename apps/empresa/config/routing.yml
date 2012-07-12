@@ -2,6 +2,18 @@
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
 # default rules
+busqueda:
+  url:    /busqueda
+  param:  { module: bienvenido, action: busqueda }
+
+editarUsuario:
+  url: /perfil/:nombre_usuario
+  param: { module: usuario, action: edit }
+  
+logout:
+  url: /logout
+  param: {module: usuario, action: logout }
+
 sucursal:
   url: /cpanel/sucursal/:token
   param: { module: cpanel, action: sucursal}

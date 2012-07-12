@@ -38,11 +38,7 @@ class cpanelActions extends sfActions {
     }
     
     public function executeGetSucursales(sfWebRequest $request) {
-        $sucursales = Doctrine_Core::getTable('Organizacion')->getSucursalesPorEmpresa($request->getParameter('token'));       
-        
-        //echo '<pre>';
-        //print_r($sucursales);
-        //echo '</pre>';
+        $sucursales = Doctrine_Core::getTable('Ubicacion')->getSucursalesPorOrganizacion($request->getParameter('token'));
         echo json_encode($sucursales);
         die();
     }

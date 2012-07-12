@@ -143,15 +143,27 @@ var GoogleMapClass = Class.extend({
         }
     },
     
+    /*
+     * Metodo para iniciar actividad del mapa
+     * Se utiliza para cargar e iniciar la actividad dentro del mapa (el evento click dentro del mapa muestra un chinche nuevo)
+     *
+     */
+    
     mapActividad: function(){
         var objMapa = this.objMapa
+        var markersArray = new Array()
         google.maps.event.addListener(objMapa, 'click', function(event){
-            markerActivdad = new google.maps.Marker({
+            for (i in markersArray) {
+                markersArray[i].setMap(null);
+            }
+            markersArray.length = 0;
+            var marker = new google.maps.Marker({
                 position: event.latLng, 
                 animation: google.maps.Animation.DROP,
                 map: objMapa
-            });    
-            markerActivdad = 0;
+            });
+            markersArray.push(marker);
         });
+    
     }
 });

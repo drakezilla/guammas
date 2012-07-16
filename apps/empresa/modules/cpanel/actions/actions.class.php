@@ -36,6 +36,7 @@ class cpanelActions extends sfActions {
         if ($this->getUser()->hasAttribute('popupNuevaSucursal')) {
             $this->getResponse()->setCookie('popupNuevaSucursal', 'no', time() + (86400 * 7));
         }
+        $this->form = new UbicacionForm();
     }
 
     public function executeGetSucursales(sfWebRequest $request) {
@@ -63,13 +64,14 @@ class cpanelActions extends sfActions {
     
     public function executeGuardarUbicacion(sfWebRequest $request){
         $this->forward404Unless($request->isXmlHttpRequest());
-        $this->forward404Unless($request->hasParameter('rif')&&$request->hasParameter('nombre')&&$request->hasParameter('telefono')&&$request->hasParameter('coordenada_x')&&$request->hasParameter('coordenada_y'));
+        $this->forward404Unless($request->hasParameter('rif')&&$request->hasParameter('nombre')&&$request->hasParameter('telefono')&&$request->hasParameter('coordenada_x')&&$request->hasParameter('coordenada_y')&&$request->hasParameter('ciudad_id'));
         $empresa = Doctrine_Core::getTable("Organizacion")->findOneByToken($request->getParameter('token'));
         $this->getUser()->setAttribute('principal', false);
         $this->getUser()->setAttribute('empresa', $empresa->getId());
         $ubicacion = new Ubicacion();
         $ubicacion->nuevaUbicacion($request);
-        
+        echo true;
+        die();
     }
 
 }

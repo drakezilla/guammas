@@ -67,7 +67,7 @@ class UbicacionTable extends Doctrine_Table {
             $arrayJsonSucursales[$i]['coordenada_x'] = $query[$i]['coordenada_x'];
             $arrayJsonSucursales[$i]['coordenada_y'] = $query[$i]['coordenada_y'];
             $arrayJsonSucursales[$i]['detalle_direccion'] = $query[$i]['detalle_direccion'];
-            $arrayJsonSucursales[$i]['telefono'] = $query[$i]['telefono_1'];
+            $arrayJsonSucursales[$i]['telefono'] = $query[$i]['telefono_ppal'];
         }
         return $arrayJsonSucursales;
     }

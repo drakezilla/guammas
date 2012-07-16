@@ -23,9 +23,10 @@ class Ubicacion extends BaseUbicacion {
     public function nuevaUbicacion(sfWebRequest $request){
         $this->setRif($request->getParameter('rif'));
         $this->setNombre($request->getParameter('nombre'));
-        //$this->setTelefono2($request->getParameter('telefono'));
+        $this->setTelefonoPpal($request->getParameter('telefono'));
         $this->setCoordenadaX($request->getParameter('coordenada_x'));
         $this->setCoordenadaY($request->getParameter('coordenada_y'));
+        $this->setCiudadId($request->getParameter('ciudad_id'));
         $this->save();
     }
 

@@ -2,7 +2,7 @@
 <?php use_javascript("jquery-plugins/jquery_maskedInput.js") ?>
 <?php use_javascript("jquery-plugins/jquery_chosen.js") ?>
 <?php use_javascript('http://maps.google.com/maps/api/js?sensor=true&language=es') ?>
-<?php //use_javascript('custom/googlemaps_api.js', 'last')           ?>
+<?php //use_javascript('custom/googlemaps_api.js', 'last')            ?>
 <?php use_javascript('class.js') ?>
 <?php use_stylesheet("jquery-plugins/jquery_chosen.css") ?>
 <script>
@@ -91,6 +91,8 @@
     });
     
     function guardarUbicacion(){
+        $('#ubicacion_btn_guardar').attr('disabled','disabled');
+        $('#cell_btn_guardar').append('<?php echo image_tag('16x16/small_spinner.gif', array('id' => 'spinner')) ?>');
         $.ajax({
             type:  'POST',
             url: '<?php echo url_for('cpanel/guardarUbicacion?token=' . $sf_request->getParameter('token')) ?>',
@@ -102,8 +104,19 @@
                 coordenada_y: $("#ubicacion_coordenada_y").val(),
                 ciudad_id: $("#ubicacion_ciudad_id").val()
             },
-            success: function (data){
-                alert("llegamos")
+            success: function (){
+                $('#notice-geocoder').show('fast');
+                $('#notice-geocoder').html('Bien! ubicación creada con exito')
+                setTimeout(function(){
+                    $('#notice-geocoder').hide('fast');
+                },5000)
+                gMap.cerrarIW();
+                gMap.destruirActividad();
+            },
+            error: function(){
+                $('#notice-geocoder').show('fast');
+                $('#ubicacion_btn_guardar').removeAttr('disabled');
+                $('#spinner').remove();
             }
         })
     }

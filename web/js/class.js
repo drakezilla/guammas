@@ -188,7 +188,19 @@ var GoogleMapClass = Class.extend({
             markersArray.push(marker);
         });
     
+    },
+    
+    /*
+     * Metodo para destruir la actividad del mapa
+     * Se utiliza para eliminar la actividad del mapa principal
+     *
+     */
+    
+    destruirActividad: function(){
+        var objMapa = this.objMapa
+        google.maps.event.clearListeners(objMapa, 'click');
     }
+    
 });
 
 var mapaNuevaUbicacion = GoogleMapClass.extend({
@@ -196,7 +208,7 @@ var mapaNuevaUbicacion = GoogleMapClass.extend({
         
         var objMapa = this.objMapa
         var markersArray = new Array()
-        google.maps.event.addListener(objMapa, 'click', function(event){
+        this.actividad = google.maps.event.addListener(objMapa, 'click', function(event){
             
             for (i in markersArray) {
                 markersArray[i].setMap(null);
@@ -207,7 +219,6 @@ var mapaNuevaUbicacion = GoogleMapClass.extend({
                 animation: google.maps.Animation.DROP,
                 map: objMapa
             });
-            markersArray.push(marker);
             
             var formNuevaUbicacion =
             '<div>'+
@@ -226,19 +237,26 @@ var mapaNuevaUbicacion = GoogleMapClass.extend({
                     '<td><input id="ubicacion_telefono_ppal" onfocus="$(\'#ubicacion_telefono_ppal\').mask(\'9999-9999999\');" /></td>'+
                 '</tr>'+
                 '<tr>'+
-                    '<td colspan="2"><button type="button" onclick="guardarUbicacion()">Guardar</button></td>'+
+                    '<td colspan="2" id="cell_btn_guardar"><button id="ubicacion_btn_guardar" type="button" onclick="guardarUbicacion()">Guardar</button></td>'+
                 '</tr>'+
             '</table>'+
             '</div>';    
             
-            var infowindow = new google.maps.InfoWindow({
+            marker.infowindow = new google.maps.InfoWindow({
                 content: formNuevaUbicacion
             })
             
-            infowindow.open(objMapa,marker)
+            marker.infowindow.open(objMapa,marker)
             google.maps.event.addListener(marker, "click", function() {
-                infowindow.open(objMapa,marker)
+                marker.infowindow.open(objMapa,marker)
             })
+            markersArray.push(marker);
         });
+        this.markersArray=markersArray;
+    },
+    
+    cerrarIW: function(){
+        var marker = this.markersArray;
+        marker[0].infowindow.close();
     }
 })

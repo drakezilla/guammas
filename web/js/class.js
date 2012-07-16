@@ -100,15 +100,19 @@ var GoogleMapClass = Class.extend({
     },
     
     /*
-     * Este metodo levanta el mapa
-     * Permite pintar el mapa en el elemento div establecido
+     * Incializacion de los objetos para darle funcionalidad al mapa
+     * Se inicia el objeto mapa y el geocoder (si es solicitado)
      * @param divElemento elemento del DOM donde se va a dibujar el mapa
-     * @usage variable.inicio(document.getElementById('mielemento'))
+     * @param geocoder booleano define si es necesario llamar al objeto geocoder
+     * @usage variable.inicio(document.getElementById('mielemento'),true)
      */
     
-    inicio: function(divElemento){
+    inicio: function(divElemento,geocoder){
         this.objMapa = new google.maps.Map(divElemento,this.opciones);
-        
+        if(geocoder){
+            this.objGeocoder = new google.maps.Geocoder();
+        }
+
     },
     
     /*
@@ -141,6 +145,25 @@ var GoogleMapClass = Class.extend({
             
             
         }
+    },
+    
+    /*
+     * Metodo para iniciar la actividad del geocoder
+     * Se utiliza para ubicar una ciudad en el mapa segun su nombre
+     * @param geocoderString string Cadena de caracteres para buscar una ciudad en el mapa
+     *
+     */
+    
+    callGeocoder: function(geocoderString){
+        var objMapa = this.objMapa
+        this.objGeocoder.geocode({'address': geocoderString}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                objMapa.setCenter(results[0].geometry.location);
+                return true;
+            }else{
+                return false;
+            }
+        })
     },
     
     /*
@@ -200,7 +223,7 @@ var mapaNuevaUbicacion = GoogleMapClass.extend({
                 '</tr>'+
                 '<tr>'+
                     '<td>Teléfono</td>'+
-                    '<td><input id="ubicacion_telefono" onfocus="$(\'#ubicacion_telefono\').mask(\'9999-9999999\');" /></td>'+
+                    '<td><input id="ubicacion_telefono_ppal" onfocus="$(\'#ubicacion_telefono_ppal\').mask(\'9999-9999999\');" /></td>'+
                 '</tr>'+
                 '<tr>'+
                     '<td colspan="2"><button type="button" onclick="guardarUbicacion()">Guardar</button></td>'+

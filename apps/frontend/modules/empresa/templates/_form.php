@@ -48,10 +48,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <th><?php echo $formUbicacion['telefono_1']->renderLabel() ?></th>
+                        <th><?php echo $formUbicacion['telefono_ppal']->renderLabel() ?></th>
                         <td>
-                            <?php echo $formUbicacion['telefono_1']->renderError() ?>
-                            <?php echo $formUbicacion['telefono_1'] ?>
+                            <?php echo $formUbicacion['telefono_ppal']->renderError() ?>
+                            <?php echo $formUbicacion['telefono_ppal'] ?>
                         </td>
                     </tr>
                 </tbody>

@@ -14,7 +14,7 @@ class UbicacionForm extends BaseUbicacionForm {
         unset(
                 $this['principal'],
                 $this['detalle_direccion'],
-                $this['telefono_2'],
+                $this['telefono_sec'],
                 $this['verificada'],
                 $this['usuario_id'],
                 $this['organizacion_id'],
@@ -25,7 +25,7 @@ class UbicacionForm extends BaseUbicacionForm {
         
         
         $this->widgetSchema["ciudad_id"] = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Ciudad'), 'add_empty' => ""), array("style" => "width: 205px", "data-placeholder" => "Seleccione una ciudad"));
-        $this->widgetSchema["telefono_1"]->setLabel("Algún Teléfono");
+        $this->widgetSchema["telefono_ppal"]->setLabel("Algún Teléfono");
         $this->widgetSchema["rif"]->setLabel("RIF");
         $this->widgetSchema["coordenada_x"] = new sfWidgetFormInputHidden();
         $this->widgetSchema["coordenada_y"] = new sfWidgetFormInputHidden();

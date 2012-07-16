@@ -3,7 +3,7 @@
     var htmlMapa='<a onclick="return openMapa()" href="#"><?php echo image_tag("16x16/small_bulb") ?>Ubicate en un mapa</a>'
     $(document).ready(function(){
         $("#ubicacion_rif").mask("r-99999999-9");
-        $("#ubicacion_telefono_1").mask("0999-9999999");
+        $("#ubicacion_telefono_ppal").mask("0999-9999999");
         
         $("#ubicacion_ciudad_id, #organizacion_categoria_id").chosen();
        

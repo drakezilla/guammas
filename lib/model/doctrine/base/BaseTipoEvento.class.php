@@ -9,7 +9,7 @@ Doctrine_Manager::getInstance()->bindComponent('TipoEvento', 'doctrine');
  * 
  * @property integer $id
  * @property string $nombre_tipo_evento
- * @property integer $sugerido
+ * @property boolean $sugerido
  * @property integer $usuario_sugiere_id
  * @property timestamp $created_at
  * @property timestamp $updated_at
@@ -17,7 +17,7 @@ Doctrine_Manager::getInstance()->bindComponent('TipoEvento', 'doctrine');
  * 
  * @method integer    getId()                 Returns the current record's "id" value
  * @method string     getNombreTipoEvento()   Returns the current record's "nombre_tipo_evento" value
- * @method integer    getSugerido()           Returns the current record's "sugerido" value
+ * @method boolean    getSugerido()           Returns the current record's "sugerido" value
  * @method integer    getUsuarioSugiereId()   Returns the current record's "usuario_sugiere_id" value
  * @method timestamp  getCreatedAt()          Returns the current record's "created_at" value
  * @method timestamp  getUpdatedAt()          Returns the current record's "updated_at" value
@@ -57,8 +57,8 @@ abstract class BaseTipoEvento extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 75,
              ));
-        $this->hasColumn('sugerido', 'integer', 1, array(
-             'type' => 'integer',
+        $this->hasColumn('sugerido', 'boolean', 1, array(
+             'type' => 'boolean',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,

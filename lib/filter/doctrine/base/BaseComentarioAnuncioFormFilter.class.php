@@ -15,7 +15,7 @@ abstract class BaseComentarioAnuncioFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'comentario'          => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'usuario_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Usuario'), 'add_empty' => true)),
-      'denunciado'          => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'denunciado'          => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'comentario_padre_id' => new sfWidgetFormFilterInput(),
       'anuncio_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Anuncio'), 'add_empty' => true)),
       'created_at'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
@@ -25,7 +25,7 @@ abstract class BaseComentarioAnuncioFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'comentario'          => new sfValidatorPass(array('required' => false)),
       'usuario_id'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Usuario'), 'column' => 'id')),
-      'denunciado'          => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'denunciado'          => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'comentario_padre_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'anuncio_id'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Anuncio'), 'column' => 'id')),
       'created_at'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
@@ -52,7 +52,7 @@ abstract class BaseComentarioAnuncioFormFilter extends BaseFormFilterDoctrine
       'id'                  => 'Number',
       'comentario'          => 'Text',
       'usuario_id'          => 'ForeignKey',
-      'denunciado'          => 'Number',
+      'denunciado'          => 'Boolean',
       'comentario_padre_id' => 'Number',
       'anuncio_id'          => 'ForeignKey',
       'created_at'          => 'Date',

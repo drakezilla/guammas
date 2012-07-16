@@ -10,28 +10,28 @@ Doctrine_Manager::getInstance()->bindComponent('ComentarioAnuncio', 'doctrine');
  * @property integer $id
  * @property string $comentario
  * @property integer $usuario_id
- * @property integer $denunciado
+ * @property boolean $denunciado
  * @property integer $comentario_padre_id
  * @property integer $anuncio_id
  * @property timestamp $created_at
  * @property timestamp $updated_at
- * @property DenunciaComentario $DenunciaComentario
  * @property Anuncio $Anuncio
  * @property Doctrine_Collection $ComentarioAnuncio
  * @property Usuario $Usuario
+ * @property DenunciaComentario $DenunciaComentario
  * 
  * @method integer             getId()                  Returns the current record's "id" value
  * @method string              getComentario()          Returns the current record's "comentario" value
  * @method integer             getUsuarioId()           Returns the current record's "usuario_id" value
- * @method integer             getDenunciado()          Returns the current record's "denunciado" value
+ * @method boolean             getDenunciado()          Returns the current record's "denunciado" value
  * @method integer             getComentarioPadreId()   Returns the current record's "comentario_padre_id" value
  * @method integer             getAnuncioId()           Returns the current record's "anuncio_id" value
  * @method timestamp           getCreatedAt()           Returns the current record's "created_at" value
  * @method timestamp           getUpdatedAt()           Returns the current record's "updated_at" value
- * @method DenunciaComentario  getDenunciaComentario()  Returns the current record's "DenunciaComentario" value
  * @method Anuncio             getAnuncio()             Returns the current record's "Anuncio" value
  * @method Doctrine_Collection getComentarioAnuncio()   Returns the current record's "ComentarioAnuncio" collection
  * @method Usuario             getUsuario()             Returns the current record's "Usuario" value
+ * @method DenunciaComentario  getDenunciaComentario()  Returns the current record's "DenunciaComentario" value
  * @method ComentarioAnuncio   setId()                  Sets the current record's "id" value
  * @method ComentarioAnuncio   setComentario()          Sets the current record's "comentario" value
  * @method ComentarioAnuncio   setUsuarioId()           Sets the current record's "usuario_id" value
@@ -40,10 +40,10 @@ Doctrine_Manager::getInstance()->bindComponent('ComentarioAnuncio', 'doctrine');
  * @method ComentarioAnuncio   setAnuncioId()           Sets the current record's "anuncio_id" value
  * @method ComentarioAnuncio   setCreatedAt()           Sets the current record's "created_at" value
  * @method ComentarioAnuncio   setUpdatedAt()           Sets the current record's "updated_at" value
- * @method ComentarioAnuncio   setDenunciaComentario()  Sets the current record's "DenunciaComentario" value
  * @method ComentarioAnuncio   setAnuncio()             Sets the current record's "Anuncio" value
  * @method ComentarioAnuncio   setComentarioAnuncio()   Sets the current record's "ComentarioAnuncio" collection
  * @method ComentarioAnuncio   setUsuario()             Sets the current record's "Usuario" value
+ * @method ComentarioAnuncio   setDenunciaComentario()  Sets the current record's "DenunciaComentario" value
  * 
  * @package    guammas
  * @subpackage model
@@ -81,8 +81,8 @@ abstract class BaseComentarioAnuncio extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 4,
              ));
-        $this->hasColumn('denunciado', 'integer', 1, array(
-             'type' => 'integer',
+        $this->hasColumn('denunciado', 'boolean', 1, array(
+             'type' => 'boolean',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
@@ -131,10 +131,6 @@ abstract class BaseComentarioAnuncio extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('DenunciaComentario', array(
-             'local' => 'id',
-             'foreign' => 'id'));
-
         $this->hasOne('Anuncio', array(
              'local' => 'anuncio_id',
              'foreign' => 'id'));
@@ -145,6 +141,10 @@ abstract class BaseComentarioAnuncio extends sfDoctrineRecord
 
         $this->hasOne('Usuario', array(
              'local' => 'usuario_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('DenunciaComentario', array(
+             'local' => 'id',
              'foreign' => 'id'));
     }
 }

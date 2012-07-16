@@ -16,9 +16,9 @@ Doctrine_Manager::getInstance()->bindComponent('Organizacion', 'doctrine');
  * @property string $googleplus_organizacion
  * @property string $pagina_web
  * @property string $documento
- * @property integer $verificada
+ * @property boolean $verificada
  * @property integer $usuario_id
- * @property integer $activa
+ * @property boolean $activa
  * @property string $salt
  * @property string $token
  * @property timestamp $created_at
@@ -38,9 +38,9 @@ Doctrine_Manager::getInstance()->bindComponent('Organizacion', 'doctrine');
  * @method string              getGoogleplusOrganizacion()  Returns the current record's "googleplus_organizacion" value
  * @method string              getPaginaWeb()               Returns the current record's "pagina_web" value
  * @method string              getDocumento()               Returns the current record's "documento" value
- * @method integer             getVerificada()              Returns the current record's "verificada" value
+ * @method boolean             getVerificada()              Returns the current record's "verificada" value
  * @method integer             getUsuarioId()               Returns the current record's "usuario_id" value
- * @method integer             getActiva()                  Returns the current record's "activa" value
+ * @method boolean             getActiva()                  Returns the current record's "activa" value
  * @method string              getSalt()                    Returns the current record's "salt" value
  * @method string              getToken()                   Returns the current record's "token" value
  * @method timestamp           getCreatedAt()               Returns the current record's "created_at" value
@@ -162,8 +162,8 @@ abstract class BaseOrganizacion extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 255,
              ));
-        $this->hasColumn('verificada', 'integer', 1, array(
-             'type' => 'integer',
+        $this->hasColumn('verificada', 'boolean', 1, array(
+             'type' => 'boolean',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
@@ -180,8 +180,8 @@ abstract class BaseOrganizacion extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 4,
              ));
-        $this->hasColumn('activa', 'integer', 1, array(
-             'type' => 'integer',
+        $this->hasColumn('activa', 'boolean', 1, array(
+             'type' => 'boolean',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,

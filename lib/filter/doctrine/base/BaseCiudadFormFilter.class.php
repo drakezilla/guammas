@@ -14,13 +14,13 @@ abstract class BaseCiudadFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'nombre_ciudad' => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'aprobada'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'aprobada'      => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'estado_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
       'nombre_ciudad' => new sfValidatorPass(array('required' => false)),
-      'aprobada'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'aprobada'      => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'estado_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Estado'), 'column' => 'id')),
     ));
 
@@ -43,7 +43,7 @@ abstract class BaseCiudadFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'            => 'Number',
       'nombre_ciudad' => 'Text',
-      'aprobada'      => 'Number',
+      'aprobada'      => 'Boolean',
       'estado_id'     => 'ForeignKey',
     );
   }

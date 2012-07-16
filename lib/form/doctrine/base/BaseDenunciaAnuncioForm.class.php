@@ -17,7 +17,7 @@ abstract class BaseDenunciaAnuncioForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'                   => new sfWidgetFormInputHidden(),
       'denuncia_anuncio'     => new sfWidgetFormTextarea(),
-      'atendida'             => new sfWidgetFormInputText(),
+      'atendida'             => new sfWidgetFormInputCheckbox(),
       'ubicacion_anuncio_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('UbicacionAnuncio'), 'add_empty' => false)),
       'usuario_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Usuario'), 'add_empty' => false)),
       'created_at'           => new sfWidgetFormDateTime(),
@@ -27,7 +27,7 @@ abstract class BaseDenunciaAnuncioForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'                   => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'denuncia_anuncio'     => new sfValidatorString(),
-      'atendida'             => new sfValidatorInteger(),
+      'atendida'             => new sfValidatorBoolean(),
       'ubicacion_anuncio_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('UbicacionAnuncio'))),
       'usuario_id'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Usuario'))),
       'created_at'           => new sfValidatorDateTime(),

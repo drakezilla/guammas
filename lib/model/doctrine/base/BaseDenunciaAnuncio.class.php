@@ -9,7 +9,7 @@ Doctrine_Manager::getInstance()->bindComponent('DenunciaAnuncio', 'doctrine');
  * 
  * @property integer $id
  * @property string $denuncia_anuncio
- * @property integer $atendida
+ * @property boolean $atendida
  * @property integer $ubicacion_anuncio_id
  * @property integer $usuario_id
  * @property timestamp $created_at
@@ -20,7 +20,7 @@ Doctrine_Manager::getInstance()->bindComponent('DenunciaAnuncio', 'doctrine');
  * 
  * @method integer          getId()                   Returns the current record's "id" value
  * @method string           getDenunciaAnuncio()      Returns the current record's "denuncia_anuncio" value
- * @method integer          getAtendida()             Returns the current record's "atendida" value
+ * @method boolean          getAtendida()             Returns the current record's "atendida" value
  * @method integer          getUbicacionAnuncioId()   Returns the current record's "ubicacion_anuncio_id" value
  * @method integer          getUsuarioId()            Returns the current record's "usuario_id" value
  * @method timestamp        getCreatedAt()            Returns the current record's "created_at" value
@@ -66,8 +66,8 @@ abstract class BaseDenunciaAnuncio extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => '',
              ));
-        $this->hasColumn('atendida', 'integer', 1, array(
-             'type' => 'integer',
+        $this->hasColumn('atendida', 'boolean', 1, array(
+             'type' => 'boolean',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,

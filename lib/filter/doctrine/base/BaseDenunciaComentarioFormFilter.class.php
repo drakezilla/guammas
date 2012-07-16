@@ -14,7 +14,7 @@ abstract class BaseDenunciaComentarioFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'denuncia_comentario'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'atendida'              => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'atendida'              => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'comentario_anuncio_id' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'usuario_id'            => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Usuario'), 'add_empty' => true)),
       'created_at'            => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
@@ -23,7 +23,7 @@ abstract class BaseDenunciaComentarioFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'denuncia_comentario'   => new sfValidatorPass(array('required' => false)),
-      'atendida'              => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'atendida'              => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'comentario_anuncio_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'usuario_id'            => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Usuario'), 'column' => 'id')),
       'created_at'            => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
@@ -49,7 +49,7 @@ abstract class BaseDenunciaComentarioFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'                    => 'Number',
       'denuncia_comentario'   => 'Text',
-      'atendida'              => 'Number',
+      'atendida'              => 'Boolean',
       'comentario_anuncio_id' => 'Number',
       'usuario_id'            => 'ForeignKey',
       'created_at'            => 'Date',

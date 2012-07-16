@@ -16,17 +16,17 @@ Doctrine_Manager::getInstance()->bindComponent('Usuario', 'doctrine');
  * @property string $avatar
  * @property integer $actividad
  * @property timestamp $ultimo_inicio_sesion
- * @property integer $activo
+ * @property boolean $activo
  * @property string $perfil_facebook
  * @property string $perfil_twitter
  * @property string $perfil_googleplus
- * @property integer $pref_correo_electronico_publico
+ * @property boolean $pref_correo_electronico_publico
  * @property integer $rol_id
  * @property integer $ciudad_id
  * @property timestamp $created_at
  * @property timestamp $updated_at
- * @property Rol $Rol
  * @property Ciudad $Ciudad
+ * @property Rol $Rol
  * @property Doctrine_Collection $Categoria
  * @property Doctrine_Collection $ComentarioAnuncio
  * @property Doctrine_Collection $DenunciaAnuncio
@@ -47,17 +47,17 @@ Doctrine_Manager::getInstance()->bindComponent('Usuario', 'doctrine');
  * @method string              getAvatar()                          Returns the current record's "avatar" value
  * @method integer             getActividad()                       Returns the current record's "actividad" value
  * @method timestamp           getUltimoInicioSesion()              Returns the current record's "ultimo_inicio_sesion" value
- * @method integer             getActivo()                          Returns the current record's "activo" value
+ * @method boolean             getActivo()                          Returns the current record's "activo" value
  * @method string              getPerfilFacebook()                  Returns the current record's "perfil_facebook" value
  * @method string              getPerfilTwitter()                   Returns the current record's "perfil_twitter" value
  * @method string              getPerfilGoogleplus()                Returns the current record's "perfil_googleplus" value
- * @method integer             getPrefCorreoElectronicoPublico()    Returns the current record's "pref_correo_electronico_publico" value
+ * @method boolean             getPrefCorreoElectronicoPublico()    Returns the current record's "pref_correo_electronico_publico" value
  * @method integer             getRolId()                           Returns the current record's "rol_id" value
  * @method integer             getCiudadId()                        Returns the current record's "ciudad_id" value
  * @method timestamp           getCreatedAt()                       Returns the current record's "created_at" value
  * @method timestamp           getUpdatedAt()                       Returns the current record's "updated_at" value
- * @method Rol                 getRol()                             Returns the current record's "Rol" value
  * @method Ciudad              getCiudad()                          Returns the current record's "Ciudad" value
+ * @method Rol                 getRol()                             Returns the current record's "Rol" value
  * @method Doctrine_Collection getCategoria()                       Returns the current record's "Categoria" collection
  * @method Doctrine_Collection getComentarioAnuncio()               Returns the current record's "ComentarioAnuncio" collection
  * @method Doctrine_Collection getDenunciaAnuncio()                 Returns the current record's "DenunciaAnuncio" collection
@@ -86,8 +86,8 @@ Doctrine_Manager::getInstance()->bindComponent('Usuario', 'doctrine');
  * @method Usuario             setCiudadId()                        Sets the current record's "ciudad_id" value
  * @method Usuario             setCreatedAt()                       Sets the current record's "created_at" value
  * @method Usuario             setUpdatedAt()                       Sets the current record's "updated_at" value
- * @method Usuario             setRol()                             Sets the current record's "Rol" value
  * @method Usuario             setCiudad()                          Sets the current record's "Ciudad" value
+ * @method Usuario             setRol()                             Sets the current record's "Rol" value
  * @method Usuario             setCategoria()                       Sets the current record's "Categoria" collection
  * @method Usuario             setComentarioAnuncio()               Sets the current record's "ComentarioAnuncio" collection
  * @method Usuario             setDenunciaAnuncio()                 Sets the current record's "DenunciaAnuncio" collection
@@ -189,8 +189,8 @@ abstract class BaseUsuario extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 25,
              ));
-        $this->hasColumn('activo', 'integer', 1, array(
-             'type' => 'integer',
+        $this->hasColumn('activo', 'boolean', 1, array(
+             'type' => 'boolean',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
@@ -225,8 +225,8 @@ abstract class BaseUsuario extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 255,
              ));
-        $this->hasColumn('pref_correo_electronico_publico', 'integer', 1, array(
-             'type' => 'integer',
+        $this->hasColumn('pref_correo_electronico_publico', 'boolean', 1, array(
+             'type' => 'boolean',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
@@ -276,12 +276,12 @@ abstract class BaseUsuario extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Rol', array(
-             'local' => 'rol_id',
-             'foreign' => 'id'));
-
         $this->hasOne('Ciudad', array(
              'local' => 'ciudad_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Rol', array(
+             'local' => 'rol_id',
              'foreign' => 'id'));
 
         $this->hasMany('Categoria', array(

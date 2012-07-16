@@ -13,7 +13,7 @@ Doctrine_Manager::getInstance()->bindComponent('HorarioUbicacion', 'doctrine');
  * @property time $hora_cierre_manana
  * @property time $hora_apertura_tarde
  * @property time $hora_cierre_tarde
- * @property integer $horario_corrido
+ * @property boolean $horario_corrido
  * @property integer $ubicacion_id
  * @property integer $tipo_horario_id
  * @property timestamp $created_at
@@ -28,7 +28,7 @@ Doctrine_Manager::getInstance()->bindComponent('HorarioUbicacion', 'doctrine');
  * @method time             getHoraCierreManana()     Returns the current record's "hora_cierre_manana" value
  * @method time             getHoraAperturaTarde()    Returns the current record's "hora_apertura_tarde" value
  * @method time             getHoraCierreTarde()      Returns the current record's "hora_cierre_tarde" value
- * @method integer          getHorarioCorrido()       Returns the current record's "horario_corrido" value
+ * @method boolean          getHorarioCorrido()       Returns the current record's "horario_corrido" value
  * @method integer          getUbicacionId()          Returns the current record's "ubicacion_id" value
  * @method integer          getTipoHorarioId()        Returns the current record's "tipo_horario_id" value
  * @method timestamp        getCreatedAt()            Returns the current record's "created_at" value
@@ -114,8 +114,8 @@ abstract class BaseHorarioUbicacion extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 25,
              ));
-        $this->hasColumn('horario_corrido', 'integer', 1, array(
-             'type' => 'integer',
+        $this->hasColumn('horario_corrido', 'boolean', 1, array(
+             'type' => 'boolean',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,

@@ -23,7 +23,7 @@ abstract class BaseServicioEspecialForm extends BaseFormDoctrine
       'precio'                   => new sfWidgetFormInputText(),
       'imagen'                   => new sfWidgetFormInputText(),
       'horario_anuncio_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('HorarioAnuncio'), 'add_empty' => false)),
-      'activo'                   => new sfWidgetFormInputText(),
+      'activo'                   => new sfWidgetFormInputCheckbox(),
       'created_at'               => new sfWidgetFormDateTime(),
       'updated_at'               => new sfWidgetFormDateTime(),
     ));
@@ -37,7 +37,7 @@ abstract class BaseServicioEspecialForm extends BaseFormDoctrine
       'precio'                   => new sfValidatorNumber(array('required' => false)),
       'imagen'                   => new sfValidatorString(array('max_length' => 255)),
       'horario_anuncio_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('HorarioAnuncio'))),
-      'activo'                   => new sfValidatorInteger(),
+      'activo'                   => new sfValidatorBoolean(),
       'created_at'               => new sfValidatorDateTime(),
       'updated_at'               => new sfValidatorDateTime(array('required' => false)),
     ));

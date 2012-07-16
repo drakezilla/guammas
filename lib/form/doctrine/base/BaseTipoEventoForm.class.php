@@ -17,7 +17,7 @@ abstract class BaseTipoEventoForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'                 => new sfWidgetFormInputHidden(),
       'nombre_tipo_evento' => new sfWidgetFormInputText(),
-      'sugerido'           => new sfWidgetFormInputText(),
+      'sugerido'           => new sfWidgetFormInputCheckbox(),
       'usuario_sugiere_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Usuario'), 'add_empty' => false)),
       'created_at'         => new sfWidgetFormDateTime(),
       'updated_at'         => new sfWidgetFormDateTime(),
@@ -26,7 +26,7 @@ abstract class BaseTipoEventoForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'                 => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'nombre_tipo_evento' => new sfValidatorString(array('max_length' => 75)),
-      'sugerido'           => new sfValidatorInteger(),
+      'sugerido'           => new sfValidatorBoolean(),
       'usuario_sugiere_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Usuario'))),
       'created_at'         => new sfValidatorDateTime(),
       'updated_at'         => new sfValidatorDateTime(),

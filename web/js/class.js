@@ -95,8 +95,8 @@ var GoogleMapClass = Class.extend({
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             styles: this.estilos
         }
-        this.markerSucursal = new Array();
-        this.infoWindow = new Array();
+        this.markersArray = new Array();
+        this.infoWindowArray = new Array();
     },
     
     /*
@@ -149,6 +149,8 @@ var GoogleMapClass = Class.extend({
                     "</div>"
                 }
                 eval('var infowindow'+k+' = new google.maps.InfoWindow({content: contenidoDialog })');
+                eval('this.infoWindowArray.push(infowindow'+k+');')
+                eval('this.markersArray.push(marker'+k+');')
                 eval('google.maps.event.addListener(marker'+k+', "click", function() {infowindow'+k+'.open(objMapa,marker'+k+')})')
             }
             
@@ -218,6 +220,7 @@ var mapaNuevaUbicacion = GoogleMapClass.extend({
         
         var objMapa = this.objMapa
         var markersArray = new Array()
+        var infowindowArray = new Array()
         this.actividad = google.maps.event.addListener(objMapa, 'click', function(event){
             
             for (i in markersArray) {
@@ -261,12 +264,33 @@ var mapaNuevaUbicacion = GoogleMapClass.extend({
                 marker.infowindow.open(objMapa,marker)
             })
             markersArray.push(marker);
+            infowindowArray.push(marker.infowindow);
         });
-        this.markersArray=markersArray;
+        
+        this.markersFormArray=markersArray;
+        this.infoWindowArray=infowindowArray;
     },
     
     cerrarIW: function(){
-        var marker = this.markersArray;
+        var marker = this.markersFormArray;
         marker[0].infowindow.close();
+    },
+    
+    reinciarMapa: function(){
+        for (i in this.markersArray) {
+            this.markersArray[i].setMap(null);
+        }
+        
+        for (i in this.markersFormArray) {
+            this.markersFormArray[i].setMap(null);
+        }
+        
+        this.markersArray.length = 0;
+        
+        for (i in this.infoWindowArray) {
+            this.infoWindowArray[i].close();
+        }
+        this.infoWindowArray.length = 0;
     }
+    
 })

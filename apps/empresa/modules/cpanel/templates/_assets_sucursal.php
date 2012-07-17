@@ -6,6 +6,7 @@
 <?php use_javascript('class.js') ?>
 <?php use_stylesheet("jquery-plugins/jquery_chosen.css") ?>
 <script>
+    var ubicaciones;
     var mostrarPopup;
     var popupHtml = 
         '<p>Para guardar una nueva ubicación, solo haz click en el mapa donde esta tu tienda. Llena los datos del formulario y haz click en aceptar</p>'+
@@ -70,8 +71,9 @@
             url: '<?php echo url_for('@getSucursales?token=' . $sf_request->getParameter('token')) ?>',
             dataType: 'json',
             success: function(data){
+                ubicaciones = data
                 gMap.inicio(document.getElementById('map_canvas'),true);
-                gMap.precargarUbicaciones(data,true)
+                gMap.precargarUbicaciones(ubicaciones,true)
             }
         })
         $.ajax({
@@ -81,7 +83,7 @@
             }
         })
         $("#ubicacion-nueva-ubicacion").click(function(){
-            mivar= gMap.mapActividad( );
+            gMap.mapActividad( );
             if(mostrarPopup!='no'){
                 $("#popup-info").dialog('open')
             }
@@ -112,6 +114,7 @@
                 },5000)
                 gMap.cerrarIW();
                 gMap.destruirActividad();
+                gMap.precargarUbicaciones(ubicaciones,true)
             },
             error: function(){
                 $('#notice-geocoder').show('fast');

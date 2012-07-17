@@ -7,7 +7,6 @@
         <link rel="shortcut icon" href="/favicon.ico" />
         <?php include_stylesheets() ?>
         <?php include_javascripts() ?>
-        <link rel="stylesheet" href="/css/main-layout.css" type="text/css" media="all" />
     </head>
     <body>
         <div class="container" id="main-container">

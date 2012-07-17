@@ -73,5 +73,30 @@ class cpanelActions extends sfActions {
         echo true;
         die();
     }
+    
+    public function executeEditUbicacion(sfWebRequest $request){
+        $ubicacion = Doctrine_Core::getTable('Ubicacion')->findOneById($request->getParameter('ubicacion_id'));
+        $arrayReturn = array();
+        $arrayReturn[0]['id'] = $ubicacion->getId();
+        $arrayReturn[0]['nombre'] = $ubicacion->getNombre();
+        $arrayReturn[0]['detalle_direccion'] = $ubicacion->getDetalleDireccion();
+        $arrayReturn[0]['telefono_ppal'] = $ubicacion->getTelefonoPpal();
+        $arrayReturn[0]['telefono_sec'] = $ubicacion->getTelefonoSec();
+        echo json_encode($arrayReturn);
+        die();
+    }
+    
+    public function executeUpdateUbicacion(sfWebRequest $request){
+        $this->forward404Unless($request->hasParameter('ubicacion_id')&&$request->hasParameter('ubicacion_nombre')&&$request->hasParameter('ubicacion_direccion')&&$request->hasParameter('ubicacion_telefono_ppal')&&$request->hasParameter('ubicacion_telefono_sec'));
+        $ubicacion = new Ubicacion();
+        $ubicacion->updateUbicacion($request);
+        die();
+    }
+    
+    public function executeDeleteUbicacion(sfWebRequest $request){
+        $ubicacion = Doctrine_Core::getTable('Ubicacion')->findOneById($request->getParameter('ubicacion_id'));
+        $ubicacion->delete();
+        die();
+    }
 
 }

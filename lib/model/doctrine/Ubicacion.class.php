@@ -12,6 +12,17 @@
  */
 class Ubicacion extends BaseUbicacion {
 
+    public function updateUbicacion(sfWebRequest $request) {
+        $query = Doctrine_Query::create()
+                ->update('Ubicacion')
+                ->set('nombre',"'".$request->getParameter('ubicacion_nombre')."'")
+                ->set('detalle_direccion',"'".$request->getParameter('ubicacion_direccion')."'")
+                ->set('telefono_ppal',"'".$request->getParameter('ubicacion_telefono_ppal')."'")
+                ->set('telefono_sec',"'".$request->getParameter('ubicacion_telefono_sec')."'")
+                ->where('id=?',$request->getParameter('ubicacion_id'));
+        return $query->execute();
+    }
+    
     public function save(Doctrine_Connection $conn = null) {
         $this->setPrincipal(self::isPrincipal());
         $this->setOrganizacionId(sfContext::getInstance()->getUser()->getAttribute("empresa"));

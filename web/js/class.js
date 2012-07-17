@@ -133,11 +133,20 @@ var GoogleMapClass = Class.extend({
                 if(jsonArray[k].principal==1){
                     contenidoDialog = "<div><p><strong>Esta es tu sede principal</strong></p></div>"+
                     "<div>Direccion: "+jsonArray[k].detalle_direccion+"</div>"+
-                    "<div>Telefono de contacto: "+jsonArray[k].telefono+"</div>"
+                    "<div>Telefono de contacto: "+jsonArray[k].telefono+"</div>"+
+                    "<div style='text-align: right'>"+
+                    "<img style='cursor: pointer' src='/images/stylistica-icons/24x24/edit.png' onclick='editarUbicacion("+jsonArray[k].id+")' />"+
+                    "<img style='cursor: pointer' src='/images/stylistica-icons/24x24/delete.png' onclick='eliminarUbicacion("+jsonArray[k].id+")' />"+
+                    "</div>"
                 }else{
-                    contenidoDialog = "<div><p>Esta es una de tus sedes</p></div>"+
+                    contenidoDialog = 
+                    "<div><p>Esta es una de tus sedes</p></div>"+
                     "<div>Direccion: "+jsonArray[k].detalle_direccion+"</div>"+
-                    "<div>Telefono de contacto: "+jsonArray[k].telefono+"</div>"
+                    "<div>Telefono de contacto: "+jsonArray[k].telefono+"</div>"+
+                    "<div style='text-align: right'>"+
+                    "<img style='cursor: pointer' src='/images/stylistica-icons/24x24/edit.png' onclick='editarUbicacion("+jsonArray[k].id+")' />"+
+                    "<img style='cursor: pointer' src='/images/stylistica-icons/24x24/delete.png' onclick='confirmarDeleteUbicacion("+jsonArray[k].id+")' />"+
+                    "</div>"
                 }
                 eval('var infowindow'+k+' = new google.maps.InfoWindow({content: contenidoDialog })');
                 eval('google.maps.event.addListener(marker'+k+', "click", function() {infowindow'+k+'.open(objMapa,marker'+k+')})')
@@ -156,10 +165,11 @@ var GoogleMapClass = Class.extend({
     
     callGeocoder: function(geocoderString){
         var objMapa = this.objMapa
-        this.objGeocoder.geocode({'address': geocoderString}, function(results, status) {
+        this.objGeocoder.geocode({
+            'address': geocoderString
+        }, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 objMapa.setCenter(results[0].geometry.location);
-                return true;
             }else{
                 return false;
             }
@@ -222,23 +232,23 @@ var mapaNuevaUbicacion = GoogleMapClass.extend({
             
             var formNuevaUbicacion =
             '<div>'+
-                '<input type="hidden" id="ubicacion_coordenada_x" value="'+marker.position.lat()+'" /><input type="hidden" id="ubicacion_coordenada_y" value="'+marker.position.lng()+'" />'+
+            '<input type="hidden" id="ubicacion_coordenada_x" value="'+marker.position.lat()+'" /><input type="hidden" id="ubicacion_coordenada_y" value="'+marker.position.lng()+'" />'+
             '<table>'+
-                '<tr>'+
-                    '<td>RIF</td>'+
-                    '<td><input id="ubicacion_rif" onfocus="$(\'#ubicacion_rif\').mask(\'r-99999999-9\');" /></td>'+
-                '</tr>'+
-                '<tr>'+
-                    '<td>Nombre</td>'+
-                    '<td><input id="ubicacion_nombre" /></td>'+
-                '</tr>'+
-                '<tr>'+
-                    '<td>Teléfono</td>'+
-                    '<td><input id="ubicacion_telefono_ppal" onfocus="$(\'#ubicacion_telefono_ppal\').mask(\'9999-9999999\');" /></td>'+
-                '</tr>'+
-                '<tr>'+
-                    '<td colspan="2" id="cell_btn_guardar"><button id="ubicacion_btn_guardar" type="button" onclick="guardarUbicacion()">Guardar</button></td>'+
-                '</tr>'+
+            '<tr>'+
+            '<td>RIF</td>'+
+            '<td><input id="ubicacion_rif" onfocus="$(\'#ubicacion_rif\').mask(\'r-99999999-9\');" /></td>'+
+            '</tr>'+
+            '<tr>'+
+            '<td>Nombre</td>'+
+            '<td><input id="ubicacion_nombre" /></td>'+
+            '</tr>'+
+            '<tr>'+
+            '<td>Teléfono</td>'+
+            '<td><input id="ubicacion_telefono_ppal" onfocus="$(\'#ubicacion_telefono_ppal\').mask(\'9999-9999999\');" /></td>'+
+            '</tr>'+
+            '<tr>'+
+            '<td colspan="2" id="cell_btn_guardar"><button id="ubicacion_btn_guardar" type="button" onclick="guardarUbicacion()">Guardar</button></td>'+
+            '</tr>'+
             '</table>'+
             '</div>';    
             

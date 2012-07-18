@@ -56,8 +56,12 @@
         <div class="span-6">
             <a class="sucursal_verde" style="margin-left: 25px" href="<?php echo url_for("@ubicacion?token=" . $sf_request->getParameter('token')) ?>">últimos anuncios</a>
             <div class="lorem_ipsum  colborder">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor erat quis dui facilisis molestie...
-                <a class="sucursal_verde" style="font-size:12px" href="<?php echo url_for("@ubicacion?token=" . $sf_request->getParameter('token')) ?>">más</a>
+                <ul>
+                <?php for ($i = 0; $i < count($ultimosAnuncios); $i++): ?>
+                    <li><?php echo $ultimosAnuncios[$i]['titulo'] ?></li>
+                <?php endfor; ?>
+                </ul>
+                    <a class="sucursal_verde" style="font-size:12px" href="<?php echo url_for("@ubicacion?token=" . $sf_request->getParameter('token')) ?>">más</a>
             </div>
         </div>
         <div class="span-6">

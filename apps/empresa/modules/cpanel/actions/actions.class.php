@@ -29,6 +29,6 @@ class cpanelActions extends sfActions {
     }
 
     public function executeIndex(sfWebRequest $request) {
-        
+        $this->ultimosAnuncios = Doctrine_Core::getTable('Anuncio')->getUltimosTres();
     }
 }

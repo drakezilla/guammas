@@ -1,8 +1,10 @@
+<?php use_stylesheet("jquery-plugins/jquery_chosen.css") ?>
+<?php use_javascript("jquery-plugins/jquery_chosen.js") ?>
+<?php use_javascript('http://maps.google.com/maps/api/js?sensor=true&language=es') ?>
+<?php use_javascript('class.js') ?>
 <script>
-
-    var main_newuser_checked = true
-    var main_mail_checked = true
-    
+    var html;
+    var mapaEvento = new GoogleMapClass();
     $(document).ready(function(){
         $("#pestanas ul li div a").click(function(){
             var tabmostrar=$(this).attr('href');
@@ -14,32 +16,37 @@
             $(this).parent().parent().addClass('pestana_click');
         })
         
-        $("#usuario_nombre_usuario").blur(function(){
-            if($(this).val()!='<?php echo $sf_user->getAttribute("usuario_username", '', "user_vars") ?>'){
-                main_newuser_checked = checkUsuario($("#usuario_nombre_usuario"),$("#look_spinner"),'editar')
-            }
-        });
-        $("#usuario_correo_electronico").blur(function(){
-            if($(this).val()!='<?php echo $sf_user->getAttribute("usuario_email", '', "user_vars") ?>'){
-                main_mail_checked = checkEmail($(this),$("#check_email"),'editar');
-            }
-        });
-    
-        $("#usuario_form").submit(function(){
-            if(main_newuser_checked==false){
-                $("#look_spinner").html('<?php echo image_tag('16x16/small_cross') ?> El usuario no se ha verificado aun!')
-                $("#usuario_nombre_usuario").stop().css("background-color", "#fe4f4f").animate({ backgroundColor: "#FFFFFF"}, 1000);            
-                $("#usuario_nombre_usuario").focus();
-                return false;
-            }
-            if(main_mail_checked==false){
-                $("#check_email").html('<?php echo image_tag('16x16/small_cross') ?> El correo no se ha verificado aun!')
-                $("#usuario_correo_electronico").stop().css("background-color", "#fe4f4f").animate({ backgroundColor: "#FFFFFF"}, 1000);            
-                $("#usuario_correo_electronico").focus();
-                return false;
+        $("#anuncio_tipo_anuncio_id").change(function(){
+            switch($(this).val()){
+                case '1':        
+                    html  = getForm('evento');
+                    break;
+                case '2': 
+                    html  = getForm('oferta');
+                    break;
+                case '3': 
+                    html  = getForm('cupon');
+                    break;
+                default:
+                    alert('error')
+                    return false;
+                    break;
             }
         })
         
-        
     })
+    
+    function getForm(ajaxform){
+        $.ajax({
+            type: 'POST',
+            data: {
+                form: ajaxform
+            },
+            url: '<?php echo url_for('@getForm?token='.$sf_request->getParameter('token')) ?>',
+            success: function(data){
+                $("#anuncio-form-adicional").html(data);
+            }
+        })
+    }
+    
 </script>

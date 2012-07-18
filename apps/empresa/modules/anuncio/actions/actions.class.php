@@ -79,6 +79,11 @@ class anuncioActions extends sfActions {
                 $anuncio = $form->save();
                 $this->getUser()->setAttribute('anuncio', $anuncio->getId());
                 $formExtra->guardar($request);
+                $formUbicacion = $request->getParameter('ubicacion_anuncio');
+                foreach ($formUbicacion['ubicacion_id'] as $ubicacion) {
+                    $ubicacionAnuncio = new UbicacionAnuncio();
+                    $ubicacionAnuncio->guardar($ubicacion);
+                }
                 $this->getUser()->getAttributeHolder()->remove('anuncio');
             }
             $this->redirect('@anuncio?token=' . $request->getParameter('token') . '&id=' . $anuncio->getId());

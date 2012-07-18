@@ -97,6 +97,7 @@ var GoogleMapClass = Class.extend({
         }
         this.markersArray = new Array();
         this.infoWindowArray = new Array();
+        this.markersFormArray = new Array();
     },
     
     /*

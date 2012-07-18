@@ -1,6 +1,6 @@
 <script>
     $(document).ready(function(){
-        $("#anuncio_fecha_inicio, #anuncio_fecha_fin, ").datepicker();
+        $("#anuncio_fecha_inicio, #anuncio_fecha_fin, #anuncio_cupon_fecha_disfrute_inicio, #anuncio_cupon_fecha_disfrute_fin").datepicker();
     })
 </script>
 <table>

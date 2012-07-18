@@ -4,11 +4,11 @@
 <?php use_javascript('class.js') ?>
 <script>
     var html;
-    var mapaEvento = new GoogleMapClass();
+    var mapaEvento = new mapaNuevoEvento();
     $(document).ready(function(){
         $("#pestanas ul li div a").click(function(){
             var tabmostrar=$(this).attr('href');
-            $("#pestanas #contenido div").slideUp('fast');
+            $("#pestanas #contenido .tab").slideUp('fast');
             $(tabmostrar).slideDown("fast");
             $("#pestanas ul li div a").css("color","#0066CC")
             $(this).css("color","#E8782E")

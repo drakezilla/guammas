@@ -10,6 +10,8 @@
     mapaEvento.inicio(document.getElementById('map_canvas'),true);
     mapaEvento.mapActividad();
 </script>
+<?php echo $formExtra['coordenada_x'] ?>
+<?php echo $formExtra['coordenada_y'] ?>
 <table>
     <tbody>
         <?php echo $form->renderGlobalErrors() ?>

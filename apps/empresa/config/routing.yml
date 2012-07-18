@@ -2,12 +2,26 @@
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
 # default rules
+borrarAnuncio:
+  url: /borrarAnuncio/:id/:token
+  param: { module: anuncio, action: delete}
+  options:
+    column: token
+    column: id
+    
+
 getForm:
-  url: /anuncio/:token
+  url: /getForm/:token
   param: { module: anuncio, action: getForm}
   options:
     column: token
     
+anuncio:
+  url: /anuncio/:token
+  param: { module: anuncio, action: index}
+  options:
+    column: token
+
 ubicacion:
   url: /ubicacion/:token
   param: { module: ubicacion, action: index}
@@ -61,12 +75,6 @@ editarUsuario:
 logout:
   url: /logout
   param: {module: usuario, action: logout }
-
-anuncio:
-  url: /anuncio/:token
-  param: { module: anuncio, action: index}
-  options:
-    column: token
 
 cpanel:
   url: /cpanel/:token

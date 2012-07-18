@@ -36,15 +36,16 @@ class anuncioActions extends sfActions {
 
     public function executeNew(sfWebRequest $request) {
         $this->form = new AnuncioForm();
-        $this->formUbicacion = Doctrine_Core::getTable('Ubicacion')->getSucursalesPorOrganizacion($request->getParameter('token'),false);
+        $this->formUbicacion = Doctrine_Core::getTable('Ubicacion')->getSucursalesPorOrganizacion($request->getParameter('token'), false);
     }
 
     public function executeCreate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
         $this->form = new AnuncioForm();
-
-        $this->processForm($request, $this->form);
+        $mainForm = $request->getParameter($this->form->getName());
+        $this->formExtra = $this->preparaGuardarFormExtra($mainForm['tipo_anuncio_id']);
+        $this->processForm($request, $this->form, $this->formExtra);
 
         $this->setTemplate('new');
     }
@@ -65,21 +66,41 @@ class anuncioActions extends sfActions {
     }
 
     public function executeDelete(sfWebRequest $request) {
-        $request->checkCSRFProtection();
-
         $this->forward404Unless($anuncio = Doctrine_Core::getTable('Anuncio')->find(array($request->getParameter('id'))), sprintf('Object anuncio does not exist (%s).', $request->getParameter('id')));
         $anuncio->delete();
 
-        $this->redirect('anuncio/index?token=' . $request->getParameter('token'));
+        $this->redirect('@anuncio?token=' . $request->getParameter('token'));
     }
 
-    protected function processForm(sfWebRequest $request, sfForm $form) {
+    protected function processForm(sfWebRequest $request, sfForm $form, $formExtra = null) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
-            $anuncio = $form->save();
-
-            $this->redirect('anuncio/edit?token=' . $request->getParameter('token') . '&id=' . $anuncio->getId());
+            if ($formExtra != null) {
+                $anuncio = $form->save();
+                $this->getUser()->setAttribute('anuncio', $anuncio->getId());
+                $formExtra->guardar($request);
+                $this->getUser()->getAttributeHolder()->remove('anuncio');
+            }
+            $this->redirect('@anuncio?token=' . $request->getParameter('token') . '&id=' . $anuncio->getId());
         }
+    }
+
+    protected function preparaGuardarFormExtra($formExtra) {
+        switch ($formExtra) {
+            case 1:
+                $extraForm = new AnuncioEvento();
+                break;
+            case 2:
+                $extraForm = null;
+                break;
+            case 3;
+                $extraForm = new AnuncioCupon();
+                break;
+            default:
+                $this->redirect404();
+                break;
+        }
+        return $extraForm;
     }
 
     public function executeGetForm(sfWebRequest $request) {

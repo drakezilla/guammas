@@ -46,13 +46,13 @@
                 </ul>
             </div>
             <div id="contenido" style="padding-left: 40px; padding-top: 20px;">
-                <div id="tab-prefe">
+                <div id="tab-prefe" class="tab">
                     <?php include_partial('formBasico', array('form' => $form)) ?>
                 </div>
-                <div id="tab-redes" class="tab-hide">
+                <div id="tab-redes" class="tab tab-hide">
                     <?php include_partial('formTipo', array('form' => $form)) ?>
                 </div>
-                <div id="tab-priva" class="tab-hide">
+                <div id="tab-priva" class="tab tab-hide">
                     <?php include_partial('formUbicacion', array('form' => $form, 'formUbicacion' => $formUbicacion)) ?>
                 </div>
             </div>

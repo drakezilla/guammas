@@ -9,6 +9,7 @@
     <a id="ubicacion-nueva-ubicacion" href="#">Nueva ubicación</a>
 </div>
 <div id="popup-info"></div>
+<div id="popup-form"></div>
 <div id="popup-ciudad" style="text-align: left;">
     <div>
         <span style="vertical-align: top"><strong>Selecciona una ciudad</strong></span>

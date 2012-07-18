@@ -2,6 +2,54 @@
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
 # default rules
+getForm:
+  url: /anuncio/:token
+  param: { module: anuncio, action: getForm}
+  options:
+    column: token
+    
+ubicacion:
+  url: /ubicacion/:token
+  param: { module: ubicacion, action: index}
+  options:
+    column: token
+    
+getUbicaciones:
+  url: /getSucursales/:token
+  param: { module: ubicacion, action: getSucursales}
+  options:
+    column: token
+
+configCookie:
+  url: /configCookie/:token
+  param: { module: ubicacion, action: config}
+  options:
+    column: token
+
+guardarUbicacion:
+  url: /guardarUbicacion/:token
+  param: { module: ubicacion, action: guardarUbicacion}
+  options:
+    column: token
+
+editUbicacion:
+  url: /editUbicacion/:token
+  param: { module: ubicacion, action: editUbicacion}
+  options:
+    column: token
+
+updateUbicacion:
+  url: /updateUbicacion/:token
+  param: { module: ubicacion, action: updateUbicacion}
+  options:
+    column: token
+
+deleteUbicacion:
+  url: /deleteUbicacion/:token
+  param: { module: ubicacion, action: deleteUbicacion}
+  options:
+    column: token
+
 busqueda:
   url:    /busqueda
   param:  { module: bienvenido, action: busqueda }
@@ -14,21 +62,9 @@ logout:
   url: /logout
   param: {module: usuario, action: logout }
 
-sucursal:
-  url: /cpanel/sucursal/:token
-  param: { module: cpanel, action: sucursal}
-  options:
-    column: token
-    
-getSucursales:
-  url: /cpanel/getSucursales/:token
-  param: { module: cpanel, action: getSucursales}
-  options:
-    column: token
-
 anuncio:
-  url: /cpanel/anuncio/:token
-  param: { module: cpanel, action: anuncio}
+  url: /anuncio/:token
+  param: { module: anuncio, action: index}
   options:
     column: token
 

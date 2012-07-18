@@ -12,4 +12,7 @@
  */
 class TipoAnuncio extends BaseTipoAnuncio
 {
+    public function __toString() {
+        return $this->getNombreTipoAnuncio();
+    }
 }

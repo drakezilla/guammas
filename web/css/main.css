@@ -7,10 +7,41 @@
 #action_map{text-align: left; height: 550px}
 .popup-powered-by{float: left;padding-top: 18px;}
 #fila_empresa_id, #alerta_geocoder{display: none}
-.form_container_rounded{border-radius: 10px;border: #999 solid thin; box-shadow: 0px 0px 5px 2px #999;}
+.form_container_rounded{border-radius: 10px;border: #999 solid thin; box-shadow: 0px 0px 5px 2px #CCC;}
 .form_container_rounded #titulo{margin-top: 10px;}
 .form_container_rounded #titulo h3{margin-left: 10px}
 #form-footer{margin-left: 10px}
 #form-footer button{margin-left: 5px}
 #notice-geocoder{margin-top: 20px; display: none;}
 #anuncio_que_incluye,#anuncio_condiciones{height:100px; width: 265px;}
+.content_window{  width: 750px;  margin-left:75px; height:650px; padding:10px;  }
+a.sucursal_verde, a.sucursal_verde:hover, 
+a.anuncio_morado, a.anuncio_morado:hover,
+a.cuenta_azul, a.cuenta_azul:hover{  
+    font-size:16px;
+    text-transform:capitalize;
+    text-decoration: none;
+    margin-left:70px;
+}
+a.sucursal_verde, a.sucursal_verde:hover{    
+    color:#39B536;
+}
+.lorem_ipsum{
+    height: 114px;
+    text-align: center;
+    width:180px;
+    color:#808080;
+}
+a.anuncio_morado, a.anuncio_morado:hover{
+    color:#602B89;    
+}
+a.cuenta_azul, a.cuenta_azul:hover{
+    color:#3FA8F4;    
+}
+.hr_window{
+    clear: both;
+    box-shadow: 0px 0px 1px 1px #CCC;
+    margin-top: 20px;
+    border-bottom: #CCC solid 1px;
+    height: 1px;
+}

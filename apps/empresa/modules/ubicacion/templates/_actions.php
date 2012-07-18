@@ -106,7 +106,6 @@
                 setTimeout(function(){
                     $('#notice-geocoder').hide('fast');
                 },5000)
-                gMap.cerrarIW();
                 gMap.destruirActividad();
                 recargarMapa()
             }

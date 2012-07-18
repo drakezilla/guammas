@@ -4,7 +4,7 @@
         $('#cell_btn_guardar').append('<?php echo image_tag('16x16/small_spinner.gif', array('id' => 'spinner')) ?>');
         $.ajax({
             type:  'POST',
-            url: '<?php echo url_for('cpanel/guardarUbicacion?token=' . $sf_request->getParameter('token')) ?>',
+            url: '<?php echo url_for('@guardarUbicacion?token=' . $sf_request->getParameter('token')) ?>',
             data: {
                 rif: $("#ubicacion_rif").val(),
                 nombre: $("#ubicacion_nombre").val(),
@@ -38,7 +38,7 @@
             data: {
                 ubicacion_id: ubicacionId
             },
-            url: '<?php echo url_for('cpanel/editUbicacion?token=' . $sf_request->getParameter('token')) ?>',
+            url: '<?php echo url_for('@editUbicacion?token=' . $sf_request->getParameter('token')) ?>',
             success: function(data){
                 var formEdit=
                     "<div>"+
@@ -99,7 +99,7 @@
                 ubicacion_telefono_ppal: $("#ubicacion_telefono_ppal").val(),
                 ubicacion_telefono_sec: $("#ubicacion_telefono_sec").val()
             },
-            url: '<?php echo url_for('cpanel/updateUbicacion?token=' . $sf_request->getParameter('token')) ?>',
+            url: '<?php echo url_for('@updateUbicacion?token=' . $sf_request->getParameter('token')) ?>',
             success: function(){
                 $('#notice-geocoder').show('fast');
                 $('#notice-geocoder').html('Bien! ubicación editada con exito')
@@ -123,7 +123,7 @@
             width: 400,
             height: 200,
             buttons:{
-                "Si, borrar!": function() {
+                "Si, borrala!": function() {
                     deleteUbicacion(ubicacionId);
                 },
                 "No, no la borres!": function() {
@@ -146,7 +146,7 @@
             data:{
                 ubicacion_id: ubicacionId
             },
-            url: '<?php echo url_for('cpanel/deleteUbicacion?token=' . $sf_request->getParameter('token')) ?>',
+            url: '<?php echo url_for('@deleteUbicacion?token=' . $sf_request->getParameter('token')) ?>',
             success: function(){
                 $('#notice-geocoder').show('fast');
                 $('#notice-geocoder').html('Bien! ubicación borrar con exito')

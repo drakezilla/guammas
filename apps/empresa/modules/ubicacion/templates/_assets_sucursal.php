@@ -46,7 +46,7 @@
     
     function getUbicaciones(recargar){
         $.ajax({
-            url: '<?php echo url_for('@getSucursales?token=' . $sf_request->getParameter('token')) ?>',
+            url: '<?php echo url_for('@getUbicaciones?token=' . $sf_request->getParameter('token')) ?>',
             dataType: 'json',
             success: function(data){
                 ubicaciones = data
@@ -59,7 +59,7 @@
     }
     function checkConfig(){
         $.ajax({
-            url: '<?php echo url_for('cpanel/config?token=' . $sf_request->getParameter('token')) ?>',
+            url: '<?php echo url_for('@configCookie?token=' . $sf_request->getParameter('token')) ?>',
             success: function(data){
                 mostrarPopup = data
             }

@@ -3,20 +3,20 @@
         <?php include_partial('form_header') ?>
         <div id="pestanas">
             <div id="header">
-                <ul>
+                <ul id="lista-pestana">
                     <li id="btn_prefe"><div><a href="#tab-prefe">Datos de usuario</a></div></li>
                     <li id="btn_redes"><div><a href="#tab-redes">Redes Sociales</a></div></li>
                     <li id="btn_priva"><div><a href="#tab-priva">Privacidad</a></div></li>
                 </ul>
             </div>
             <div id="contenido" style="padding-left: 40px; padding-top: 20px;">
-                <div id="tab-prefe">
+                <div id="tab-prefe" class="tab">
                     <?php include_partial("form_perfil_usuario", array("formUsuario" => $formUsuario)) ?>
                 </div>
-                <div id="tab-redes" class="tab-hide">
+                <div id="tab-redes" class="tab-hide tab">
                     <?php include_partial("form_perfil_red_social", array("formUsuario" => $formUsuario)) ?>
                 </div>
-                <div id="tab-priva" class="tab-hide">
+                <div id="tab-priva" class="tab-hide tab">
                     <?php include_partial("form_perfil_preferencia", array("formUsuario" => $formUsuario)) ?>
                 </div>
             </div>

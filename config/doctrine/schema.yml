@@ -1622,6 +1622,55 @@ Usuario:
       default: '0'
       notnull: true
       autoincrement: false
+    pref_enlace_facebook:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    pref_enlace_googleplus:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    pref_enlace_twitter:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    pref_notificacion_oferta:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    pref_notificacion_cupon:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    pref_notificacion_evento:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    pref_noticia_guamma:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
     rol_id:
       type: integer(4)
       fixed: false

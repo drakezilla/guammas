@@ -4,7 +4,7 @@
 <?php use_javascript('class.js') ?>
 <script>
     var html;
-    var mapaEvento = new mapaNuevoEvento();
+//    var mapaEvento = new mapaNuevoEvento();
     $(document).ready(function(){
         $("#pestanas ul li div a").click(function(){
             var tabmostrar=$(this).attr('href');

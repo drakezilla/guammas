@@ -21,6 +21,13 @@ Doctrine_Manager::getInstance()->bindComponent('Usuario', 'doctrine');
  * @property string $perfil_twitter
  * @property string $perfil_googleplus
  * @property boolean $pref_correo_electronico_publico
+ * @property boolean $pref_enlace_facebook
+ * @property boolean $pref_enlace_googleplus
+ * @property boolean $pref_enlace_twitter
+ * @property boolean $pref_notificacion_oferta
+ * @property boolean $pref_notificacion_cupon
+ * @property boolean $pref_notificacion_evento
+ * @property boolean $pref_noticia_guamma
  * @property integer $rol_id
  * @property integer $ciudad_id
  * @property timestamp $created_at
@@ -52,6 +59,13 @@ Doctrine_Manager::getInstance()->bindComponent('Usuario', 'doctrine');
  * @method string              getPerfilTwitter()                   Returns the current record's "perfil_twitter" value
  * @method string              getPerfilGoogleplus()                Returns the current record's "perfil_googleplus" value
  * @method boolean             getPrefCorreoElectronicoPublico()    Returns the current record's "pref_correo_electronico_publico" value
+ * @method boolean             getPrefEnlaceFacebook()              Returns the current record's "pref_enlace_facebook" value
+ * @method boolean             getPrefEnlaceGoogleplus()            Returns the current record's "pref_enlace_googleplus" value
+ * @method boolean             getPrefEnlaceTwitter()               Returns the current record's "pref_enlace_twitter" value
+ * @method boolean             getPrefNotificacionOferta()          Returns the current record's "pref_notificacion_oferta" value
+ * @method boolean             getPrefNotificacionCupon()           Returns the current record's "pref_notificacion_cupon" value
+ * @method boolean             getPrefNotificacionEvento()          Returns the current record's "pref_notificacion_evento" value
+ * @method boolean             getPrefNoticiaGuamma()               Returns the current record's "pref_noticia_guamma" value
  * @method integer             getRolId()                           Returns the current record's "rol_id" value
  * @method integer             getCiudadId()                        Returns the current record's "ciudad_id" value
  * @method timestamp           getCreatedAt()                       Returns the current record's "created_at" value
@@ -82,6 +96,13 @@ Doctrine_Manager::getInstance()->bindComponent('Usuario', 'doctrine');
  * @method Usuario             setPerfilTwitter()                   Sets the current record's "perfil_twitter" value
  * @method Usuario             setPerfilGoogleplus()                Sets the current record's "perfil_googleplus" value
  * @method Usuario             setPrefCorreoElectronicoPublico()    Sets the current record's "pref_correo_electronico_publico" value
+ * @method Usuario             setPrefEnlaceFacebook()              Sets the current record's "pref_enlace_facebook" value
+ * @method Usuario             setPrefEnlaceGoogleplus()            Sets the current record's "pref_enlace_googleplus" value
+ * @method Usuario             setPrefEnlaceTwitter()               Sets the current record's "pref_enlace_twitter" value
+ * @method Usuario             setPrefNotificacionOferta()          Sets the current record's "pref_notificacion_oferta" value
+ * @method Usuario             setPrefNotificacionCupon()           Sets the current record's "pref_notificacion_cupon" value
+ * @method Usuario             setPrefNotificacionEvento()          Sets the current record's "pref_notificacion_evento" value
+ * @method Usuario             setPrefNoticiaGuamma()               Sets the current record's "pref_noticia_guamma" value
  * @method Usuario             setRolId()                           Sets the current record's "rol_id" value
  * @method Usuario             setCiudadId()                        Sets the current record's "ciudad_id" value
  * @method Usuario             setCreatedAt()                       Sets the current record's "created_at" value
@@ -231,6 +252,69 @@ abstract class BaseUsuario extends sfDoctrineRecord
              'unsigned' => false,
              'primary' => false,
              'default' => '0',
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
+        $this->hasColumn('pref_enlace_facebook', 'boolean', 1, array(
+             'type' => 'boolean',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
+        $this->hasColumn('pref_enlace_googleplus', 'boolean', 1, array(
+             'type' => 'boolean',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
+        $this->hasColumn('pref_enlace_twitter', 'boolean', 1, array(
+             'type' => 'boolean',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
+        $this->hasColumn('pref_notificacion_oferta', 'boolean', 1, array(
+             'type' => 'boolean',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
+        $this->hasColumn('pref_notificacion_cupon', 'boolean', 1, array(
+             'type' => 'boolean',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
+        $this->hasColumn('pref_notificacion_evento', 'boolean', 1, array(
+             'type' => 'boolean',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             'length' => 1,
+             ));
+        $this->hasColumn('pref_noticia_guamma', 'boolean', 1, array(
+             'type' => 'boolean',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
              'notnull' => true,
              'autoincrement' => false,
              'length' => 1,

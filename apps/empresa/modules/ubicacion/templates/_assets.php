@@ -1,10 +1,10 @@
-
+<?php include_partial('map_config') ?>
+<?php include_partial('actions') ?>
 <?php use_javascript("jquery-plugins/jquery_maskedInput.js") ?>
 <?php use_javascript("jquery-plugins/jquery_chosen.js") ?>
 <?php use_javascript('http://maps.google.com/maps/api/js?sensor=true&language=es') ?>
-<?php use_javascript('class.js') ?>
+<?php use_javascript('custom/GoogleMapsApi.Class.js', 'last') ?>
 <?php use_stylesheet("jquery-plugins/jquery_chosen.css") ?>
-<?php include_partial('actions') ?>
 <script>
     var ubicaciones;
     var mostrarPopup;

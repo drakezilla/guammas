@@ -148,11 +148,10 @@
             url: '<?php echo url_for('@deleteUbicacion?token=' . $sf_request->getParameter('token')) ?>',
             success: function(){
                 $('#notice-geocoder').show('fast');
-                $('#notice-geocoder').html('Bien! ubicación borrar con exito')
+                $('#notice-geocoder').html('Bien! ubicación borrada con exito')
                 setTimeout(function(){
                     $('#notice-geocoder').hide('fast');
                 },5000)
-                gMap.cerrarIW();
                 gMap.destruirActividad();
                 recargarMapa()
             }

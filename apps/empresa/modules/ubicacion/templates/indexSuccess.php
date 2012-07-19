@@ -1,4 +1,4 @@
-<?php include_partial('assets_sucursal') ?>
+<?php include_partial('assets') ?>
 <div id="titulo">
     <h3>Ubicaciones y Sucursales</h3>
     <div><?php echo image_tag('tabs/linea.png') ?></div>

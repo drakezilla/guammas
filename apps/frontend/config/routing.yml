@@ -2,7 +2,11 @@
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
 # default rules
-
+getUbicaciones:
+  url: /getSucursales
+  param: { module: empresa, action: getSucursales}
+  options:
+    
 crearCuentaREST:
   url: /usuario/crearCuentaREST
   param: {module: usuario, action: crearCuentaREST}

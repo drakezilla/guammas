@@ -15,6 +15,13 @@ class empresaActions extends sfActions {
         $this->formUbicacion = new UbicacionForm();
     }
 
+    public function executeGetSucursales(sfWebRequest $request) {
+        $this->forward404Unless($request->isXmlHttpRequest());
+        $sucursales = Doctrine_Core::getTable('Ubicacion')->getSucursalesParaMapa(true);
+        echo json_encode($sucursales);
+        die();
+    }
+    
     public function executeCreate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 

@@ -1,10 +1,3 @@
-<?php use_javascript('jquery-plugins/jwysiwyg/jquery.wysiwyg.js') ?>
-<?php use_javascript('jquery-plugins/jwysiwyg/wysiwyg.image.js') ?>
-<?php use_javascript('jquery-plugins/jwysiwyg/wysiwyg.link.js') ?>
-<?php use_javascript('jquery-plugins/jwysiwyg/wysiwyg.table.js') ?>
-<?php use_stylesheet('jquery-plugins/jquery_wysiwyg.css') ?>
-<?php use_stylesheet("custom/customtabs.css") ?>
-<?php use_stylesheet("modules/usuario/usuario_edit.css") ?>
 <?php include_partial('assets') ?>
 <script>
     (function($) {

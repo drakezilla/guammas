@@ -1,10 +1,18 @@
-<?php use_stylesheet("jquery-plugins/jquery_chosen.css") ?>
-<?php use_javascript("jquery-plugins/jquery_chosen.js") ?>
 <?php use_javascript('http://maps.google.com/maps/api/js?sensor=true&language=es') ?>
-<?php use_javascript('class.js') ?>
+<?php use_javascript('custom/GoogleMapsApi.Class.js', 'last') ?>
+<?php use_javascript("jquery-plugins/jquery_chosen.js") ?>
+<?php use_javascript('jquery-plugins/jwysiwyg/jquery.wysiwyg.js') ?>
+<?php use_javascript('jquery-plugins/jwysiwyg/wysiwyg.image.js') ?>
+<?php use_javascript('jquery-plugins/jwysiwyg/wysiwyg.link.js') ?>
+<?php use_javascript('jquery-plugins/jwysiwyg/wysiwyg.table.js') ?>
+<?php use_stylesheet('jquery-plugins/jquery_wysiwyg.css') ?>
+<?php use_stylesheet("custom/customtabs.css") ?>
+<?php use_stylesheet("modules/usuario/usuario_edit.css") ?>
+<?php use_stylesheet("jquery-plugins/jquery_chosen.css") ?>
+<?php include_partial("map_config") ?>
 <script>
     var html;
-//    var mapaEvento = new mapaNuevoEvento();
+    var mapaEvento = new mapaNuevoEvento();
     $(document).ready(function(){
         $("#pestanas ul li div a").click(function(){
             var tabmostrar=$(this).attr('href');

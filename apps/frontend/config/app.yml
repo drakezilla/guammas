@@ -6,6 +6,6 @@ all:
   correo_servidor_smtp:  smtp.gmail.com
   correo_servidor_port:  465
   correo_servidor_secu:  ssl
-  correo_usuario:        enunez1985@gmail.com
-  correo_contrasena:     tifanny08
+  correo_usuario:        noreplyguammas@gmail.com
+  correo_contrasena:     '*GuammaS*'
   correo_nombre_mostrar: noreply

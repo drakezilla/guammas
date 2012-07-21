@@ -23,14 +23,21 @@ class empresaActions extends sfActions {
     }
     
     public function executeCreate(sfWebRequest $request) {
+        $this->setTemplate('correo');
         $this->forward404Unless($request->isMethod(sfRequest::POST));
-
+        
         $this->formOrganizacion = new OrganizacionForm();
         $this->formUbicacion = new UbicacionForm();
-
         $this->processForm($request, $this->formOrganizacion, $this->formUbicacion);
-
-        $this->setTemplate('new');
+        
+        $this->token = $this->getUser()->getAttribute("token");
+        $this->getUser()->getAttributeHolder()->remove("token");
+        $cuerpoCorreo = htmlExtractor::getHtmlContent($this, "layout-email");
+        $correoExito = new EmailClass();
+        $correoExito->correoExito($this->getUser()->getAttribute('usuario_email', '', 'user_vars'), $cuerpoCorreo);
+        $this->redirect('@exito');
+        die();
+        
     }
 
     protected function processForm(sfWebRequest $request, sfForm $formOrganizacion, sfForm $formUbicacion) {
@@ -39,10 +46,11 @@ class empresaActions extends sfActions {
         if ($formOrganizacion->isValid() && $formUbicacion->isValid()) {
             $organizacion = $formOrganizacion->save();
             $this->getUser()->setAttribute("empresa", $organizacion->getId());
+            $this->getUser()->setAttribute("token", $organizacion->getToken());
             $this->getUser()->setAttribute("principal", true);
             $ubicacion = $formUbicacion->save();
             $this->getUser()->getAttributeHolder()->remove("principal");
-            $this->redirect('@exito');
+            
         }
     }
 
@@ -51,6 +59,8 @@ class empresaActions extends sfActions {
     }
 
     public function executeExito(sfWebRequest $request) {
+        
+        
         Usuario::setVariablesEmpresa($this->getUser()->getAttribute('usuario_id', '', 'user_vars'), $this->getUser());
     }
 
@@ -104,6 +114,10 @@ class empresaActions extends sfActions {
 
 
         die();
+    }
+    
+    public function executeActivar(sfWebRequest $request){
+        die('llegamos!!');
     }
 
 }

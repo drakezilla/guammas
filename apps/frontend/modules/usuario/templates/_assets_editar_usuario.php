@@ -1,5 +1,10 @@
+<?php use_stylesheets_for_form($form) ?>
+<?php use_javascripts_for_form($form) ?>
+<?php use_stylesheet("custom/customtabs.css") ?>
+<?php use_stylesheet("jquery-plugins/jquery_chosen.css") ?>
+<?php use_javascript("jquery-plugins/jquery_chosen.js") ?>
+<?php include_partial("flashes") ?>
 <script>
-
     var main_newuser_checked = true
     var main_mail_checked = true
     
@@ -8,7 +13,7 @@
             var tabmostrar=$(this).attr('href');
             $("#pestanas #contenido div").slideUp('fast');
             $(tabmostrar).slideDown("fast");
-            $("#pestanas ul li div a").css("color","#0066CC")
+            $("#pestanas ul li div a").css("color","#000")
             $(this).css("color","#E8782E")
             $("#pestanas ul li").removeClass('pestana_click');
             $(this).parent().parent().addClass('pestana_click');

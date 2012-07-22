@@ -1,7 +1,3 @@
-<?php use_javascript("jquery-plugins/jquery_tooltip.js") ?>
-<?php use_javascript("jquery-plugins/jquery_chosen.js") ?>
-<?php use_stylesheet("jquery-plugins/jquery_chosen.css") ?>
-<?php use_stylesheet("apps/frontend/modules/usuario/form_red_social.css") ?>
 <?php if (!$formUsuario->getObject()->isNew()): ?>
     <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>

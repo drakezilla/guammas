@@ -5,12 +5,21 @@
 <?php use_javascript("jquery-plugins/jquery_maskedInput.js") ?>
 <?php use_javascript("jquery-plugins/jquery_chosen.js") ?>
 <?php use_stylesheet("jquery-plugins/jquery_chosen.css") ?>
-<?php use_stylesheet("modules/empresa/empresa_new.css") ?>
+<?php use_stylesheet("modules/empresa/empresa.css") ?>
 <?php include_partial('map_config') ?>
 <script>
+    var popupFooter = 
+        "<div class='popup-powered-by'>"+
+        "Powered by <a target='_blank' href='http://google.com/maps'>Google Maps</a>"+
+        "</div>"+
+        "<div class='popup-form-btn'>"+
+        "<button class='form-btn form-btn-confirmar' type='button' onclick='$(\"#popup-mapa\").dialog(\"close\")'>"+
+        "<span>Listo!</span>"+
+        "</button>"+
+        "</div>";
     var gMap = new mapaNuevaUbicacion();
     var geostring;
-    var popupMapa = '<div class="notice" id="alerta_geocoder"></div><div>Necesitamos la ubicación de tu comercio o local</div><div id="map_canvas" style="width:100%; height:100%"></div>'
+    var popupMapa = '<div class="notice" id="notice-geocoder"></div><div id="map_canvas" style="width:775px; height:415px"></div>'
     var htmlMapa='<a onclick="return openMapa()" href="#"><?php echo image_tag("16x16/small_bulb") ?>Ubicate en un mapa</a>'
     $(document).ready(function(){
         $("#ubicacion_rif").mask("r-99999999-9");
@@ -19,17 +28,18 @@
         $("#ubicacion_ciudad_id").change(function(){
             geostring = $('#ubicacion_ciudad_id :selected').text()
             $("#ubicacion_mapa_exacta").html('<?php echo image_tag("16x16/small_spinner.gif") ?>');
-            $("#action_map").dialog({
+            $("#popup-mapa").dialog({
                 title: "Ubica tu tienda en el mapa",
                 modal: true,
                 autoOpen: false,
                 width: 800,
-                height: 500,
+                height: 550,
                 open:function(event, ui) {
-                    $("#action_map").html(popupMapa);
+                    $("#popup-mapa").html(popupMapa);
+                    $(".ui-dialog-buttonpane").html("");
                     $(".ui-dialog-buttonpane").css("text-align","right");
                     $(".ui-dialog-buttonpane").css("vertical-align","middle");
-                    $(".ui-dialog-buttonpane").prepend("<div class='popup-powered-by'>Powered by <a target='_blank' href='http://google.com/maps'>Google Maps</a></div>")
+                    $(".ui-dialog-buttonpane").prepend(popupFooter)
                     gMap.inicio(document.getElementById('map_canvas'),true);
                     gMap.mapActividad();
                     gMap.callGeocoder(geostring);
@@ -45,7 +55,7 @@
                 }
             })
             $("#ubicacion_mapa_exacta").html(htmlMapa)
-            $("#action_map").dialog('open')
+            $("#popup-mapa").dialog('open')
         });  
     })
 </script>

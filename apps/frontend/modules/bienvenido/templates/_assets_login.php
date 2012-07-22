@@ -1,3 +1,4 @@
+<script>
 var loginFormHTML ='<div id="msgs" style="display: none"></div><form id="login_form" action="usuario/login" method="post"><div><h3>Inicia sesión</h3></div><div id="login_form_username">Usuario o Email:<br /><input type="text" name="login[username]" id="login_username" /></div><div id="login_form_password">Contraseña: <br /><input type="password" name="login[password]" id="login_password" /><br /></div></form>';
 var forgotFormHTML = '<form id="forgot_form" action="usuario/forgot" method="post"><div><h3>¿Olvidaste tu contraseña?</h3><br />Por favor, ingresa tu dirección de email. Reiniciaremos tu contraseña, te la enviaremos por correo y te daremos otras instrucciones. Luego podras cambiar la contraseña por la que desees!</div><hr /><div  id="login_form_username">Email:<br /><input type="text" name="forgot[email]" id="forgot_email" /></div><div></div>';
 var btnArray={
@@ -6,7 +7,7 @@ var btnArray={
     },
     "Crea una cuenta nueva!": function() {
         $.ajax({
-            url: 'usuario/new',
+            url: '<?php echo url_for('usuario/new') ?>',
             statusCode: {
                 404: function() {
                     $(".ui-dialog-buttonset").remove();
@@ -93,7 +94,7 @@ function signingIn(){
         dataType: 'json',
         cache: false,
         type: 'POST',
-        url: 'usuario/login',
+        url: '<?php echo url_for('usuario/login') ?>',
         data: {
             login:{
                 username: $("#login_username").val(),
@@ -127,3 +128,4 @@ function signingIn(){
         }
     })
 }
+</script>

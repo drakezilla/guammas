@@ -1,18 +1,73 @@
-#login_form, #forgot_form{text-align: left;}
-#main-usuario-panel{height: 150px;position: relative;right: 150px; background-color: white; width: 260px;z-index: 99; border-color: #F7A66B; border-style: solid; border-width: 1px;  display: none}
-#main-usuario-panel #mup-header {text-align: center; background-color: #F7A66B; padding-left: 10px !important}
-#main-usuario-panel div p{ color: white; font-size: 13px}
-#main-usuario-panel div {padding-right: 10px}
-.form-fila-standard th{width: 215px; vertical-align: top}
-#action_map{text-align: left; height: 550px}
-.popup-powered-by{float: left;padding-top: 18px;}
-#fila_empresa_id, #alerta_geocoder{display: none}
-.form_container_rounded{border-radius: 10px;border: #999 solid thin; box-shadow: 0px 0px 5px 2px #CCC;}
-.form_container_rounded #titulo{margin-top: 10px;}
-.form_container_rounded #titulo h3{margin-left: 10px}
-#form-footer{margin-left: 10px}
-#form-footer button{margin-left: 5px}
-#notice-geocoder{margin-top: 20px; display: none;}
+*{
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+}
+.form-header{
+    margin-top: 70px;
+}
+.form-separador{
+    width: 790px;
+    height: 3px;
+    background: url(../images/comun/linea.png) no-repeat;
+}
+.inf-separador{
+    background: url(../images/comun/linea-corta.png) no-repeat;
+    height: 3px;
+    background-position: right;
+}
+.form-header h3{
+    padding: 0;
+    margin-bottom: 5px;
+    text-transform: capitalize;
+    font-weight: lighter;
+}
+
+.form-btn{
+    width: 100px;
+    height: 27px;
+    color: #000;
+    overflow: visible;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+}
+
+.form-btn:hover{
+    color: #fff;
+}
+
+.form-btn-confirmar{
+    background-image: url(../images/comun/btn-confirmar.png);
+}
+
+.form-btn-cancelar{
+    background-image: url(../images/comun/btn-cancelar.png);
+}
+
+.form-fila-standard th{
+    width: 215px; 
+    vertical-align: top
+}
+.form_container_rounded{
+    border-radius: 10px;
+    border: #999 solid thin;
+    height: 100%;
+}
+
+.consejo{
+    color: #777;
+    font-size: 12px;
+}
+
+.pan-info{
+    height: 80px; 
+    padding-top: 10px;
+    padding-right: 10px;
+    text-align: justify;
+    background: url(../images/stylistica-icons/24x24/info.png) no-repeat;
+    background-position: 4px 10px;
+}
+
+/*aqui empieza ali*/
 #anuncio_que_incluye,#anuncio_condiciones{height:100px; width: 265px;}
 .content_window{  width: 750px;  margin-left:75px; height:650px; padding:10px;  }
 a.sucursal_verde, a.sucursal_verde:hover, 

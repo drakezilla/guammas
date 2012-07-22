@@ -1,9 +1,46 @@
-#main-container{background: #FFF url(../images/layout/lay-mapa.jpeg) no-repeat; height: auto !important;min-height: 550px; box-shadow: 0px -5px 5px 2px #999}
-#lay-header #lay-header-logo{height: 116px; background: url(../images/layout/lay-logo.png) no-repeat;}
-#sf_content{height: 300px}
-#lay-info-panel #lay-info-naranja{height: 230px; background: #FFF url(../images/layout/lay-cuadronaranja.png) no-repeat; background-position:center bottom;}
-#lay-info-panel #lay-info-linea{height: 7px; background: #FFF url(../images/layout/lay-raya-negra.png) repeat-x;}
-#lay-footer{z-index: 99; margin-left: auto; margin-right: auto;   width: 1000px !important;  height: 68px; background:#191007 url(../images/layout/lay-footer.png) no-repeat;box-shadow: 0px 0px 5px 2px #999}
-#lay-info-panel .tres-infos{height: 220px; background-color: #fff; border-radius:10px; z-index: 99; position: relative; bottom: 30px; box-shadow: 0px 0px 5px 2px #aaa}
-#pin-ingresa{width: 64px; height: 70px; position: relative; left: 590px; top: 100px; cursor: pointer}
-#pin-busca{width: 64px; height: 70px; position: relative; left: 700px; bottom: 70px; cursor: pointer}
+#main-content{
+    background: #FFF url(../images/layout/lay-mapa.jpeg) no-repeat; 
+    height: 590px;
+}
+#lay-header #lay-header-logo{
+    height: 116px;
+    background: url(../images/layout/lay-logo.png) no-repeat;
+}
+#lay-info-panel{
+    height: 240px;
+    position: fixed;
+    bottom: 70px;
+}
+#lay-info-naranja{
+    background: #FFF url(../images/layout/lay-cuadronaranja.png) repeat-y;
+    background-position:center top;
+}
+#lay-info-linea{
+    height: 7px; 
+    background: #FFF url(../images/layout/lay-raya-negra.png) repeat-x;
+}
+#lay-info-panel .tres-infos{
+    height: 220px; 
+    background-color: #fff;
+    border-radius:10px;
+    z-index: 99;
+    position: relative;
+    bottom: 30px;
+    box-shadow: 0px 0px 5px 2px #aaa
+}
+#pin-ingresa{
+    width: 64px; 
+    height: 70px; 
+    position: relative; 
+    left: 590px; 
+    top: 70px; 
+    cursor: pointer
+}
+#pin-busca{
+    width: 64px; 
+    height: 215px; 
+    position: relative; 
+    left: 690px; 
+    top: 38px; 
+    cursor: pointer
+}

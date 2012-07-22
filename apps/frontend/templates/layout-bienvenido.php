@@ -9,11 +9,11 @@
         <?php include_javascripts() ?>
     </head>
     <body>
-        <div class="container" id="main-container">
+        <div class="container" id="main-wrapper">
             <div class="span-24 last" id="lay-header">
                 <div class="span-4 last" id="lay-header-logo"></div>
             </div>
-            <div class="span-24 last" id="sf_content">
+            <div id="main-content">
                 <?php echo $sf_content ?>
             </div>
             <div class="span-24" id="lay-info-panel">
@@ -28,8 +28,8 @@
                     <div class="span-4">&nbsp;</div>
                 </div>
             </div>
+            <div id="lay-footer"></div>
         </div>
-        <div id="lay-footer"></div>
         <div id="main-login-form"></div>
     </body>
 </html>

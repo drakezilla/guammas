@@ -65,6 +65,7 @@ class UbicacionTable extends Doctrine_Table {
                 ->select('ubi.*,org.nombre_organizacion as nombre_organizacion')
                 ->from('Ubicacion ubi')
                 ->innerJoin('ubi.Organizacion org')
+                ->where('org.activa=?',true)
                 ->execute();
         return $json == true ? $this->jsonSucursales($query) : $query;
     }

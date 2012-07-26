@@ -1,4 +1,4 @@
-function checkUsuario(campo,spinner,accion){
+function checkUsuario(ruta,campo,spinner,accion){
     if(accion==undefined){
         accion='nuevo'
     }
@@ -8,7 +8,7 @@ function checkUsuario(campo,spinner,accion){
         dataType: 'json',
         cache: false,
         type: 'POST',
-        url: "/frontend_dev.php/usuario/checkusuario",
+        url: ruta,
         data:{
             username: campo.val(),
             accion: accion
@@ -35,7 +35,7 @@ function checkUsuario(campo,spinner,accion){
     },5000)
 }
 
-function checkEmail(campo,spinner,accion){  
+function checkEmail(ruta,campo,spinner,accion){  
     if(accion==undefined){
         accion='nuevo'
     }
@@ -45,7 +45,7 @@ function checkEmail(campo,spinner,accion){
             dataType: 'json',
             cache: false,
             type: 'POST',
-            url: "/frontend_dev.php/usuario/checkemail",
+            url: ruta,
             data:{
                 correo: campo.val(),
                 accion: accion

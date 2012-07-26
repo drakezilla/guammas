@@ -14,7 +14,7 @@ default:
 
   stylesheets:    [main.css, jquery-ui/jquery-ui-1.8.21.custom.css, blueprintcss_screen.css, blueprintcss_ie.css, layout.css]
 
-  javascripts:    [jquery-1.7.2.min.js, jquery-ui-1.8.21.custom.min.js, custom/login-script.js, errorMsj.js, custom/customFunctions.js]
+  javascripts:    [jquery-1.7.2.min.js, jquery-ui-1.8.21.custom.min.js, errorMsj.js, custom/customFunctions.js]
 
   has_layout:     true
   layout:         layout

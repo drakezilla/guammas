@@ -32,6 +32,12 @@ class usuarioActions extends sfActions {
                     $this->setTemplate('new');
                     //$this->redirect("bienvenido/index");
                 } else {
+                    $form = $request->getParameter('usuario');
+                    $this->setTemplate('correo');
+                    $this->usuario = $form['nombre_usuario'];
+                    $cuerpoCorreo = htmlExtractor::getHtmlContent($this, 'layout-email');
+                    $correo = new EmailClass('¡Cuenta creada!');
+                    $correo->correoExito($form['correo_electronico'], $cuerpoCorreo);
                     $this->redirect("bienvenido/exito");
                 }
             } else {
@@ -209,6 +215,15 @@ class usuarioActions extends sfActions {
         }
         echo json_encode($returnArray);
         die();
+    }
+    
+    public function executeActivar(sfWebRequest $request){
+        $this->forward404Unless($datosUsuario = Doctrine_Core::getTable('Usuario')->FindOneByNombreUsuario($request->getParameter('usuarionombre')));
+        if(!$datosUsuario->getActivo()){
+            Usuario::activarUsuario($datosUsuario->getId());
+        }else{
+            $this->setTemplate('errorActivar');
+        }
     }
 
 }

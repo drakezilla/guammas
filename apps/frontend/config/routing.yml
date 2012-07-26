@@ -2,6 +2,12 @@
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
 # default rules
+activarUsuario:
+  url: /activarUsuario/:usuarionombre
+  param: { module: usuario, action: activar}
+  options:
+    column: usuarionombre
+
 activarEmpresa:
   url: /activarEmpresa/:token
   param: { module: empresa, action: activar}

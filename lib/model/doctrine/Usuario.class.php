@@ -19,8 +19,8 @@ class Usuario extends BaseUsuario {
         }
         parent::save($conn);
     }
-    
-    public function crearUsuarioMovil($movilForm){
+
+    public function crearUsuarioMovil($movilForm) {
         $this->setNombreUsuario($movilForm['alias']);
         $this->setCorreoElectronico($movilForm['correo']);
         $this->setContrasena($movilForm['clave']);
@@ -74,6 +74,15 @@ class Usuario extends BaseUsuario {
                 ->update("Usuario")
                 ->set("rol_id", "2")
                 ->where("id=?", $usuario_id)
+                ->execute();
+        return $query;
+    }
+
+    public static function activarUsuario($usuario_id) {
+        $query = Doctrine_Query::create()
+                ->update('Usuario')
+                ->set('activo', true)
+                ->where('id=?', $usuario_id)
                 ->execute();
         return $query;
     }

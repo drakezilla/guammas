@@ -1,5 +1,6 @@
 <?php use_javascript('http://maps.google.com/maps/api/js?sensor=true&language=es') ?>
 <?php use_javascript('custom/GoogleMapsApi.Class.js', 'last') ?>
+<?php use_stylesheet('modules/bienvenido/bienvenido.css') ?>
 <script>
     function getUbicaciones(recargar){
         $.ajax({

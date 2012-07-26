@@ -13,7 +13,7 @@
 class Organizacion extends BaseOrganizacion {
     public function save(Doctrine_Connection $conn = null) {
         $this->setUsuarioId(sfContext::getInstance()->getUser()->getAttribute('usuario_id', '','user_vars'));
-        $this->setSalt(sha1($this->getUsuarioId().date("d&M__Y;;||hisu")));
+        $this->setSalt(sha1($this->getId().'ñññ'.$this->getUsuarioId().date("d&M__Y;;||hisu")));
         $this->setToken(md5($this->getSalt().md5(rand(0, 99999))));
         return parent::save($conn);
     }

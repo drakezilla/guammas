@@ -1,5 +1,5 @@
 <script>
-var loginFormHTML ='<div id="msgs" style="display: none"></div><form id="login_form" action="usuario/login" method="post"><div><h3>Inicia sesión</h3></div><div id="login_form_username">Usuario o Email:<br /><input type="text" name="login[username]" id="login_username" /></div><div id="login_form_password">Contraseña: <br /><input type="password" name="login[password]" id="login_password" /><br /></div></form>';
+var loginFormHTML ='<div id="msgs" style="display: none"></div><form id="login_form" action="'+<?php echo url_for('usuario/login') ?>+'" method="post"><div><h3>Inicia sesión</h3></div><div id="login_form_username">Usuario o Email:<br /><input type="text" name="login[username]" id="login_username" /></div><div id="login_form_password">Contraseña: <br /><input type="password" name="login[password]" id="login_password" /><br /></div></form>';
 var forgotFormHTML = '<form id="forgot_form" action="usuario/forgot" method="post"><div><h3>¿Olvidaste tu contraseña?</h3><br />Por favor, ingresa tu dirección de email. Reiniciaremos tu contraseña, te la enviaremos por correo y te daremos otras instrucciones. Luego podras cambiar la contraseña por la que desees!</div><hr /><div  id="login_form_username">Email:<br /><input type="text" name="forgot[email]" id="forgot_email" /></div><div></div>';
 var btnArray={
     "Iniciar Sesión": function() {

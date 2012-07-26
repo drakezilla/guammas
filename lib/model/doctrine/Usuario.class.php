@@ -44,7 +44,7 @@ class Usuario extends BaseUsuario {
     }
 
     public static function setVariablesEmpresa($usuario_id, sfUser $sf_user) {
-        $empresas = Doctrine_Core::getTable('Organizacion')->findByUsuarioId($usuario_id);
+        $empresas = Doctrine_Core::getTable('Organizacion')->findByUsuarioIdAndActiva($usuario_id,true);
         $i = 0;
         $arrayEmpresa = array();
         foreach ($empresas as $empresa) {

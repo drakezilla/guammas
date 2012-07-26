@@ -17,20 +17,10 @@ class ubicacionActions extends sfActions {
      */
     public function preExecute() {
         $request = $this->context->getRequest();
-        if (!$this->getUser()->hasCredential('Empresa')) {
-            $this->redirect404();
-        } else {
-            if (!$request->hasParameter('token')) {
-                $this->redirect404();
-            } else {
-                $empresa = Doctrine_Core::getTable('Organizacion')->findByToken($request->getParameter('token'));
-                if (count($empresa) != 1) {
-                    $this->redirect404();
-                } else {
-                    return true;
-                }
-            }
-        }
+        $this->forward404Unless($this->getUser()->hasCredential('Empresa'));
+        $this->forward404Unless($request->hasParameter('token'));
+        $this->forward404Unless($empresa = Doctrine_Core::getTable('Organizacion')->findOneByToken($request->getParameter('token')));
+        $this->forward404Unless($empresa->getUsuarioId()==$this->getUser()->getAttribute('usuario_id','','user_vars'));;
     }
 
     public function executeIndex(sfWebRequest $request) {

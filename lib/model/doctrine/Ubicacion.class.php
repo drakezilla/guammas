@@ -27,7 +27,9 @@ class Ubicacion extends BaseUbicacion {
         $this->setPrincipal(self::isPrincipal());
         $this->setOrganizacionId(sfContext::getInstance()->getUser()->getAttribute("empresa"));
         $ret = parent::save($conn);
-        $this->updateLuceneIndex();
+        if($this->getOrganizacion()->getActiva()){
+            $this->updateLuceneIndex(sfContext::getInstance()->getUser()->getAttribute("empresa"));
+        }
         return $ret;
     }
     
@@ -48,9 +50,8 @@ class Ubicacion extends BaseUbicacion {
         }
     }
 
-    public function updateLuceneIndex() {
-
-        $empresa = sfContext::getInstance()->getUser()->getAttribute('empresa');
+    public function updateLuceneIndex($empresa) {
+        
         $index = UbicacionTable::getLuceneIndex();
 
         if ($hit = $index->find('pk:' . $empresa)) {

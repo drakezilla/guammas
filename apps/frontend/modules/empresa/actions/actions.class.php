@@ -21,23 +21,22 @@ class empresaActions extends sfActions {
         echo json_encode($sucursales);
         die();
     }
-    
+
     public function executeCreate(sfWebRequest $request) {
         $this->setTemplate('correo');
         $this->forward404Unless($request->isMethod(sfRequest::POST));
-        
+
         $this->formOrganizacion = new OrganizacionForm();
         $this->formUbicacion = new UbicacionForm();
         $this->processForm($request, $this->formOrganizacion, $this->formUbicacion);
-        
+
         $this->token = $this->getUser()->getAttribute("token");
         $this->getUser()->getAttributeHolder()->remove("token");
         $cuerpoCorreo = htmlExtractor::getHtmlContent($this, "layout-email");
-        $correoExito = new EmailClass();
+        $correoExito = new EmailClass('Empresa creada');
         $correoExito->correoExito($this->getUser()->getAttribute('usuario_email', '', 'user_vars'), $cuerpoCorreo);
         $this->redirect('@exito');
         die();
-        
     }
 
     protected function processForm(sfWebRequest $request, sfForm $formOrganizacion, sfForm $formUbicacion) {
@@ -50,7 +49,6 @@ class empresaActions extends sfActions {
             $this->getUser()->setAttribute("principal", true);
             $ubicacion = $formUbicacion->save();
             $this->getUser()->getAttributeHolder()->remove("principal");
-            
         }
     }
 
@@ -59,20 +57,7 @@ class empresaActions extends sfActions {
     }
 
     public function executeExito(sfWebRequest $request) {
-        
-        
         Usuario::setVariablesEmpresa($this->getUser()->getAttribute('usuario_id', '', 'user_vars'), $this->getUser());
-    }
-
-    public function executeActivarComercioUsuario(sfWebRequest $request) {
-        $rutaCorrecta = explode("empresa/exito", $request->getReferer());
-        if (count($rutaCorrecta) == 2) {
-            $usuario = new Usuario();
-            $usuario->setUsuarioComoEmpresa($this->getUser());
-            $this->redirect("@homepage");
-        } else {
-            $this->forward404();
-        }
     }
 
     public function executeTags(sfWebRequest $request) {
@@ -90,34 +75,46 @@ class empresaActions extends sfActions {
 
     public function executeGuardarTags(sfWebRequest $request) {
         $this->forward404Unless($request->isXmlHttpRequest());
+        $this->forward404Unless($datosOrganizacion = Doctrine_Core::getTable('Organizacion')->findOneById($this->getUser()->getAttribute('empresa')));
         //Primero ver los tags que ESTAN EN LA TABLA TAGS Y GUARDAR LOS OTROS
+
         $existen = Doctrine_Core::getTable('Tag')->getIdTags($request->getParameter('tags'));
-        $tagExisten=array();
+        $tagExisten = array();
         for ($i = 0; $i < count($existen); $i++) {
             $tagExisten[$i] = $existen[$i]['etiqueta'];
         }
-        $tagNoExiste=  array_diff($request->getParameter('tags'), $tagExisten);
-        for($i=0;$i<count($tagNoExiste);$i++){
-            $tag= new Tag();
+        $tagNoExiste = array_diff($request->getParameter('tags'), $tagExisten);
+        for ($i = 0; $i < count($tagNoExiste); $i++) {
+            $tag = new Tag();
             $tag->guardarTag($tagNoExiste[$i]);
         }
-        
+
         //Segundo Traer el id de las etiquetas que cree
-        $allTagsSave= Doctrine_Core::getTable('Tag')->getIdTags($request->getParameter('tags'));
-        for($i=0;$i<count($allTagsSave);$i++){
-            $tagOrganizacion= new TagOrganizacion();
+        $allTagsSave = Doctrine_Core::getTable('Tag')->getIdTags($request->getParameter('tags'));
+        for ($i = 0; $i < count($allTagsSave); $i++) {
+            $tagOrganizacion = new TagOrganizacion();
             $tagOrganizacion->asignarTag($allTagsSave[$i]['id'], $this->getUser()->getAttribute('empresa'));
         }
 
-        $ubicacion = new Ubicacion();
-        $ubicacion->updateLuceneIndex();
-
+        if ($datosOrganizacion->getActiva()) {
+            $ubicacion = new Ubicacion();
+            $ubicacion->updateLuceneIndex($this->getUser()->getAttribute('empresa'));
+        }
 
         die();
     }
-    
-    public function executeActivar(sfWebRequest $request){
-        die('llegamos!!');
+
+    public function executeActivar(sfWebRequest $request) {
+        $this->forward404Unless($datosOrganizacion = Doctrine_Core::getTable('Organizacion')->FindOneByToken($request->getParameter('token')));
+        if (!$datosOrganizacion->getActiva()) {
+            $usuario = new Usuario();
+            $usuario->setUsuarioComoEmpresa($this->getUser());
+            Organizacion::activarOrganizacion($datosOrganizacion->getId());
+            $ubicacion = new Ubicacion();
+            $ubicacion->updateLuceneIndex($datosOrganizacion->getId());
+        } else {
+            $this->setTemplate('errorActivar');
+        }
     }
 
 }

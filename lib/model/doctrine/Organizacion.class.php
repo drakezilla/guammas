@@ -17,4 +17,13 @@ class Organizacion extends BaseOrganizacion {
         $this->setToken(md5($this->getSalt().md5(rand(0, 99999))));
         return parent::save($conn);
     }
+    
+    public static function activarOrganizacion($organizacion_id){
+        $query = Doctrine_Query::create()
+                ->update('Organizacion')
+                ->set('activa', true)
+                ->where('id=?',$organizacion_id)
+                ->execute();
+        return true;
+    }
 }

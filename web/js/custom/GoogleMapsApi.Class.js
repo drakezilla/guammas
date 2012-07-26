@@ -129,7 +129,7 @@ var GoogleMapClass = Class.extend({
         var objMapa = this.objMapa
         for(var k in jsonArray) {
             var localizacion= new google.maps.LatLng(jsonArray[k].coordenada_x,jsonArray[k].coordenada_y);
-            eval('var marker'+k+'= new google.maps.Marker({position: localizacion,map: objMapa})');
+            eval('var marker'+k+'= new google.maps.Marker({position: localizacion,map: objMapa, icon: "http://develop.guammas:8080/images/comun/pin.png"})');
             if(verIW){
                 contenidoDialog = "<div><p><strong>"+jsonArray[k].organizacion+"</strong></p></div>"+
                 "<div>Direccion: "+jsonArray[k].detalle_direccion+"</div>"+

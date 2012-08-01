@@ -1,10 +1,10 @@
 <?php include_partial('assets') ?>
-</script>
-<div class="form_container_rounded content_window" >
-    <div id="map_canvas" style="width:750px; height:300px;">
-
-
+<?php use_stylesheet('cpanel.css') ?>
+<div class="prepend-4 span-20 last">
+    <div class="form-header">
+        <div class="form-separador"></div>
     </div>
+    <div style="border-bottom: #ccc solid medium; height: 250px;" id="map_canvas" class="span-19 last"></div>
     <div class="span-19 last" style="margin-top:30px; padding-left: 30px">
         <div class="span-6">
             <a class="sucursal_verde" href="<?php echo url_for("@ubicacion?token=" . $sf_request->getParameter('token')) ?>">sucursal</a>
@@ -28,6 +28,7 @@
             </div>
         </div>
     </div>
+    
     <div class="hr_window"></div>
     <div class="span-19 last" style="margin-top:30px; padding-left: 30px">
         <div class="span-6">

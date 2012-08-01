@@ -11,6 +11,30 @@
 <?php use_stylesheet("jquery-plugins/jquery_chosen.css") ?>
 <?php include_partial("map_config") ?>
 <script>
+    (function($) {
+        $(document).ready(function() {
+            $('#anuncio_descripcion').wysiwyg({
+                controls: {
+                    
+                    subscript  : { visible: false },
+                    superscript: { visible: false },
+                    
+                    createLink : { visible: false },
+                    unLink: { visible : true },
+			
+                    code : { visible: false },
+                    removeFormat : { visible: false },
+			
+                    h1 : { visible : false },
+                    h2 : { visible : false },
+                    h3 : { visible : false }
+                },
+                initialContent: ""
+            });
+        });
+    })(jQuery);
+</script>
+<script>
     var html;
     var mapaEvento = new mapaNuevoEvento();
     $(document).ready(function(){

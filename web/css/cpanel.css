@@ -1,0 +1,32 @@
+#anuncio_que_incluye,#anuncio_condiciones{height:100px; width: 265px;}
+.content_window{  width: 750px;  margin-left:75px; height:650px; padding:10px;  }
+a.sucursal_verde, a.sucursal_verde:hover, 
+a.anuncio_morado, a.anuncio_morado:hover,
+a.cuenta_azul, a.cuenta_azul:hover{  
+    font-size:16px;
+    text-transform:capitalize;
+    text-decoration: none;
+    margin-left:70px;
+}
+a.sucursal_verde, a.sucursal_verde:hover{    
+    color:#39B536;
+}
+.lorem_ipsum{
+    height: 114px;
+    text-align: center;
+    width:180px;
+    color:#808080;
+}
+a.anuncio_morado, a.anuncio_morado:hover{
+    color:#602B89;    
+}
+a.cuenta_azul, a.cuenta_azul:hover{
+    color:#3FA8F4;    
+}
+.hr_window{
+    clear: both;
+    box-shadow: 0px 0px 1px 1px #CCC;
+    margin-top: 20px;
+    border-bottom: #CCC solid 1px;
+    height: 1px;
+}

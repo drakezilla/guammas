@@ -10,6 +10,20 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class AnuncioEvento extends BaseAnuncioEvento
-{
+class AnuncioEvento extends BaseAnuncioEvento {
+
+    public function save(Doctrine_Connection $conn = null) {
+        $this->setAnuncioId(sfContext::getInstance()->getUser()->getAttribute('anuncio'));
+        parent::save($conn);
+    }
+    
+    public function guardar(sfWebRequest $request){
+        $form = $request->getParameter('anuncio_evento');
+        $this->setCiudadId($form['ciudad_id']);
+        $this->setCoordenadaX($form['coordenada_x']);
+        $this->setCoordenadaY($form['coordenada_y']);
+        $this->setTelefonoEvento($form['telefono_evento']);
+        $this->setPaginaWebEvento($form['pagina_web_evento']);
+        $this->save();
+    }
 }

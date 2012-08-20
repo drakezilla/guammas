@@ -12,12 +12,35 @@
  */
 class Ubicacion extends BaseUbicacion {
 
+    public function updateUbicacion(sfWebRequest $request) {
+        $query = Doctrine_Query::create()
+                ->update('Ubicacion')
+                ->set('nombre',"'".$request->getParameter('ubicacion_nombre')."'")
+                ->set('detalle_direccion',"'".$request->getParameter('ubicacion_direccion')."'")
+                ->set('telefono_ppal',"'".$request->getParameter('ubicacion_telefono_ppal')."'")
+                ->set('telefono_sec',"'".$request->getParameter('ubicacion_telefono_sec')."'")
+                ->where('id=?',$request->getParameter('ubicacion_id'));
+        return $query->execute();
+    }
+    
     public function save(Doctrine_Connection $conn = null) {
         $this->setPrincipal(self::isPrincipal());
         $this->setOrganizacionId(sfContext::getInstance()->getUser()->getAttribute("empresa"));
         $ret = parent::save($conn);
-        $this->updateLuceneIndex();
+        if($this->getOrganizacion()->getActiva()){
+            $this->updateLuceneIndex(sfContext::getInstance()->getUser()->getAttribute("empresa"));
+        }
         return $ret;
+    }
+    
+    public function nuevaUbicacion(sfWebRequest $request){
+        $this->setRif($request->getParameter('rif'));
+        $this->setNombre($request->getParameter('nombre'));
+        $this->setTelefonoPpal($request->getParameter('telefono'));
+        $this->setCoordenadaX($request->getParameter('coordenada_x'));
+        $this->setCoordenadaY($request->getParameter('coordenada_y'));
+        $this->setCiudadId($request->getParameter('ciudad_id'));
+        $this->save();
     }
 
     private static function isPrincipal() {
@@ -27,26 +50,25 @@ class Ubicacion extends BaseUbicacion {
         }
     }
 
-    public function updateLuceneIndex() {
+    public function updateLuceneIndex($empresa) {
         
-        $empresa = sfContext::getInstance()->getUser()->getAttribute('empresa');
         $index = UbicacionTable::getLuceneIndex();
 
         if ($hit = $index->find('pk:' . $empresa)) {
             $index->delete($hit->id);
         }
-        
+
         $doc = new Zend_Search_Lucene_Document();
-        
-        $stringIndex= new finda($empresa);
-        $indexFinda=$stringIndex->indexConstructor();
-        
+
+        $stringIndex = new finda($empresa);
+        $indexFinda = $stringIndex->indexConstructor();
+
         // store job primary key URL to identify it in the search results
-        
+
         $doc->addField(Zend_Search_Lucene_Field::UnIndexed('pk', $empresa));
 
         $doc->addField(Zend_Search_Lucene_Field::UnStored('finda', $indexFinda, 'utf-8'));
-        
+
         $index->addDocument($doc);
         $index->commit();
     }

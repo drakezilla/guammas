@@ -1,0 +1,103 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+#main-wrapper{
+    min-height: 100%; 
+    border-left:  #10b3ea solid 5px; 
+    border-right: #10b3ea solid 5px; 
+    box-shadow: 0px -5px 8px 1px #999;}
+#lay-footer{
+    width: 1000px; 
+    height: 68px; 
+    background:#191007 url(../images/layout/lay-footer.png) no-repeat; 
+    position: fixed; 
+    bottom: 0; 
+    margin-left: -25px;
+}
+#lay-header-logo{
+    height: 100px; 
+    background: url(../images/layout/lay-logo.png) no-repeat; 
+    position: fixed;
+}
+#dash{
+    padding-top: 20px; 
+    position: fixed; top: 94px; 
+    height: 200px; 
+    background: url(../images/layout/dash.png) repeat-y;
+}
+#dash div{
+    height: 28px; 
+    padding-left: 18px; 
+    padding-top: 12px 
+}
+#end-dash{
+    background: url(../images/layout/end-dash.png) no-repeat; height: 6px;
+}
+#dash div img{ 
+    cursor: pointer 
+}
+#dash div img:hover{
+    box-shadow: 0px 0px 5px 2px #FFF; 
+    border-radius: 20px
+}
+#lay-panel{
+    padding-top: 3px;
+    width: 100px; 
+    height: 30px; 
+    background: #191007;
+    position: fixed;
+    top: 0px;
+    margin-left: 750px;
+    border-bottom-left-radius:  5px;
+    border-bottom-right-radius: 5px;
+    text-align: center;
+}
+
+#lay-panel img{
+    cursor: pointer
+}
+
+#lay-panel img:first-of-type{
+    margin-right: 10px
+}
+
+#pan-empresa{
+    height: 140px; 
+    z-index: 99; 
+    width: 200px;
+    position: relative; 
+    background: #191007; 
+    right: 100px; 
+    bottom: 5px; 
+    border-bottom-left-radius: 5px; 
+    border-bottom-right-radius: 5px; 
+    border-top-left-radius: 5px; 
+    display: none; 
+    padding-top: 10px; 
+    color: white; 
+    text-align: right;
+}
+#pan-buscar{
+    height: 40px; 
+    z-index: 99; 
+    width: 300px;
+    position: relative; 
+    background: #191007; 
+    right: 200px; 
+    bottom: 5px; 
+    border-bottom-left-radius: 5px; 
+    border-bottom-right-radius: 5px; 
+    border-top-left-radius: 5px; 
+    display: none; 
+    padding-top: 10px; 
+    color: white; 
+    text-align: right;
+}
+#pan-buscar input{
+    width: 220px;
+    border: #999 solid thin;
+    border-radius: 5px;
+    height: 28px;
+    color: #aaa
+}

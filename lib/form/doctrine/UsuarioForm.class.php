@@ -33,6 +33,14 @@ class UsuarioForm extends BaseUsuarioForm {
                     'path' => sfConfig::get('sf_upload_dir') . '/avatar',
                     'mime_types' => 'web_images',
                 ));
+        $this->widgetSchema['pref_correo_electronico_publico']->setLabel('Permitir que todos vean mi correo electrónico');
+        $this->widgetSchema['pref_enlace_facebook']->setLabel('Mostrar enlace a mi perfil en Facebook');
+        $this->widgetSchema['pref_enlace_googleplus']->setLabel('Mostrar enlace a mi perfil en Google Plus');
+        $this->widgetSchema['pref_enlace_twitter']->setLabel('Mostrar enlace a mi perfil en Twitter');
+        $this->widgetSchema['pref_notificacion_oferta']->setLabel('Notificarme cuando una empresa que sigo que sigo publica una oferta');
+        $this->widgetSchema['pref_notificacion_evento']->setLabel('Notificarme cuando una empresa que sigo que sigo publica un evento');
+        $this->widgetSchema['pref_notificacion_cupon']->setLabel('Notificarme cuando una empresa que sigo que sigo publica una oferta de cupones');
+        $this->widgetSchema['pref_noticia_guamma']->setLabel('Recibir correo electronico con noticias de Guammas');
     }
 
 }

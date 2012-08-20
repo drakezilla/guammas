@@ -1,1 +1,60 @@
-<a href="<?php echo url_for("@sucursal?token=".$sf_request->getParameter('token')) ?>">sucursal</a>
+<?php include_partial('assets') ?>
+<?php use_stylesheet('cpanel.css') ?>
+<div class="prepend-4 span-20 last">
+    <div class="form-header">
+        <div class="form-separador"></div>
+    </div>
+    <div style="border-bottom: #ccc solid medium; height: 250px;" id="map_canvas" class="span-19 last"></div>
+    <div class="span-19 last" style="margin-top:30px; padding-left: 30px">
+        <div class="span-6">
+            <a class="sucursal_verde" href="<?php echo url_for("@ubicacion?token=" . $sf_request->getParameter('token')) ?>">sucursal</a>
+            <div class="lorem_ipsum  colborder">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor erat quis dui facilisis molestie...
+                <a class="sucursal_verde" style="font-size:12px" href="<?php echo url_for("@ubicacion?token=" . $sf_request->getParameter('token')) ?>">más</a>
+            </div>
+        </div>
+        <div class="span-6">
+            <a class="anuncio_morado" href="<?php echo url_for("@anuncio?token=" . $sf_request->getParameter('token')) ?>">anuncio</a>
+            <div class="lorem_ipsum  colborder" >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor erat quis dui facilisis molestie...
+                <a class="anuncio_morado" style="font-size:12px" href="<?php echo url_for("@anuncio?token=" . $sf_request->getParameter('token')) ?>">más</a>
+            </div>
+        </div>
+        <div class="span-6 last">
+            <a class="cuenta_azul" href="<?php echo url_for("cpanel/cuenta?token=" . $sf_request->getParameter('token')) ?>">cuenta</a>
+            <div class="lorem_ipsum">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor erat quis dui facilisis molestie...
+                <a class="cuenta_azul" style="font-size:12px" href="<?php echo url_for("cpanel/cuenta?token=" . $sf_request->getParameter('token')) ?>">más</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="hr_window"></div>
+    <div class="span-19 last" style="margin-top:30px; padding-left: 30px">
+        <div class="span-6">
+            <a class="sucursal_verde" style="margin-left: 25px" href="<?php echo url_for("@ubicacion?token=" . $sf_request->getParameter('token')) ?>">últimos anuncios</a>
+            <div class="lorem_ipsum  colborder">
+                <ul>
+                <?php for ($i = 0; $i < count($ultimosAnuncios); $i++): ?>
+                    <li><?php echo $ultimosAnuncios[$i]['titulo'] ?></li>
+                <?php endfor; ?>
+                </ul>
+                    <a class="sucursal_verde" style="font-size:12px" href="<?php echo url_for("@ubicacion?token=" . $sf_request->getParameter('token')) ?>">más</a>
+            </div>
+        </div>
+        <div class="span-6">
+            <a class="anuncio_morado" style="margin-left: 49px" href="<?php echo url_for("@anuncio?token=" . $sf_request->getParameter('token')) ?>">¡certificate!</a>
+            <div class="lorem_ipsum  colborder" >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor erat quis dui facilisis molestie...
+                <a class="anuncio_morado" style="font-size:12px" href="<?php echo url_for("@anuncio?token=" . $sf_request->getParameter('token')) ?>">más</a>
+            </div>
+        </div>
+        <div class="span-6 last">
+            <a class="cuenta_azul" style="margin-left: 25px" href="<?php echo url_for("cpanel/cuenta?token=" . $sf_request->getParameter('token')) ?>">últimos comentarios</a>
+            <div class="lorem_ipsum">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor erat quis dui facilisis molestie...
+                <a class="cuenta_azul" style="font-size:12px" href="<?php echo url_for("cpanel/cuenta?token=" . $sf_request->getParameter('token')) ?>">más</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,7 +15,7 @@ Doctrine_Manager::getInstance()->bindComponent('ServicioEspecial', 'doctrine');
  * @property float $precio
  * @property string $imagen
  * @property integer $horario_anuncio_id
- * @property integer $activo
+ * @property boolean $activo
  * @property timestamp $created_at
  * @property timestamp $updated_at
  * @property HorarioAnuncio $HorarioAnuncio
@@ -28,7 +28,7 @@ Doctrine_Manager::getInstance()->bindComponent('ServicioEspecial', 'doctrine');
  * @method float            getPrecio()                   Returns the current record's "precio" value
  * @method string           getImagen()                   Returns the current record's "imagen" value
  * @method integer          getHorarioAnuncioId()         Returns the current record's "horario_anuncio_id" value
- * @method integer          getActivo()                   Returns the current record's "activo" value
+ * @method boolean          getActivo()                   Returns the current record's "activo" value
  * @method timestamp        getCreatedAt()                Returns the current record's "created_at" value
  * @method timestamp        getUpdatedAt()                Returns the current record's "updated_at" value
  * @method HorarioAnuncio   getHorarioAnuncio()           Returns the current record's "HorarioAnuncio" value
@@ -126,8 +126,8 @@ abstract class BaseServicioEspecial extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 4,
              ));
-        $this->hasColumn('activo', 'integer', 1, array(
-             'type' => 'integer',
+        $this->hasColumn('activo', 'boolean', 1, array(
+             'type' => 'boolean',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,

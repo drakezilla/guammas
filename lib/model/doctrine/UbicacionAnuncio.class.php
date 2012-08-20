@@ -10,6 +10,13 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class UbicacionAnuncio extends BaseUbicacionAnuncio
-{
+class UbicacionAnuncio extends BaseUbicacionAnuncio {
+    public function save(Doctrine_Connection $conn = null) {
+        $this->setAnuncioId(sfContext::getInstance()->getUser()->getAttribute('anuncio'));
+        parent::save($conn);
+    }
+    public function guardar($ubicacion){
+        $this->setUbicacionId($ubicacion);
+        $this->save();
+    }
 }

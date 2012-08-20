@@ -1,4 +1,4 @@
-function checkUsuario(campo,spinner,accion){
+function checkUsuario(ruta,campo,spinner,accion){
     if(accion==undefined){
         accion='nuevo'
     }
@@ -8,7 +8,7 @@ function checkUsuario(campo,spinner,accion){
         dataType: 'json',
         cache: false,
         type: 'POST',
-        url: "/frontend_dev.php/usuario/checkusuario",
+        url: ruta,
         data:{
             username: campo.val(),
             accion: accion
@@ -35,7 +35,7 @@ function checkUsuario(campo,spinner,accion){
     },5000)
 }
 
-function checkEmail(campo,spinner,accion){  
+function checkEmail(ruta,campo,spinner,accion){  
     if(accion==undefined){
         accion='nuevo'
     }
@@ -45,7 +45,7 @@ function checkEmail(campo,spinner,accion){
             dataType: 'json',
             cache: false,
             type: 'POST',
-            url: "/frontend_dev.php/usuario/checkemail",
+            url: ruta,
             data:{
                 correo: campo.val(),
                 accion: accion
@@ -90,5 +90,28 @@ $(document).ready(function(){
             $('#pan-buscar').slideDown('fast');
             $('#pan-empresa').slideUp('fast');
         }
+    })
+})
+
+$(document).ready(function(){
+    $(document).ready(function(){
+        $.datepicker.regional['es'] = {
+            closeText: 'Cerrar',
+            prevText: '<Ant',
+            nextText: 'Sig>',
+            currentText: 'Hoy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+            dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+            weekHeader: 'Sm',
+            dateFormat: 'dd-mm-yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['es']);
     })
 })

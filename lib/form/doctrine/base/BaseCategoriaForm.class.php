@@ -19,7 +19,7 @@ abstract class BaseCategoriaForm extends BaseFormDoctrine
       'nombre_categoria'   => new sfWidgetFormInputText(),
       'categoria_padre_id' => new sfWidgetFormInputText(),
       'usuario_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Usuario'), 'add_empty' => true)),
-      'sugerido'           => new sfWidgetFormInputText(),
+      'sugerido'           => new sfWidgetFormInputCheckbox(),
       'created_at'         => new sfWidgetFormDateTime(),
     ));
 
@@ -28,7 +28,7 @@ abstract class BaseCategoriaForm extends BaseFormDoctrine
       'nombre_categoria'   => new sfValidatorString(array('max_length' => 75)),
       'categoria_padre_id' => new sfValidatorInteger(array('required' => false)),
       'usuario_id'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Usuario'), 'required' => false)),
-      'sugerido'           => new sfValidatorInteger(),
+      'sugerido'           => new sfValidatorBoolean(),
       'created_at'         => new sfValidatorDateTime(),
     ));
 

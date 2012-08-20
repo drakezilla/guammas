@@ -12,8 +12,8 @@ Doctrine_Manager::getInstance()->bindComponent('UbicacionAnuncio', 'doctrine');
  * @property integer $anuncio_id
  * @property timestamp $created_at
  * @property timestamp $updated_at
- * @property Ubicacion $Ubicacion
  * @property Anuncio $Anuncio
+ * @property Ubicacion $Ubicacion
  * @property Doctrine_Collection $DenunciaAnuncio
  * @property Doctrine_Collection $DenunciaAnuncio_2
  * 
@@ -22,8 +22,8 @@ Doctrine_Manager::getInstance()->bindComponent('UbicacionAnuncio', 'doctrine');
  * @method integer             getAnuncioId()         Returns the current record's "anuncio_id" value
  * @method timestamp           getCreatedAt()         Returns the current record's "created_at" value
  * @method timestamp           getUpdatedAt()         Returns the current record's "updated_at" value
- * @method Ubicacion           getUbicacion()         Returns the current record's "Ubicacion" value
  * @method Anuncio             getAnuncio()           Returns the current record's "Anuncio" value
+ * @method Ubicacion           getUbicacion()         Returns the current record's "Ubicacion" value
  * @method Doctrine_Collection getDenunciaAnuncio()   Returns the current record's "DenunciaAnuncio" collection
  * @method Doctrine_Collection getDenunciaAnuncio2()  Returns the current record's "DenunciaAnuncio_2" collection
  * @method UbicacionAnuncio    setId()                Sets the current record's "id" value
@@ -31,8 +31,8 @@ Doctrine_Manager::getInstance()->bindComponent('UbicacionAnuncio', 'doctrine');
  * @method UbicacionAnuncio    setAnuncioId()         Sets the current record's "anuncio_id" value
  * @method UbicacionAnuncio    setCreatedAt()         Sets the current record's "created_at" value
  * @method UbicacionAnuncio    setUpdatedAt()         Sets the current record's "updated_at" value
- * @method UbicacionAnuncio    setUbicacion()         Sets the current record's "Ubicacion" value
  * @method UbicacionAnuncio    setAnuncio()           Sets the current record's "Anuncio" value
+ * @method UbicacionAnuncio    setUbicacion()         Sets the current record's "Ubicacion" value
  * @method UbicacionAnuncio    setDenunciaAnuncio()   Sets the current record's "DenunciaAnuncio" collection
  * @method UbicacionAnuncio    setDenunciaAnuncio2()  Sets the current record's "DenunciaAnuncio_2" collection
  * 
@@ -95,12 +95,12 @@ abstract class BaseUbicacionAnuncio extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Ubicacion', array(
-             'local' => 'ubicacion_id',
-             'foreign' => 'id'));
-
         $this->hasOne('Anuncio', array(
              'local' => 'anuncio_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Ubicacion', array(
+             'local' => 'ubicacion_id',
              'foreign' => 'id'));
 
         $this->hasMany('DenunciaAnuncio', array(

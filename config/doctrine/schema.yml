@@ -72,7 +72,7 @@ Anuncio:
       notnull: true
       autoincrement: false
     activo:
-      type: integer(1)
+      type: boolean(1)
       fixed: false
       unsigned: false
       primary: false
@@ -279,7 +279,7 @@ Categoria:
       notnull: false
       autoincrement: false
     sugerido:
-      type: integer(1)
+      type: boolean(1)
       fixed: false
       unsigned: false
       primary: false
@@ -323,7 +323,7 @@ Ciudad:
       notnull: true
       autoincrement: false
     aprobada:
-      type: integer(1)
+      type: boolean(1)
       fixed: false
       unsigned: false
       primary: false
@@ -378,7 +378,7 @@ ComentarioAnuncio:
       notnull: true
       autoincrement: false
     denunciado:
-      type: integer(1)
+      type: boolean(1)
       fixed: false
       unsigned: false
       primary: false
@@ -413,10 +413,6 @@ ComentarioAnuncio:
       notnull: false
       autoincrement: false
   relations:
-    DenunciaComentario:
-      local: id
-      foreign: id
-      type: one
     Anuncio:
       local: anuncio_id
       foreign: id
@@ -427,6 +423,10 @@ ComentarioAnuncio:
       type: many
     Usuario:
       local: usuario_id
+      foreign: id
+      type: one
+    DenunciaComentario:
+      local: id
       foreign: id
       type: one
 DenunciaAnuncio:
@@ -447,7 +447,7 @@ DenunciaAnuncio:
       notnull: true
       autoincrement: false
     atendida:
-      type: integer(1)
+      type: boolean(1)
       fixed: false
       unsigned: false
       primary: false
@@ -513,7 +513,7 @@ DenunciaComentario:
       notnull: true
       autoincrement: false
     atendida:
-      type: integer(1)
+      type: boolean(1)
       fixed: false
       unsigned: false
       primary: false
@@ -769,7 +769,7 @@ HorarioUbicacion:
       notnull: true
       autoincrement: false
     horario_corrido:
-      type: integer(1)
+      type: boolean(1)
       fixed: false
       unsigned: false
       primary: false
@@ -883,7 +883,7 @@ Organizacion:
       notnull: false
       autoincrement: false
     verificada:
-      type: integer(1)
+      type: boolean(1)
       fixed: false
       unsigned: false
       primary: false
@@ -897,7 +897,7 @@ Organizacion:
       notnull: true
       autoincrement: false
     activa:
-      type: integer(1)
+      type: boolean(1)
       fixed: false
       unsigned: false
       primary: false
@@ -1088,7 +1088,7 @@ ServicioEspecial:
       notnull: true
       autoincrement: false
     activo:
-      type: integer(1)
+      type: boolean(1)
       fixed: false
       unsigned: false
       primary: false
@@ -1178,12 +1178,12 @@ TagAnuncio:
       notnull: true
       autoincrement: false
   relations:
-    Tag:
-      local: tag_id
-      foreign: id
-      type: one
     Anuncio:
       local: anuncio_id
+      foreign: id
+      type: one
+    Tag:
+      local: tag_id
       foreign: id
       type: one
 TagOrganizacion:
@@ -1211,12 +1211,12 @@ TagOrganizacion:
       notnull: false
       autoincrement: false
   relations:
-    Tag:
-      local: tag_id
-      foreign: id
-      type: one
     Organizacion:
       local: organizacion_id
+      foreign: id
+      type: one
+    Tag:
+      local: tag_id
       foreign: id
       type: one
 TipoAnuncio:
@@ -1259,7 +1259,7 @@ TipoEvento:
       notnull: true
       autoincrement: false
     sugerido:
-      type: integer(1)
+      type: boolean(1)
       fixed: false
       unsigned: false
       primary: false
@@ -1367,7 +1367,7 @@ Ubicacion:
       notnull: false
       autoincrement: false
     principal:
-      type: integer(1)
+      type: boolean(1)
       fixed: false
       unsigned: false
       primary: false
@@ -1387,14 +1387,14 @@ Ubicacion:
       primary: false
       notnull: true
       autoincrement: false
-    telefono_1:
+    telefono_ppal:
       type: string(12)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
-    telefono_2:
+    telefono_sec:
       type: string(12)
       fixed: false
       unsigned: false
@@ -1409,7 +1409,7 @@ Ubicacion:
       notnull: true
       autoincrement: false
     verificada:
-      type: integer(1)
+      type: boolean(1)
       fixed: false
       unsigned: false
       primary: false
@@ -1503,12 +1503,12 @@ UbicacionAnuncio:
       notnull: false
       autoincrement: false
   relations:
-    Ubicacion:
-      local: ubicacion_id
-      foreign: id
-      type: one
     Anuncio:
       local: anuncio_id
+      foreign: id
+      type: one
+    Ubicacion:
+      local: ubicacion_id
       foreign: id
       type: one
     DenunciaAnuncio:
@@ -1587,7 +1587,7 @@ Usuario:
       notnull: false
       autoincrement: false
     activo:
-      type: integer(1)
+      type: boolean(1)
       fixed: false
       unsigned: false
       primary: false
@@ -1615,11 +1615,60 @@ Usuario:
       notnull: false
       autoincrement: false
     pref_correo_electronico_publico:
-      type: integer(1)
+      type: boolean(1)
       fixed: false
       unsigned: false
       primary: false
       default: '0'
+      notnull: true
+      autoincrement: false
+    pref_enlace_facebook:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    pref_enlace_googleplus:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    pref_enlace_twitter:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    pref_notificacion_oferta:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    pref_notificacion_cupon:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    pref_notificacion_evento:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    pref_noticia_guamma:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      primary: false
       notnull: true
       autoincrement: false
     rol_id:
@@ -1651,12 +1700,12 @@ Usuario:
       notnull: false
       autoincrement: false
   relations:
-    Rol:
-      local: rol_id
-      foreign: id
-      type: one
     Ciudad:
       local: ciudad_id
+      foreign: id
+      type: one
+    Rol:
+      local: rol_id
       foreign: id
       type: one
     Categoria:
@@ -1731,12 +1780,12 @@ UsuarioCupon:
       notnull: true
       autoincrement: false
   relations:
-    Usuario:
-      local: usuario_id
-      foreign: id
-      type: one
     AnuncioCupon:
       local: anuncio_cupon_id
+      foreign: id
+      type: one
+    Usuario:
+      local: usuario_id
       foreign: id
       type: one
 ValoracionUbicacion:

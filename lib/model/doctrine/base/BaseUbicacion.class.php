@@ -10,13 +10,13 @@ Doctrine_Manager::getInstance()->bindComponent('Ubicacion', 'doctrine');
  * @property integer $id
  * @property string $rif
  * @property string $nombre
- * @property integer $principal
+ * @property boolean $principal
  * @property string $coordenada_x
  * @property string $coordenada_y
- * @property string $telefono_1
- * @property string $telefono_2
+ * @property string $telefono_ppal
+ * @property string $telefono_sec
  * @property string $detalle_direccion
- * @property integer $verificada
+ * @property boolean $verificada
  * @property integer $ciudad_id
  * @property integer $organizacion_id
  * @property timestamp $created_at
@@ -30,13 +30,13 @@ Doctrine_Manager::getInstance()->bindComponent('Ubicacion', 'doctrine');
  * @method integer             getId()                  Returns the current record's "id" value
  * @method string              getRif()                 Returns the current record's "rif" value
  * @method string              getNombre()              Returns the current record's "nombre" value
- * @method integer             getPrincipal()           Returns the current record's "principal" value
+ * @method boolean             getPrincipal()           Returns the current record's "principal" value
  * @method string              getCoordenadaX()         Returns the current record's "coordenada_x" value
  * @method string              getCoordenadaY()         Returns the current record's "coordenada_y" value
- * @method string              getTelefono1()           Returns the current record's "telefono_1" value
- * @method string              getTelefono2()           Returns the current record's "telefono_2" value
+ * @method string              getTelefonoPpal()        Returns the current record's "telefono_ppal" value
+ * @method string              getTelefonoSec()         Returns the current record's "telefono_sec" value
  * @method string              getDetalleDireccion()    Returns the current record's "detalle_direccion" value
- * @method integer             getVerificada()          Returns the current record's "verificada" value
+ * @method boolean             getVerificada()          Returns the current record's "verificada" value
  * @method integer             getCiudadId()            Returns the current record's "ciudad_id" value
  * @method integer             getOrganizacionId()      Returns the current record's "organizacion_id" value
  * @method timestamp           getCreatedAt()           Returns the current record's "created_at" value
@@ -52,8 +52,8 @@ Doctrine_Manager::getInstance()->bindComponent('Ubicacion', 'doctrine');
  * @method Ubicacion           setPrincipal()           Sets the current record's "principal" value
  * @method Ubicacion           setCoordenadaX()         Sets the current record's "coordenada_x" value
  * @method Ubicacion           setCoordenadaY()         Sets the current record's "coordenada_y" value
- * @method Ubicacion           setTelefono1()           Sets the current record's "telefono_1" value
- * @method Ubicacion           setTelefono2()           Sets the current record's "telefono_2" value
+ * @method Ubicacion           setTelefonoPpal()        Sets the current record's "telefono_ppal" value
+ * @method Ubicacion           setTelefonoSec()         Sets the current record's "telefono_sec" value
  * @method Ubicacion           setDetalleDireccion()    Sets the current record's "detalle_direccion" value
  * @method Ubicacion           setVerificada()          Sets the current record's "verificada" value
  * @method Ubicacion           setCiudadId()            Sets the current record's "ciudad_id" value
@@ -102,8 +102,8 @@ abstract class BaseUbicacion extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 150,
              ));
-        $this->hasColumn('principal', 'integer', 1, array(
-             'type' => 'integer',
+        $this->hasColumn('principal', 'boolean', 1, array(
+             'type' => 'boolean',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
@@ -129,7 +129,7 @@ abstract class BaseUbicacion extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 30,
              ));
-        $this->hasColumn('telefono_1', 'string', 12, array(
+        $this->hasColumn('telefono_ppal', 'string', 12, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,
@@ -138,7 +138,7 @@ abstract class BaseUbicacion extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 12,
              ));
-        $this->hasColumn('telefono_2', 'string', 12, array(
+        $this->hasColumn('telefono_sec', 'string', 12, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,
@@ -156,8 +156,8 @@ abstract class BaseUbicacion extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => '',
              ));
-        $this->hasColumn('verificada', 'integer', 1, array(
-             'type' => 'integer',
+        $this->hasColumn('verificada', 'boolean', 1, array(
+             'type' => 'boolean',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,

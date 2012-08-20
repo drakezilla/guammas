@@ -25,7 +25,7 @@ abstract class BaseAnuncioForm extends BaseFormDoctrine
       'fecha_fin'          => new sfWidgetFormDate(),
       'tipo_anuncio_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('TipoAnuncio'), 'add_empty' => false)),
       'horario_anuncio_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('HorarioAnuncio'), 'add_empty' => false)),
-      'activo'             => new sfWidgetFormInputText(),
+      'activo'             => new sfWidgetFormInputCheckbox(),
       'created_at'         => new sfWidgetFormDateTime(),
       'updated_at'         => new sfWidgetFormDateTime(),
     ));
@@ -41,7 +41,7 @@ abstract class BaseAnuncioForm extends BaseFormDoctrine
       'fecha_fin'          => new sfValidatorDate(),
       'tipo_anuncio_id'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('TipoAnuncio'))),
       'horario_anuncio_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('HorarioAnuncio'))),
-      'activo'             => new sfValidatorInteger(),
+      'activo'             => new sfValidatorBoolean(),
       'created_at'         => new sfValidatorDateTime(),
       'updated_at'         => new sfValidatorDateTime(array('required' => false)),
     ));

@@ -23,10 +23,7 @@ class bienvenidoActions extends sfActions {
         if (!$this->getUser()->isAuthenticated()) {
             $this->setLayout('layout-bienvenido');
             $this->setTemplate('main');
-        } else {
-            $this->setLayout('layout-main-mapa');
-            $this->setTemplate('index');
-        }
+        } 
     }
 
     public function executeExito(sfWebRequest $request) {

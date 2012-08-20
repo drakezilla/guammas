@@ -2,4 +2,10 @@
 # http://www.symfony-project.org/reference/1_4/en/11-App
 
 # default values
-#all:
+all:
+  correo_servidor_smtp:  smtp.gmail.com
+  correo_servidor_port:  465
+  correo_servidor_secu:  ssl
+  correo_usuario:        noreplyguammas@gmail.com
+  correo_contrasena:     '*GuammaS*'
+  correo_nombre_mostrar: noreply

@@ -9,7 +9,7 @@ Doctrine_Manager::getInstance()->bindComponent('Ciudad', 'doctrine');
  * 
  * @property integer $id
  * @property string $nombre_ciudad
- * @property integer $aprobada
+ * @property boolean $aprobada
  * @property string $estado_id
  * @property Estado $Estado
  * @property Doctrine_Collection $AnuncioEvento
@@ -18,7 +18,7 @@ Doctrine_Manager::getInstance()->bindComponent('Ciudad', 'doctrine');
  * 
  * @method integer             getId()            Returns the current record's "id" value
  * @method string              getNombreCiudad()  Returns the current record's "nombre_ciudad" value
- * @method integer             getAprobada()      Returns the current record's "aprobada" value
+ * @method boolean             getAprobada()      Returns the current record's "aprobada" value
  * @method string              getEstadoId()      Returns the current record's "estado_id" value
  * @method Estado              getEstado()        Returns the current record's "Estado" value
  * @method Doctrine_Collection getAnuncioEvento() Returns the current record's "AnuncioEvento" collection
@@ -60,8 +60,8 @@ abstract class BaseCiudad extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 200,
              ));
-        $this->hasColumn('aprobada', 'integer', 1, array(
-             'type' => 'integer',
+        $this->hasColumn('aprobada', 'boolean', 1, array(
+             'type' => 'boolean',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,

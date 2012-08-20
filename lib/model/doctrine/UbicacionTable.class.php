@@ -50,24 +50,36 @@ class UbicacionTable extends Doctrine_Table {
         return $query->execute();
     }
     
-    public function getSucursalesPorOrganizacion($token){
+    public function getSucursalesPorOrganizacion($token,$json=true){
         $query = Doctrine_Query::create()
-                ->select('ubi.coordenada_x, ubi.coordenada_y, ubi.detalle_direccion')
+                ->select('ubi.*,org.nombre_organizacion as nombre_organizacion')
                 ->from('Ubicacion ubi')
                 ->innerJoin('ubi.Organizacion org')
                 ->where('org.token=?',$token)
                 ->execute();
-        return $this->jsonSucursales($query);
+        return $json == true ? $this->jsonSucursales($query) : $query;
+    }
+    
+    public function getSucursalesParaMapa($json=true){
+        $query = Doctrine_Query::create()
+                ->select('ubi.*,org.nombre_organizacion as nombre_organizacion')
+                ->from('Ubicacion ubi')
+                ->innerJoin('ubi.Organizacion org')
+                ->where('org.activa=?',true)
+                ->execute();
+        return $json == true ? $this->jsonSucursales($query) : $query;
     }
     
     private static function jsonSucursales($query){
         $arrayJsonSucursales = array();
         for($i=0;$i<count($query);$i++){
+            $arrayJsonSucursales[$i]['id'] = $query[$i]['id'];
+            $arrayJsonSucursales[$i]['organizacion'] = $query[$i]['nombre_organizacion'];
             $arrayJsonSucursales[$i]['principal'] = $query[$i]['principal'];
             $arrayJsonSucursales[$i]['coordenada_x'] = $query[$i]['coordenada_x'];
             $arrayJsonSucursales[$i]['coordenada_y'] = $query[$i]['coordenada_y'];
             $arrayJsonSucursales[$i]['detalle_direccion'] = $query[$i]['detalle_direccion'];
-            $arrayJsonSucursales[$i]['telefono'] = $query[$i]['telefono_1'];
+            $arrayJsonSucursales[$i]['telefono'] = $query[$i]['telefono_ppal'];
         }
         return $arrayJsonSucursales;
     }

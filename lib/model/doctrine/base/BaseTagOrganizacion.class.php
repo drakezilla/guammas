@@ -10,19 +10,19 @@ Doctrine_Manager::getInstance()->bindComponent('TagOrganizacion', 'doctrine');
  * @property integer $id
  * @property integer $tag_id
  * @property integer $organizacion_id
- * @property Tag $Tag
  * @property Organizacion $Organizacion
+ * @property Tag $Tag
  * 
  * @method integer         getId()              Returns the current record's "id" value
  * @method integer         getTagId()           Returns the current record's "tag_id" value
  * @method integer         getOrganizacionId()  Returns the current record's "organizacion_id" value
- * @method Tag             getTag()             Returns the current record's "Tag" value
  * @method Organizacion    getOrganizacion()    Returns the current record's "Organizacion" value
+ * @method Tag             getTag()             Returns the current record's "Tag" value
  * @method TagOrganizacion setId()              Sets the current record's "id" value
  * @method TagOrganizacion setTagId()           Sets the current record's "tag_id" value
  * @method TagOrganizacion setOrganizacionId()  Sets the current record's "organizacion_id" value
- * @method TagOrganizacion setTag()             Sets the current record's "Tag" value
  * @method TagOrganizacion setOrganizacion()    Sets the current record's "Organizacion" value
+ * @method TagOrganizacion setTag()             Sets the current record's "Tag" value
  * 
  * @package    guammas
  * @subpackage model
@@ -65,12 +65,12 @@ abstract class BaseTagOrganizacion extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Tag', array(
-             'local' => 'tag_id',
-             'foreign' => 'id'));
-
         $this->hasOne('Organizacion', array(
              'local' => 'organizacion_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Tag', array(
+             'local' => 'tag_id',
              'foreign' => 'id'));
     }
 }

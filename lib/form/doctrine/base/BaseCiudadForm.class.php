@@ -17,14 +17,14 @@ abstract class BaseCiudadForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'            => new sfWidgetFormInputHidden(),
       'nombre_ciudad' => new sfWidgetFormInputText(),
-      'aprobada'      => new sfWidgetFormInputText(),
+      'aprobada'      => new sfWidgetFormInputCheckbox(),
       'estado_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'add_empty' => false)),
     ));
 
     $this->setValidators(array(
       'id'            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'nombre_ciudad' => new sfValidatorString(array('max_length' => 200)),
-      'aprobada'      => new sfValidatorInteger(),
+      'aprobada'      => new sfValidatorBoolean(),
       'estado_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'))),
     ));
 

@@ -2,11 +2,11 @@
     var main_newuser_checked = false
     var main_mail_checked = false
     $("#usuario_nombre_usuario").blur(function(){
-        main_newuser_checked = checkUsuario($("#usuario_nombre_usuario"),$("#look_spinner"))
+        main_newuser_checked = checkUsuario('<?php echo url_for('usuario/checkusuario') ?>',$("#usuario_nombre_usuario"),$("#look_spinner"))
     });
     
     $("#usuario_correo_electronico").blur(function(){
-        main_mail_checked = checkEmail($(this),$("#check_email"));
+        main_mail_checked = checkEmail('<?php echo url_for('usuario/checkemail') ?>',$(this),$("#check_email"));
     });
     
     $("#bien_login_form").submit(function(){

@@ -11,7 +11,7 @@ Doctrine_Manager::getInstance()->bindComponent('Categoria', 'doctrine');
  * @property string $nombre_categoria
  * @property integer $categoria_padre_id
  * @property integer $usuario_id
- * @property integer $sugerido
+ * @property boolean $sugerido
  * @property timestamp $created_at
  * @property Doctrine_Collection $Categoria
  * @property Usuario $Usuario
@@ -21,7 +21,7 @@ Doctrine_Manager::getInstance()->bindComponent('Categoria', 'doctrine');
  * @method string              getNombreCategoria()    Returns the current record's "nombre_categoria" value
  * @method integer             getCategoriaPadreId()   Returns the current record's "categoria_padre_id" value
  * @method integer             getUsuarioId()          Returns the current record's "usuario_id" value
- * @method integer             getSugerido()           Returns the current record's "sugerido" value
+ * @method boolean             getSugerido()           Returns the current record's "sugerido" value
  * @method timestamp           getCreatedAt()          Returns the current record's "created_at" value
  * @method Doctrine_Collection getCategoria()          Returns the current record's "Categoria" collection
  * @method Usuario             getUsuario()            Returns the current record's "Usuario" value
@@ -81,8 +81,8 @@ abstract class BaseCategoria extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 4,
              ));
-        $this->hasColumn('sugerido', 'integer', 1, array(
-             'type' => 'integer',
+        $this->hasColumn('sugerido', 'boolean', 1, array(
+             'type' => 'boolean',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,

@@ -1,0 +1,23 @@
+#reg-empresa{
+    padding-left: 10px; 
+    padding-top: 4px; 
+    position: fixed; 
+    top: 550px; 
+    background: #FFF; 
+    margin-left: 590px;
+    border-top-left-radius: 5px; 
+    border-bottom-left-radius: 5px; 
+    box-shadow: -2px 0px 5px 2px #999; 
+    height: 28px;
+}
+#reg-empresa-text{
+    position: relative; 
+    bottom: 6px;
+}
+#reg-empresa-image{
+    cursor: pointer;
+}
+#reg-empresa a{
+    color: #F9862D;
+    text-decoration: none;
+}
